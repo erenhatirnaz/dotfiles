@@ -1,0 +1,14 @@
+auto-save-list/
+.cask/
+.cache/
+elpa/
+transient/
+var/
+backups/
+
+places
+configuration.el
+projectile-bookmarks.eld
+sensible-defaults.el
+ido.last
+smex-items

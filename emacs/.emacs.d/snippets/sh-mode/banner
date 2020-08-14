@@ -1,0 +1,32 @@
+# -*- mode: snippet -*-
+# name: sh-banner
+# key: banner
+# --
+
+#!/bin/bash
+# ${1:paste banner here}
+#
+# script      : $2
+# version     : $3
+# description : $4
+# author      : eren hatırnaz <erenhatirnaz@hotmail.com.tr> [GPG: 0x8e64942a]
+# source      : $5
+${6:# dependency  :}
+# license     : gnu general public license v3
+# | copyright (c) 2019 eren hatırnaz
+# |
+# | this program is free software: you can redistribute it and/or modify
+# | it under the terms of the gnu general public license as published by
+# | the free software foundation, either version 3 of the license, or
+# | (at your option) any later version.
+# |
+# | this program is distributed in the hope that it will be useful,
+# | but without any warranty; without even the implied warranty of
+# | merchantability or fitness for a particular purpose.  see the
+# | gnu general public license for more details.
+# |
+# | you should have received a copy of the gnu general public license
+# | along with this program.  if not, see <https://www.gnu.org/licenses/>.
+
+readonly script=\$(basename "\$0")
+${7:readonly version="1.0.0"}

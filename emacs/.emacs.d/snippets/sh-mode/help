@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# key: helpf
+# name: sh-help
+# --
+_print_help() {
+	cat <<-EOF
+	Usage: ${1:\$\{script\}} [OPTION ...] $2
+
+	Options:
+	  $3
+		-v, --version    Show \${script} version number
+	  -h, --help       Show this help message
+	EOF
+}
+
+[[ "\$1" =~ ^(-h|--help)$ ]] && _print_help && ${4:$$(yas-choose-value '("exit" "return"))}

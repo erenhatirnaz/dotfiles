@@ -1,0 +1,121 @@
+#!/usr/bin/env bash
+
+# Easier navigation
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias -- -="cd -"
+
+# Directory bookmarks
+alias dl="cd ${HOME}/Downloads"
+alias dt="cd ${HOME}/Desktop"
+alias dm="cd ${HOME}/Documents"
+alias rmrf="rm -rf"
+alias msc="cd ${HOME}/Music && cmus"
+
+# List all files colorized in long format
+alias ll="ls -lF --color --group-directories-first"
+
+# List all files colorized in long format, including dotfiles
+alias la="ls -laF --color --group-directories-first"
+
+# List only directories
+alias lsd="ls -lF --color | grep --color=never '^d'"
+alias lsda="ls -laF --color | grep --color=never '^d'"
+
+# Always use color output for `ls`
+alias ls="command ls --color --group-directories-first"
+
+# Always enable colored `grep` output
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
+
+# Print week number
+alias week="date +%V"
+
+# Print day number of the year
+alias dayofyear="date +%j"
+
+# A basic stop watch
+alias stopwatch="time read -N 1"
+
+# tty-clock
+alias clock="tty-clock -scbD -C 6"
+
+# List all upgradable packages
+alias uplist="sudo apt update && apt list --upgradable"
+
+# Print IP address
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+
+# Show active network interfaces
+alias ifactive="ifconfig | grep 'wl' | cut -d: -f1"
+
+# Show local IP addresses (IPv4 and IPv6)
+alias lip="ifconfig $(ifconfig | grep 'wl' | cut -d: -f1) | grep 'inet' | awk '{print \$2}'"
+
+# List all open network ports
+alias openports4="ss --all --numeric --processes --ipv4"
+alias openports6="ss --all --numeric --processes --ipv6"
+
+# Empty the Trash
+alias emptytrash="rm -rf ${HOME}/.local/share/Trash/*"
+
+# Intuitive map function
+# For example, to list all directories that contain a certain file:
+# find . -name .gitattributes | map dirname
+alias map="xargs -n1"
+
+# Reload the shell (i.e. invoke as a login shell)
+alias reload="exec ${SHELL} -l"
+
+# Print each PATH entry on a separate line
+alias path="echo -e ${PATH//:/\\n}"
+
+# Convert clipboard content to QRCode
+alias clip2qr="xclip -out -selection clipboard | qrencode -o - -t UTF8"
+
+# Shortcuts to translation tool
+alias tr-en="trans tr:en"
+alias en-tr="trans en:tr"
+alias en-en="trans en:en -d"
+
+# Copy & Paste
+alias copy="xclip -selection clipboard"
+alias paste="xclip -selection clipboard -o"
+
+# List all fonts
+alias fontlist="fc-list | cut -d: -f2 | sort -u | uniq"
+
+# Clear swap partition
+alias clearswap="sudo swapoff -a && sudo swapon -a"
+
+# Shutdown PC
+alias bye="shutdown -h now"
+
+# Disable&Enable Notifications
+alias disable_notify='notify-send "DUNST_COMMAND_PAUSE"'
+alias enable_notify='notify-send "DUNST_COMMAND_RESUME"'
+
+# My tools
+alias mkcd=". mkcd"
+alias clonecd=". clonecd"
+
+# jobs always shows PID
+alias jobs="jobs -l"
+
+# Libre office shortcuts
+alias lwriter="libreoffice --writer"
+alias lcalc="libreoffice --calc"
+alias ldraw="libreoffice --draw"
+alias limpress="libreoffice --impress"
+alias lbase="libreoffice --base"
+alias lmath="libreoffice --math"
+
+# Password generator
+alias genpass="cat /dev/urandom | tr -dc 'a-zA-Z0-9-!@#$%&*()_+~' | fold -w 15 | head -n 1"
+
+# Restart pulseaudio
+alias restpulse="pulseaudio -k && pulseaudio --start"

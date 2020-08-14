@@ -1,0 +1,65 @@
+#!/bin/bash
+#       _                          _
+#   ___| | ___  _ __   ___  ___ __| |
+#  / __| |/ _ \| '_ \ / _ \/ __/ _` |
+# | (__| | (_) | | | |  __/ (_| (_| |
+#  \___|_|\___/|_| |_|\___|\___\__,_|
+#
+# script      : clonecd
+# version     : 1.0.0
+# description : git clone and cd into it
+# note        : add `alias clonecd='. clonecd'` line to your .bashrc because
+# |             this script changes current working directory.
+# author      : eren hatırnaz <erenhatirnaz@hotmail.com.tr> [GPG: 0x8e64942a]
+# source      : https://github.com/erenhatirnaz/dotfiles
+# dependency  : git
+# license     : gnu general public license v3
+# | copyright (c) 2019 eren hatırnaz
+# |
+# | this program is free software: you can redistribute it and/or modify
+# | it under the terms of the gnu general public license as published by
+# | the free software foundation, either version 3 of the license, or
+# | (at your option) any later version.
+# |
+# | this program is distributed in the hope that it will be useful,
+# | but without any warranty; without even the implied warranty of
+# | merchantability or fitness for a particular purpose.  see the
+# | gnu general public license for more details.
+# |
+# | you should have received a copy of the gnu general public license
+# | along with this program.  if not, see <https://www.gnu.org/licenses/>.
+
+script="clonecd"
+version="1.0.0"
+
+_print_help() {
+	cat <<-EOF
+	Usage: ${script} [OPTIONS] REPO [DIRECTORY]
+	Git clone the REPO and cd into the directory. The DIRECTORY is an optional
+	argument and If given, the REPO will cloned into the DIRECTORY.
+
+	Options:
+	  -v, --version    Show ${script} version number
+	  -h, --help       Show this help message
+	EOF
+}
+
+_print_version() {
+	echo "${script} version ${version}"
+}
+
+[[ "$1" =~ ^(-v|--version)$ ]] && _print_version && return
+[[ "$1" =~ ^(-h|--help)$ ]] && _print_help && return
+
+if [[ -z "$1" ]]; then
+	echo "${script}: missing operand" >&2
+	echo "Try '${script} --help' for more information."
+	return 1
+fi
+
+repo="$1"
+directory="$(basename "${2:-$repo}" .git)"
+
+git clone "$repo" "$directory"
+cd -- "$directory" || return 1
+unset script version __print_help _print_version repo directory

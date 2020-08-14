@@ -1,0 +1,125 @@
+#!/bin/bash
+#                       _
+#   ___  __ _ ___ _   _| |_ __ _ _ __
+#  / _ \/ _` / __| | | | __/ _` | '__|
+# |  __/ (_| \__ \ |_| | || (_| | |
+#  \___|\__,_|___/\__, |\__\__,_|_|
+#                 |___/
+#
+# script      : easytar
+# version     : 1.0.0
+# description : a shortcut for tar commands
+# author      : eren hatırnaz <erenhatirnaz@hotmail.com.tr> [GPG: 0x8e64942a]
+# source      : https://github.com/erenhatirnaz/dotfiles
+# dependency  : tar
+# license     : gnu general public license v3.0
+# | copyright (c) 2019 eren hatırnaz
+# |
+# | this program is free software: you can redistribute it and/or modify
+# | it under the terms of the gnu general public license as published by
+# | the free software foundation, either version 3 of the license, or
+# | (at your option) any later version.
+# |
+# | this program is distributed in the hope that it will be useful,
+# | but without any warranty; without even the implied warranty of
+# | merchantability or fitness for a particular purpose.  see the
+# | gnu general public license for more details.
+# |
+# | you should have received a copy of the gnu general public license
+# | along with this program.  if not, see <https://www.gnu.org/licenses/>.
+
+readonly script=$(basename "$0")
+readonly version="1.0.0"
+
+_print_help() {
+	cat <<-EOF
+	Usage: ${script} ARCHIVE.EXT [DIRECTORY]    (1st form)
+	   or: ${script} FILE|DIR... [ARCHIVE.EXT]  (2nd form)
+	EasyTAR is a shortcut for tar commands.
+	First form is used for extract the ARCHIVE.EXT. DIRECTORY is an optional
+	argument and If given extracts the ARCHIVE.EXT into the DIRECTORY. Second form
+	is used for create archive file. Give one or many file or directory and final
+	argument is the name of archive file to be created. See EXAMPLES section
+	below.
+
+	Available EXTs:
+	  .tar, .tar.gz, .tar.bz2, .tar.xz
+
+	Examples:
+	  easytar documents/ -> documents.tar
+	  easytar documents/ docs.tar.gz -> docs.tar.gz
+	  easytar a.txt b.txt ab.tar.bz2 -> ab.tar.bz2
+	  easytar docs.tar.gz -> documents/
+	  easytar ab.tar.bz2 texts -> texts/a.txt texts/b.txt
+	EOF
+}
+
+_print_version() {
+	echo "${script} version ${version}"
+}
+
+_parse_argument() {
+	[[ "$1" =~ ^(-h|--help)$ ]] && _print_help && exit
+	[[ "$1" =~ ^(-v|--version)$ ]] && _print_version && exit
+
+	if [[ $# -eq 0 ]]; then
+		echo "${script}: missing operand" >&2
+		echo "Try '${script} --help' for more information."
+		exit 1
+	fi
+}
+
+_create_archive() {
+	local -r files=( "$@" )
+
+	if [[ $# -gt 1 ]]; then
+		archive=${!#}
+		unset 'files[${#files[@]}-1]'
+	else
+		archive="${files[0]%%/}.tar"
+	fi
+
+	params=${type}cvf
+	tar -$params "$archive" "${files[@]}"
+}
+
+_extract_archive() {
+	local -r archive="$1"
+	local -r directory="${2:-.}"
+
+	if [[ -n $directory && ! -d $directory ]]; then
+		mkdir -p "$directory"
+		echo "${script}: ${directory}: Directory created."
+	fi
+
+	params=${type}xvf
+
+	# [[ -n "$directory" ]] && arg_directory=(-C $directory)
+	# tar -$params "$archive" "${arg_directory[@]}" && exit
+	tar -$params "$archive" -C "$directory"
+	if [[ -n "$directory" && ! "$directory" == "." ]]; then
+		cat <<-EOF
+		${script}: ${archive} has been successfully extracted into '${directory}'.
+		EOF
+	fi
+}
+
+main() {
+	_parse_argument "$@"
+
+	# determine archive type for send as parameter to tar
+	extension="${1##*.}"
+	case $extension in
+		gz) type=z ;;
+		bz2) type=j ;;
+		xz) type=J ;;
+	esac
+
+	if [[ "$extension" =~ .*(tar|gz|bz2|xz)$ ]]; then
+		_extract_archive "$@"
+	else
+		_create_archive "$@"
+	fi
+}
+
+main "$@"

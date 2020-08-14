@@ -1,0 +1,58 @@
+#!/bin/bash
+#                        ____            _  __
+#  _ __ ___   __ _ _ __ |___ \ _ __   __| |/ _|
+# | '_ ` _ \ / _` | '_ \  __) | '_ \ / _` | |_
+# | | | | | | (_| | | | |/ __/| |_) | (_| |  _|
+# |_| |_| |_|\__,_|_| |_|_____| .__/ \__,_|_|
+#                             |_|
+#
+# script      : man2pdf
+# version     : 1.0.0
+# description : Converts man page to a PDF file.
+# author      : eren hatırnaz <erenhatirnaz@hotmail.com.tr> [GPG: 0x8e64942a]
+# source      : https://github.com/erenhatirnaz/dotfiles
+# dependency  : ps2pdf
+# license     : gnu general public license v3
+# | copyright (c) 2019 eren hatırnaz
+# |
+# | this program is free software: you can redistribute it and/or modify
+# | it under the terms of the gnu general public license as published by
+# | the free software foundation, either version 3 of the license, or
+# | (at your option) any later version.
+# |
+# | this program is distributed in the hope that it will be useful,
+# | but without any warranty; without even the implied warranty of
+# | merchantability or fitness for a particular purpose.  see the
+# | gnu general public license for more details.
+# |
+# | you should have received a copy of the gnu general public license
+# | along with this program.  if not, see <https://www.gnu.org/licenses/>.
+
+readonly script=$(basename "$0")
+readonly version="1.0.0"
+
+_print_help() {
+	cat <<-EOF
+	Usage: ${script} [OPTIONS] MANPAGE
+	Converts the MANPAGE to a PDF file.
+
+	Options:
+	  -v, --version    Show ${script} version number
+	  -h, --help       Show this help message
+	EOF
+}
+
+_print_version() {
+	echo "${script} version ${version}"
+}
+
+[[ "$1" =~ ^(-v|--version)$ ]] && _print_version && exit
+[[ "$1" =~ ^(-help|--help)$ ]] && _print_help && exit
+
+if [[ -z "$1" ]]; then
+	echo "${script}: missing operand" >&2
+	echo "Try '${script} --help' for more information."
+	exit 1
+fi
+
+man -t "$1" | ps2pdf - "$1.pdf"

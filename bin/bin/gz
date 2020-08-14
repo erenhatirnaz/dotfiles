@@ -1,0 +1,73 @@
+#!/bin/bash
+#
+#   __ _ ____
+#  / _` |_  /
+# | (_| |/ /
+#  \__, /___|
+#  |___/
+#
+# script      : gz
+# version     : 1.0.0
+# description : Print original, gzipped file sizes and ratio
+# author      : eren hatırnaz <erenhatirnaz@hotmail.com.tr> [GPG: 0x8e64942a]
+# source      : https://github.com/erenhatirnaz/dotfiles
+# dependency  : gzip
+# license     : gnu general public license v3
+# | copyright (c) 2019 eren hatırnaz
+# |
+# | this program is free software: you can redistribute it and/or modify
+# | it under the terms of the gnu general public license as published by
+# | the free software foundation, either version 3 of the license, or
+# | (at your option) any later version.
+# |
+# | this program is distributed in the hope that it will be useful,
+# | but without any warranty; without even the implied warranty of
+# | merchantability or fitness for a particular purpose.  see the
+# | gnu general public license for more details.
+# |
+# | you should have received a copy of the gnu general public license
+# | along with this program.  if not, see <https://www.gnu.org/licenses/>.
+
+readonly script=$(basename "$0")
+readonly version="1.0.0"
+
+help() {
+	cat <<-EOF
+	Usage: ${script} FILE
+	Prints original, gzipped file size and ratio.
+
+	Options:
+	  -v, --version    Show ${script} version number
+	  -h, --help       Show this help message
+	EOF
+}
+
+version() {
+	echo "${script} version ${version}"
+}
+
+die() {
+	message="$1"
+	be_helpful="${2:-true}"
+
+	echo "${script}: ${message}" >&2
+	$be_helpful &&\
+		echo "Try '${script} --help' for more information."
+	exit 1
+}
+
+[[ "$1" =~ ^(-h|--help)$ ]] &&	help && exit
+[[ "$1" =~ ^(-v|--version)$ ]] && version && exit
+
+[[ -z "$1" ]] && die "missing operand"
+[[ -d "$1" ]] && die "$1: is a directory"
+[[ ! -f "$1" ]] &&\
+	die "cannot access '$1': No such file or directory" false
+
+file="$1"
+orig_size=$(wc -c < "$file")
+gzip_size=$(gzip -c "$file" | wc -c)
+ratio=$(echo "${gzip_size} * 100 / ${orig_size}" | bc -l)
+
+printf "gz: original: %d bytes\\n" "$orig_size"
+printf "gz: gzipped: %d bytes (%2.2f%%)\\n" "$gzip_size" "${ratio}"

@@ -1,0 +1,66 @@
+#!/bin/bash
+#                    ____                 _____
+#  _   _  ___  _   _|___ \ _ __ ___  _ __|___ /
+# | | | |/ _ \| | | | __) | '_ ` _ \| '_ \ |_ \
+# | |_| | (_) | |_| |/ __/| | | | | | |_) |__) |
+#  \__, |\___/ \__,_|_____|_| |_| |_| .__/____/
+#  |___/                            |_|
+
+#
+# script      : you2mp3
+# version     : 1.0.0
+# description : download youtube video as mp3 file
+# author      : eren hatırnaz <erenhatirnaz@hotmail.com.tr> [GPG: 0x8e64942a]
+# source      : https://github.com/erenhatirnaz/dotfiles
+# dependency  : youtube-dl
+# license     : gnu general public license v3
+# | copyright (c) 2019 eren hatırnaz
+# |
+# | this program is free software: you can redistribute it and/or modify
+# | it under the terms of the gnu general public license as published by
+# | the free software foundation, either version 3 of the license, or
+# | (at your option) any later version.
+# |
+# | this program is distributed in the hope that it will be useful,
+# | but without any warranty; without even the implied warranty of
+# | merchantability or fitness for a particular purpose.  see the
+# | gnu general public license for more details.
+# |
+# | you should have received a copy of the gnu general public license
+# | along with this program.  if not, see <https://www.gnu.org/licenses/>.
+
+readonly script=$(basename "$0")
+readonly version="1.0.0"
+
+_print_help() {
+	cat <<-EOF
+	Usage: ${script} [OPTIONS] YOUTUBE_URL
+	Download YouTube video as mp3 audio file.
+
+	Options:
+	  -v, --version    Show ${script} version number
+	  -h, --help       Show this help message
+	EOF
+}
+
+_print_version() {
+	echo "${script} version ${version}"
+}
+
+[[ "$1" =~ ^(-v|--version)$ ]] && _print_version && exit
+[[ "$1" =~ ^(-h|--help)$ ]] && _print_help && exit
+
+if [[ ! "$1" =~ ^(http)s?:\/\/youtu(be)?\.(com|be) ]]; then
+	echo "${script}: invalid youtube url \`${1}\`" >&2
+	exit 1
+fi
+
+url="$1"
+output_directory="${home}/Music/YouTube/%(title)s.%(ext)s"
+format="bestaudio"
+ext="mp3"
+
+youtube-dl --extract-audio --audio-format "$ext" \
+					 -f "$format" \
+					 -o "$output_directory" \
+					 "$url"

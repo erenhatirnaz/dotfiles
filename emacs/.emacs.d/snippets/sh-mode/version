@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: sh-version
+# key: versionf
+# --
+_print_version() {
+	echo "\${script} version \${version}"
+}
+
+[[ "\$1" =~ ^(-v|--version)$ ]] && _print_version && ${1:$$(yas-choose-value '("exit" "return"))}

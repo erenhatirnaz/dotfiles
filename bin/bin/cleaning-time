@@ -1,0 +1,132 @@
+#!/bin/bash
+#       _                  _                   _   _
+#   ___| | ___  __ _ _ __ (_)_ __   __ _      | |_(_)_ __ ___   ___
+#  / __| |/ _ \/ _` | '_ \| | '_ \ / _` |_____| __| | '_ ` _ \ / _ \
+# | (__| |  __/ (_| | | | | | | | | (_| |_____| |_| | | | | | |  __/
+#  \___|_|\___|\__,_|_| |_|_|_| |_|\__, |      \__|_|_| |_| |_|\___|
+#                                  |___/
+#
+# script      : cleaning-time
+# version     : 1.0.0
+# description : disable input devices awhile for cleaning
+# note        : please read the help message ('cleaning-time --help')
+# |             before run this script. it's includes important note.
+# author      : eren hatırnaz <erenhatirnaz@hotmail.com.tr> [GPG: 0x8e64942a]
+# source      : http://github.com/erenhatirnaz/dotfiles
+# dependency  : xinput
+# license     : gnu general public license v3
+# | copyright (c) 2019 eren hatırnaz
+# |
+# | this program is free software: you can redistribute it and/or modify
+# | it under the terms of the gnu general public license as published by
+# | the free software foundation, either version 3 of the license, or
+# | (at your option) any later version.
+# |
+# | this program is distributed in the hope that it will be useful,
+# | but without any warranty; without even the implied warranty of
+# | merchantability or fitness for a particular purpose.  see the
+# | gnu general public license for more details.
+# |
+# | you should have received a copy of the gnu general public license
+# | along with this program. if not, see <https://www.gnu.org/licenses/>.
+
+readonly script=$(basename "$0")
+readonly version="1.0.0"
+
+# Edit these 2 lines by yourself
+keyboard_devices=(12 14)
+mouse_devices=(13 15)
+
+_print_help() {
+	cat <<-EOF
+	Usage: ${script} [OPTIONS] [NUMBER]
+	Disables given input devices for the NUMBER seconds. The defaults is 30
+	seconds.
+
+	Options:
+	  -k, --keyboard-only    Disables only keyboard devices
+	  -m, --mouse-only       Disables only mouse devices
+	  -v, --version          Show ${script} version number
+	  -h, --help             Show this help message
+
+	Configuration:
+	On first usage, the script needs to know the IDs of your input devices. So run
+	\`xinput list\` in your terminal and find the IDs of your input devices. Then
+	open this script file with your favorite text editor and write the device IDs
+	\`keyboard_devices\` and \`mouse_devices\` variables seperated with spaces.
+	Note that, input device's ID may change after rebooting the system.
+
+	IMPORTANT:
+	Please be careful before run this script. Because this script disables your
+	input devices awhile. So you CANNOT stop this command while running.
+	DON'T interrupt this script even If you run with \`--mouse-only\` option.
+	Because you are terminating the script without running the enable input
+	devices commands.
+	EOF
+}
+
+_print_version() {
+	echo "${script} version ${version}"
+}
+
+_parse_arguments() {
+	# Default values
+	interval="30"
+	keyboard_only=false
+	mouse_only=false
+
+	# Parse arguments
+	while [[ $# -gt 0 ]]; do
+		case $1 in
+			-k|--keyboard-only) keyboard_only=true; shift ;;
+			-m|--mouse-only) mouse_only=true; shift ;;
+			-v|--version) _print_version; exit ;;
+			-h|--help) _print_help; exit ;;
+			*) interval="$1"; shift
+		esac
+	done
+
+	# Input validation
+	if [[ -n "$interval" && ! "$interval" =~ ^[0-9]+$ ]]; then
+		echo "${script}: invalid time interval \`${interval}\`" >&2
+		echo "Try '${script} --help' for mote information."
+		exit 1
+	fi
+}
+
+_prepare_device_list() {
+	if $keyboard_only; then
+		included_devices=( "${keyboard_devices[@]}" )
+	elif $mouse_only; then
+		included_devices=( "${mouse_devices[@]}" )
+	else
+		included_devices=( "${keyboard_devices[@]}" "${mouse_devices[@]}" )
+	fi
+}
+
+_switch_devices() {
+	local -r action="$1"
+
+	for device_id in "${included_devices[@]}"; do
+		if xinput "$action" "$device_id" 2>/dev/null; then
+			device_name="$(xinput --list --name-only "$device_id")"
+			echo "${script}: Device ${action}d \`${device_name}\`"
+		else
+			echo "${script}: Device not found \`${device_id}\`" >&2
+		fi
+	done
+}
+
+main() {
+	_parse_arguments "$@"
+	_prepare_device_list
+
+	_switch_devices "disable"
+
+	echo "You have ${interval} seconds for cleaning devices. Start!"
+	sleep "${interval}"
+
+	_switch_devices "enable"
+}
+
+main "$@"

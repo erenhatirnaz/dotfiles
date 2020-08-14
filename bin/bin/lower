@@ -1,0 +1,54 @@
+#!/bin/bash
+#  _
+# | | _____      _____ _ __
+# | |/ _ \ \ /\ / / _ \ '__|
+# | | (_) \ V  V /  __/ |
+# |_|\___/ \_/\_/ \___|_|
+#
+# script      : lower
+# version     : 1.0.0
+# description : convert given text to lower case
+# author      : eren hatırnaz <erenhatirnaz@hotmail.com.tr> [GPG: 0x8e64942a]
+# source      : https://github.com/erenhatirnaz/dotfiles
+# license     : gnu general public license v3
+# | copyright (c) 2019 eren hatırnaz
+# |
+# | this program is free software: you can redistribute it and/or modify
+# | it under the terms of the gnu general public license as published by
+# | the free software foundation, either version 3 of the license, or
+# | (at your option) any later version.
+# |
+# | this program is distributed in the hope that it will be useful,
+# | but without any warranty; without even the implied warranty of
+# | merchantability or fitness for a particular purpose.  see the
+# | gnu general public license for more details.
+# |
+# | you should have received a copy of the gnu general public license
+# | along with this program.  if not, see <https://www.gnu.org/licenses/>.
+
+readonly script=$(basename "$0")
+readonly version="1.0.0"
+
+_print_help() {
+	cat <<-EOF
+	Usage: ${script} [OPTIONS]T TEXT
+	   or: echo "TEXT" | ${script}
+	   or: ${script} (interactive mode)
+	Convert TEXT to lower case.
+
+	Options:
+	  -v, --version    Show ${script} version number
+	  -h, --help       Show this help message
+	EOF
+}
+
+_print_version() {
+	echo "${script} version ${version}"
+}
+
+[[ "$1" =~ ^(-v|--version)$ ]] && _print_version && exit
+[[ "$1" =~ ^(-h|--help)$ ]] && _print_help && exit
+[[ "$1" =~ ^--$ ]] && shift
+
+[[ $# -eq 0 ]] && read inp && set -- "$inp"
+echo "${@,,}"

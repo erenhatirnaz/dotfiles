@@ -1,0 +1,7 @@
+#!/bin/bash
+
+mouse_device_id=$(xinput list --id-only "pointer:Logitech G300s Optical Gaming Mouse")
+property_id=$(xinput list-props $mouse_device_id | grep 'Accel Speed' | head -n1 | grep -oP '\(\K[^\)]+')
+sensivity=-0.676471
+
+xinput set-prop "$mouse_device_id" "$property_id" "$sensivity"

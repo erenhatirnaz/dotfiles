@@ -1,0 +1,84 @@
+#!/bin/bash
+#   __ _ _      ____
+#  / _(_) | ___|___ \ __ _ _ __
+# | |_| | |/ _ \ __) / _` | '__|
+# |  _| | |  __// __/ (_| | |
+# |_| |_|_|\___|_____\__, |_|
+#                       |_|
+#
+# script       : file2qr
+# version      : 1.0.0
+# description  : converts file content to qrcode
+# author       : eren hatırnaz <erenhatirnaz@hotmail.com.tr> [GPG: 0x8e64942a]
+# source       : https://github.com/erenhatirnaz/dotfiles
+# dependency   : qrencode
+# license      : gnu general public license v3.0
+# | copyright (c) 2019 eren hatırnaz
+# |
+# | this program is free software: you can redistribute it and/or modify
+# | it under the terms of the gnu general public license as published by
+# | the free software foundation, either version 3 of the license, or
+# | (at your option) any later version.
+# |
+# | this program is distributed in the hope that it will be useful,
+# | but without any warranty; without even the implied warranty of
+# | merchantability or fitness for a particular purpose.  see the
+# | gnu general public license for more details.
+# |
+# | you should have received a copy of the gnu general public license
+# | along with this program.  if not, see <https://www.gnu.org/licenses/>.
+
+readonly script=$(basename "$0")
+readonly version="1.0.0"
+
+_print_help() {
+	cat <<-EOF
+	Usage: ${script} [OPTIONS] FILE
+	Converts content of the FILE to QRCode.
+
+	Options:
+	  -s, --save-as-image    Save QRCode as PNG image
+	  -v, --version          Show ${script} version number
+	  -h, --help             Show this help message
+	EOF
+}
+
+_print_version() {
+	echo "${script} version ${version}"
+}
+
+_die() {
+	message="$1"
+	be_helpful="${2:-true}"
+
+	echo "${script}: ${message}" >&2
+	$be_helpful &&\
+		echo "Try '${script} --help' for more information."
+	exit 1
+}
+
+save_as_image="false"
+while [[ $# -gt 0 ]]; do
+	case $1 in
+		-v|--version) _print_version; exit ;;
+		-h|--help) _print_help; exit;;
+		-s|--save-as-image) save_as_image=true; shift ;;
+		*) file="$1"; shift
+	esac
+done
+
+[[ -z "$file" ]] && _die "missing operand"
+[[ -d "$file" ]] && _die "${file}: is a directory"
+[[ ! -f "$file" ]] &&\
+	_die "cannot access '${file}': No such file or directory" false
+
+if $save_as_image; then
+	filename=$(basename "${file%.*}")
+	output="${filename}.png"
+	type="PNG"
+else
+	output=-
+	type="UTF8"
+fi
+
+cat -- "$file" | qrencode -o $output -t $type -s 13

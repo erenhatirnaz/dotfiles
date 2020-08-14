@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# My project switcher with tab completion
+function c() { cd "$HOME/code/$1" || return; }
+function _c() {
+	IFS=$'\n' tmp=($(compgen -W "$(ls --color=never "$HOME/code")" -- "${COMP_WORDS[$COMP_CWORD]}"))
+	COMPREPLY=( "${tmp[@]// /\ }" )
+}
+complete -o default -F _c c

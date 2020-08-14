@@ -1,0 +1,74 @@
+#!/bin/bash
+#            _           _
+#  _ __ ___ | | _____ __| |
+# | '_ ` _ \| |/ / __/ _` |
+# | | | | | |   < (_| (_| |
+# |_| |_| |_|_|\_\___\__,_|
+#
+# script      : mkcd
+# description : create directory and cd into it
+# note        : add `alias mkcd='. mkcd'` line to your .bashrc because this
+# |             script changes current working directory.
+# author      : eren hatırnaz <erenhatirnaz@hotmail.com.tr> [GPG: 0x8e64942a]
+# source      : https://github.com/erenhatirnaz/scripts
+# license     : gnu general public license v3.0
+# | copyright (c) 2019 eren hatırnaz
+# |
+# | this program is free software: you can redistribute it and/or modify
+# | it under the terms of the gnu general public license as published by
+# | the free software foundation, either version 3 of the license, or
+# | (at your option) any later version.
+# |
+# | this program is distributed in the hope that it will be useful,
+# | but without any warranty; without even the implied warranty of
+# | merchantability or fitness for a particular purpose.  see the
+# | gnu general public license for more details.
+# |
+# | you should have received a copy of the gnu general public license
+# | along with this program.  if not, see <https://www.gnu.org/licenses/>.
+
+script="mkcd"
+version="1.0.0"
+
+_print_help() {
+	cat <<-EOF
+	Usage: ${script} [OPTIONS] DIRECTORY
+	Create the DIRECTORY and cd into it.
+
+	Options:
+	  -g, --git-init   Initialize git repository in the DIRECTORY
+	  -v, --version    Show ${script} version number
+	  -h, --help       Show this help message
+	EOF
+}
+
+_print_version() {
+	echo "${script} version ${version}"
+}
+
+git_init=false
+while [[ $# -gt 0 ]]; do
+	case $1 in
+		-g|--git-init) git_init=true; shift ;;
+		-v|--version) _print_version; return ;;
+		-h|--help) _print_help; return ;;
+		*) directory="$1"; shift ;;
+	esac
+done
+
+if [[ -z "$directory" ]]; then
+	echo "${script}: missing operand"
+	echo "Try '${script} --help' for more information."
+	return 1
+fi
+
+if [[ -d "$directory" ]]; then
+	echo "${script}: \`${directory}\` directory is already exists"
+	return 1
+fi
+
+mkdir -p -- "$directory"
+cd -- "$directory" || return 1
+
+$git_init && git init
+unset directory git_init _print_help _print_version script version

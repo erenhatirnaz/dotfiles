@@ -1,0 +1,32 @@
+[user]
+	name = Eren Hatırnaz
+	email = erenhatirnaz@hotmail.com.tr
+[push]
+	default = current
+[core]
+	autocrlf = input
+	filemode = false
+[alias]
+	s = status -s
+	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+	ignore =!"gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
+	tags = tag -l
+	branches = branch -a
+	remotes = remote -v
+	hmc = rev-list --all --count
+	lg = log --color --graph --pretty=format:'%C(bold red)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an %G?>%Creset' --abbrev-commit
+	ls-ignored = ls-files --others --ignored --exclude-standard
+	meld = !/home/erenhatirnaz/tools/git-meld/git-meld.pl
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[url "https://github"]
+	insteadOf = git://github
+[merge]
+	tool = meld
+[procotol]
+	version = 2
+[pull]
+	rebase = false

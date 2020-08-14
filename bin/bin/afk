@@ -1,0 +1,112 @@
+#!/bin/bash
+#         __ _
+#   __ _ / _| | __
+#  / _` | |_| |/ /
+# | (_| |  _|   <
+#  \__,_|_| |_|\_\
+#
+# script      : afk
+# version     : 1.0.0
+# description : pc suspend tool with timer support
+# author      : eren hatırnaz <erenhatirnaz@hotmail.com.tr> [GPG: 0x8e64942a]
+# source      : https://github.com/erenhatirnaz/dotfiles
+# dependency  : systemctl
+# license     : gnu general public license v3.0
+# | copyright (c) 2019 eren hatırnaz
+# |
+# | this program is free software: you can redistribute it and/or modify
+# | it under the terms of the gnu general public license as published by
+# | the free software foundation, either version 3 of the license, or
+# | (at your option) any later version.
+# |
+# | this program is distributed in the hope that it will be useful,
+# | but without any warranty; without even the implied warranty of
+# | merchantability or fitness for a particular purpose.  see the
+# | gnu general public license for more details.
+# |
+# | you should have received a copy of the gnu general public license
+# | along with this program.  if not, see <https://www.gnu.org/licenses/>.
+
+readonly script=$(basename "$0")
+readonly version="1.0.0"
+
+_print_help() {
+	cat <<-EOF
+	Usage: ${script} [OPTIONS] [NUMBER][SUFFIX]
+	Suspends PC now. If the NUMBER given, waits for NUMBER second before suspend.
+	The SUFFIX may be 's' for seconds (the default), 'm' for minutes, 'h' for
+	hours or 'd' for days.
+
+	Options:
+	  -v, --version    Show ${script} version number
+	  -h, --help       Show this help message
+	EOF
+}
+
+_print_version() {
+	echo "${script} version ${version}"
+}
+
+_parse_arguments() {
+	# Simple argument parsing
+	[[ "$1" =~ ^(-v|--version)$ ]] && _print_version && exit
+	[[ "$1" =~ ^(-h|--help)$ ]] && _print_help && exit
+
+	# Input validation
+	if [[ -n "$1" && ! "$1" =~ ^[0-9]+(s|m|h|d)?$ ]]; then
+		echo "${script}: invalid time interval \`${1}\`" >&2
+		echo "Try '${script} --help' for more information."
+		exit 1
+	fi
+}
+
+_countdown() {
+	local -r from="$1"
+
+	local -r units=( seconds minutes hours days )
+	local -r suffix=${interval:$length:1}
+
+	# determine time units
+	for i in "${!units[@]}"; do
+		unit_char="${units[$i]::1}"
+		if [[ "$suffix" == "$unit_char" ]]; then
+			time_unit_index="$i"
+		fi
+	done
+
+	if [[ "$time_left" -gt 0 ]]; then
+		echo "Press CTRL-C for cancel."
+		while [[ "$time_left" -gt 0 ]]; do
+			# change time units when countdown
+			if [[ "$time_left" -eq 1 && ! "$time_unit_index" == 0 ]]; then
+				time_left=60
+				((time_unit_index--))
+			fi
+
+			unit="${units[time_unit_index]}"
+			step="$(( time_left/time_left ))${unit::1}"
+
+			echo -ne "afk: ${time_left} ${unit} to suspend...\\r"
+			sleep "$step"
+			((time_left--))
+		done
+		echo
+	fi
+}
+
+main() {
+	_parse_arguments "$@"
+
+	# Get interval number
+	interval="${1:-0}"
+	[[ ! "$interval" =~ ^[0-9]+(s|m|h|d) ]] && interval+='s'
+	length=$(( ${#interval}-1 ))
+	time_left=${interval::$length}
+
+	_countdown "$time_left"
+
+	echo "zZz"
+	systemctl suspend
+}
+
+main "$@"
