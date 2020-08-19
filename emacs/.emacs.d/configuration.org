@@ -356,7 +356,7 @@ Indent with 2 spaces.
 #+BEGIN_SRC emacs-lisp
   (use-package yasnippet
     :ensure
-    :diminish
+    :diminish yas-minor-mode
     :config
     (setq yas-snippet-dirs '("~/.emacs.d/snippets/"))
     :init
@@ -497,6 +497,7 @@ Keyboard scroll 5 line at time:
 #+BEGIN_SRC emacs-lisp
   (use-package undo-tree
     :ensure
+    :diminish
     :init
     (global-undo-tree-mode))
 #+END_SRC
