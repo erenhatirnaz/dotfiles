@@ -1,0 +1,55 @@
+;; -*-lisp-*-
+(in-package :stumpwm)
+
+(set-module-dir "/home/erenhatirnaz/stumpwm/contrib")
+(ql:quickload :clx-truetype)
+(load-module "ttf-fonts")
+
+(set-focus-color "#b45741")
+
+;; Set `mode-line' colors and toggle toggle `mode-line' for current screen (monitor).
+(setf *mode-line-foreground-color* "#b45741"
+			*mode-line-background-color* "#272531"
+			*screen-mode-line-format* "[^B%n^b] %W ^>^n[%d]")
+(toggle-mode-line (current-screen) (current-head))
+
+;; C-t C-g f for create new float group
+(define-key *groups-map* (kbd "f") "gnew-float")
+
+;;(xft:cache-fonts)
+(set-font `("terminus-bold-16"))
+
+;; C-t B for show remaning percentage of the battery
+(defcommand battery-percentage ()
+	()
+	(setf bat-perc (stumpwm:run-shell-command "upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep percentage | cut -d: -f2 | tr -d '[:space:]'" t))
+	(message  "Battery Percentage: ~a" bat-perc))
+(define-key *root-map* (kbd "B") "battery-percentage")
+
+;; Implement `launch-map' for launch some common used applications. C-t L
+(defvar *launch-top-map* nil)
+(defvar *launch-root-map* nil)
+(defvar *launch-map* nil)
+
+(defcommand firefox () ()	(run-or-raise "firefox" '(:class "Mozilla Firefox")))
+(defcommand thunderbird () ()	(run-or-raise "thunderbird" '(:class "Thunderbird")))
+(defcommand nautilus () () (run-shell-command "nautilus"))
+(defcommand telegram () () (run-or-raise "telegram-desktop" '(:class "Telegram")))
+(defcommand gimp () () (run-or-raise "gimp" '(:class "GIMP")))
+(defcommand qutebrowser () () (run-shell-command "qutebrowser"))
+(defcommand other-program () () (run-shell-command "rofi -show drun"))
+(defcommand emacs () () (run-shell-command "emacs"))
+(defcommand spotify () () (run-or-raise "spotify" '(:class "Spotify")))
+
+(fill-keymap *launch-map*
+						 (kbd "e") "emacs"
+						 (kbd "f") "firefox"
+						 (kbd "q") "qutebrowser"
+						 (kbd "t") "thunderbird"
+						 (kbd "n") "nautilus"
+						 (kbd "T") "telegram"
+						 (kbd "g") "gimp"
+						 (kbd "s") "spotify"
+						 (kbd "o") "other-program")
+
+(define-key *root-map* (kbd "L") '*launch-map*)
