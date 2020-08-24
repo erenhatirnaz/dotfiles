@@ -119,3 +119,6 @@ alias genpass="cat /dev/urandom | tr -dc 'a-zA-Z0-9-!@#$%&*()_+~' | fold -w 15 |
 
 # Restart pulseaudio
 alias restpulse="pulseaudio -k && pulseaudio --start"
+
+# Magit
+alias magit="emacs --eval \"(setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)\" -f magit-status"
