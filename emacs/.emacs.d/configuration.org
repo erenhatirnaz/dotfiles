@@ -442,7 +442,7 @@ Keyboard scroll 5 line at time:
 #+END_SRC
 ** Always kill current buffer
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-x k") 'utils/kill-current-buffer)
+  (global-set-key (kbd "C-x k") 'eren/kill-current-buffer)
 #+END_SRC
 ** Save my location within a file
 #+BEGIN_SRC emacs-lisp
