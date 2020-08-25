@@ -1,0 +1,15 @@
+{
+ "semantic-dropdown": {
+	 "prefix": "semdrop",
+	 "body": [
+		 "<div class=\"ui selection dropdown\">",
+		 "  <input name=\"$1\" type=\"hidden\">",
+		 "  <i class=\"dropdown icon\"></i>",
+		 "  <div class=\"default text\">$2</div>",
+		 "  <div class=\"menu\">",
+		 "    .item[data-value='$3']*$4",
+		 "  </div>",
+		 "</div>"
+	 ]
+ }
+}

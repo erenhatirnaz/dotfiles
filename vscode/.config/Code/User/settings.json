@@ -1,0 +1,126 @@
+{
+  // Editor
+  "editor.fontFamily": "JetBrains Mono",
+  "editor.fontLigatures": true,
+  "editor.rulers": [ 80, 120 ],
+  "editor.tabSize": 2,
+  "editor.renderWhitespace": "boundary",
+  "editor.renderIndentGuides": true,
+  "editor.minimap.enabled": true,
+  "editor.minimap.renderCharacters": false,
+  "editor.cursorBlinking": "smooth",
+  "editor.smoothScrolling": true,
+
+  // Files
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true,
+
+  // Workbench
+  "workbench.editor.tabSizing": "shrink",
+  "workbench.colorTheme": "Gruvbox Dark Hard",
+  "workbench.iconTheme": "vscode-icons",
+
+  // Zenmode
+  "zenMode.hideStatusBar": false,
+
+  // Window
+  "window.newWindowDimensions": "maximized",
+  "window.restoreFullscreen": false,
+  "window.menuBarVisibility": "toggle",
+
+  // Integrated Terminal
+  "terminal.integrated.fontFamily": "DejaVu Sans Mono",
+  "terminal.integrated.cursorStyle": "block",
+  "terminal.integrated.env.linux": {
+    "COLORTERM": "truecolor"
+  },
+
+  // Telemetry
+  "telemetry.enableTelemetry": false,
+
+  // Extensions
+  "extensions.autoUpdate": true,
+
+  // Emmet
+  "emmet.includeLanguages": {
+    "laravel-blade": "html"
+  },
+
+  // ESLint
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "vue"
+  ],
+
+  // Markdown Preview
+  "markdown.preview.fontSize": 16,
+
+  // TODO Highlight
+  "todohighlight.keywords": [
+    {
+      "text": "TODO:",
+      "color": "black",
+      "backgroundColor": "white"
+    },
+    {
+      "text": "NOTE:",
+      "color": "black",
+      "backgroundColor": "#fff05a"
+    },
+    {
+      "text": "BUG:",
+      "color": "white",
+      "backgroundColor": "#ff0000"
+    }
+  ],
+  "todohighlight.include": [
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.html",
+    "**/*.php",
+    "**/*.css",
+    "**/*.scss",
+    "**/*.vue"
+  ],
+
+  // Material icon theme
+  "material-icon-theme.showWelcomeMessage": false,
+
+  // Gitlens
+  "gitlens.keymap": "alternate",
+  "gitlens.codeLens.scopes": [
+    "document",
+    "containers"
+  ],
+  "gitlens.currentLine.scrollable": false,
+  "gitlens.recentChanges.highlight.locations": [
+    "line",
+    "overview",
+    "gutter"
+  ],
+  "gitlens.currentLine.enabled": false,
+  "gitlens.hovers.currentLine.over": "line",
+  "gitlens.advanced.messages": {
+    "suppressCommitHasNoPreviousCommitWarning": false,
+    "suppressCommitNotFoundWarning": false,
+    "suppressFileNotUnderSourceControlWarning": false,
+    "suppressGitVersionWarning": false,
+    "suppressLineUncommittedWarning": false,
+    "suppressNoRepositoryWarning": false,
+    "suppressResultsExplorerNotice": false,
+    "suppressShowKeyBindingsNotice": true,
+    "suppressUpdateNotice": false,
+    "suppressWelcomeNotice": true
+  },
+
+  // c c++
+  "C_Cpp.default.includePath": [
+    "/usr/lib/"
+  ],
+
+  // shellcheck
+  "shellcheck.run": "onSave",
+}

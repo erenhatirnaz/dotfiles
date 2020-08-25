@@ -1,0 +1,38 @@
+// Place your key bindings in this file to overwrite the defaults
+[
+    { "key": "ctrl+numpad_subtract",       "command": "editor.fold",
+                                              "when": "editorTextFocus" },
+    { "key": "ctrl+numpad_add",            "command": "editor.unfold",
+                                              "when": "editorTextFocus" },
+    { "key": "ctrl+shift+numpad_subtract", "command": "editor.foldAll",
+                                              "when": "editorTextFocus" },
+    { "key": "ctrl+shift+numpad_add",      "command": "editor.unfoldAll",
+                                              "when": "editorTextFocus" },
+    { "key": "ctrl+numpad_divide",         "command": "editor.action.commentLine",
+                                            "when": "editorTextFocus && !editorReadonly"},
+    {
+        "key": "ctrl+[Backquote]",
+        "command": "workbench.action.terminal.focus"
+    },
+    {
+        "key": "shift+alt+1",
+        "command": "workbench.action.terminal.focusAtIndex1"
+    },
+    {
+        "key": "shift+alt+2",
+        "command": "workbench.action.terminal.focusAtIndex2"
+    },
+    {
+        "key": "shift+alt+3",
+        "command": "workbench.action.terminal.focusAtIndex3"
+    },
+    {
+        "key": "shift+alt+4",
+        "command": "workbench.action.terminal.focusAtIndex4"
+    },
+    {
+        "key": "scrolllock",
+        "command": "workbench.action.toggleMaximizedPanel",
+        "when": "terminalFocus"
+    }
+]
