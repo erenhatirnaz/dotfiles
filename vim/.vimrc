@@ -13,6 +13,9 @@ filetype plugin indent on
 syntax on
 colorscheme gruvbox
 
+" Dark background
+set background=dark
+
 " Disable arrow keys for adopt vim navigation
 noremap <Up> <Nop>
 noremap <Down> <Nop>
