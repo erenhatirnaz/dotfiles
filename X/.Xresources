@@ -1,15 +1,15 @@
 ! --------------------
 ! Font settings
 ! --------------------
-Xft.dpi: 96
-Xft.antialias: true
+! Xft.dpi: 96
+! Xft.antialias: true
 ! Xft.rgba:      none
-Xft.rgba:      rgba
-Xft.autohint:  0
-Xft.lcdfilter: lcddefault
-Xft.hinting:   0
+! Xft.rgba:      rgba
+! Xft.autohint:  0
+! Xft.lcdfilter: lcddefault
+! Xft.hinting:   0
 ! hintnone, hintslight, hintmedium, hintfull
-Xft.hintstyle: hintnone
+! Xft.hintstyle: hintnone
 
 xterm.font: terminus-16
 
@@ -17,7 +17,7 @@ xterm.font: terminus-16
 ! URxvt
 ! --------------------
 URxvt.font: terminus-16
-URxvt*antialias: true
+! URxvt*antialias: true
 URxvt*renderFont: true
 URxvt*allowBoldFonts: true
 URxvt*background: black
