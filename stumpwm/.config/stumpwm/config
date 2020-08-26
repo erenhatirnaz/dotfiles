@@ -22,6 +22,12 @@
 (define-key *root-map* (kbd "c") "exec x-terminal-emulator")
 (define-key *root-map* (kbd "C-c") "exec x-terminal-emulator")
 
+;; Volume control
+(load-module "amixer")
+(define-key *top-map* (kbd "XF86AudioLowerVolume") "amixer-Master-1-")
+(define-key *top-map* (kbd "XF86AudioRaiseVolume") "amixer-Master-1+")
+(define-key *top-map* (kbd "XF86AudioMute") "amixer-Master-toggle pulse")
+
 ;; Open new emacs instance instead of raise
 (undefine-key *root-map* (kbd "e"))
 (undefine-key *root-map* (kbd "C-e"))
