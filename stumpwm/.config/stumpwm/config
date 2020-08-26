@@ -36,6 +36,9 @@
 (define-key *root-map* (kbd "e") "exec emacs")
 (define-key *root-map* (kbd "C-e") "exec emacs")
 
+;; Focus with mouse click
+(setf *mouse-focus-policy* :click)
+
 ;; C-t C-g f for create new float group
 (define-key *groups-map* (kbd "f") "gnew-float")
 
