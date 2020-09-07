@@ -29,6 +29,23 @@
 (define-key *top-map* (kbd "XF86AudioRaiseVolume") "amixer-Master-1+")
 (define-key *top-map* (kbd "XF86AudioMute") "amixer-Master-toggle pulse")
 
+;; Screenshot utils
+(define-key *top-map* (kbd "SunPrint_Screen") "exec ksnip -m")
+(define-key *top-map* (kbd "C-SunPrint_Screen") "exec ksnip -r")
+
+;; Set mouse sensivity when pressed Scroll Lock key
+(define-key *top-map* (kbd "Scroll_Lock") "exec setmousesens")
+
+;; Enable or disable HDMI output when pressed function key under F2
+(defcommand xrandr-enable-hdmi-output () ()
+  (run-shell-command "xrandr --output HDMI-2 --auto --right-of eDP-1"))
+
+(defcommand xrandr-disable-hdmi-output () ()
+  (run-shell-command "xrandr --output HDMI-2 --off"))
+
+(define-key *top-map* (kbd "s-p") "xrandr-enable-hdmi-output")
+(define-key *top-map* (kbd "s-P") "xrandr-disable-hdmi-output")
+
 ;; Open new emacs instance instead of raise
 (undefine-key *root-map* (kbd "e"))
 (undefine-key *root-map* (kbd "C-e"))
