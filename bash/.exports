@@ -52,3 +52,4 @@ export PATH=${PATH}:${HOME}/.rvm/bin
 export PATH=${PATH}:${HOME}/.nimble/bin
 export PATH=${PATH}:${HOME}/.config/composer/vendor/bin
 export PATH=${PATH}:${HOME}/.fzf/bin
+export PATH=${PATH}:${HOME}/go/bin
