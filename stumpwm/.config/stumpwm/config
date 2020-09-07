@@ -63,16 +63,14 @@
 (defvar *launch-root-map* nil)
 (defvar *launch-map* nil)
 
-(defcommand other-program () () (run-shell-command "rofi -show drun"))
-
 (fill-keymap *launch-map*
-						 (kbd "f") "exec firefox"
-						 (kbd "q") "exec qutebrowser"
-						 (kbd "t") "exec thunderbird"
-						 (kbd "n") "exec nautilus"
-						 (kbd "T") "exec telegram-desktop"
-						 (kbd "g") "exec gimp"
-						 (kbd "s") "exec spotify"
-						 (kbd "o") "other-program")
+             (kbd "f") "exec firefox"
+             (kbd "q") "exec qutebrowser"
+             (kbd "t") "exec thunderbird"
+             (kbd "n") "exec nautilus"
+             (kbd "T") "exec telegram-desktop"
+             (kbd "g") "exec gimp"
+             (kbd "s") "exec spotify"
+             (kbd "o") "exec rofi -show drun")
 
 (define-key *root-map* (kbd "L") '*launch-map*)
