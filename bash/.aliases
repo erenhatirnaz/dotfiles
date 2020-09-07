@@ -32,11 +32,10 @@ alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
 
-# Print week number
-alias week="date +%V"
-
-# Print day number of the year
-alias dayofyear="date +%j"
+# Print calendar numbers
+alias week="date +%V" # week
+alias month="date +%m" # month
+alias dayofyear="date +%j" # day number of the year
 
 # A basic stop watch
 alias stopwatch="time read -N 1"
