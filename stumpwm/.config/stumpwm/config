@@ -12,10 +12,9 @@
 
 ;; Set `mode-line' colors and toggle toggle `mode-line' for current screen (monitor).
 (setf *mode-line-foreground-color* "#b45741"
-			*mode-line-background-color* "#272531"
-      *mode-line-timer* 1
-      *mode-line-timeout* 1
-			*screen-mode-line-format* "[^B%n^b] %W ^> [%l] [BAT: %B] ^n[%d]")
+      *mode-line-background-color* "#272531"
+      *mode-line-timeout* 5
+      *screen-mode-line-format* "[^B%n^b] %W ^> [%l] [BAT: %B] ^n[%d]")
 (toggle-mode-line (current-screen) (current-head))
 
 ;; xterm -> x-terminal-emulator
