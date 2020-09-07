@@ -296,6 +296,11 @@
       (setq-default tab-width 2
                     indent-tabs-mode nil))
   #+END_SRC
+** PHP
+   #+BEGIN_SRC emacs-lisp
+     (use-package php-mode
+       :ensure)
+   #+END_SRC
 ** Javascript
    Indent 2 spaces
    #+BEGIN_SRC emacs-lisp
