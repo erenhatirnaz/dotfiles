@@ -1,6 +1,8 @@
 # Dotfiles
 > My dotfiles repository - managed by gnu stow
 
+## README is not up to date!
+
 ## Table of Contents
 * [bash - aliases and functions](#bash)
 * [bin - my toolbox](#bin)
