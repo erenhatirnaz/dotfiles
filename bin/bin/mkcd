@@ -6,9 +6,14 @@
 # |_| |_| |_|_|\_\___\__,_|
 #
 # script      : mkcd
+# version     : 1.0.0
 # description : create directory and cd into it
 # note        : add `alias mkcd='. mkcd'` line to your .bashrc because this
 # |             script changes current working directory.
+# |--for devs : my script standard format isn't usable this script. because
+# |             this scripts runs as a shell function to be able to change
+# |             current directory. so don't use functions like `_parse_argument`
+# |             or `main` in this script.
 # author      : eren hatırnaz <erenhatirnaz@hotmail.com.tr> [GPG: 0x8e64942a]
 # source      : https://github.com/erenhatirnaz/scripts
 # depends     :
