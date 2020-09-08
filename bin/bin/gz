@@ -34,9 +34,9 @@
 readonly script=$(basename "$0")
 readonly version="1.0.0"
 
-help() {
+_print_help() {
 	cat <<-EOF
-	Usage: ${script} FILE
+	Usage: ${script} [OPTIONS] FILE
 	Prints original, gzipped file size and ratio.
 
 	Options:
@@ -45,11 +45,11 @@ help() {
 	EOF
 }
 
-version() {
+_print_version() {
 	echo "${script} version ${version}"
 }
 
-die() {
+_die() {
 	message="$1"
 	be_helpful="${2:-true}"
 
@@ -59,18 +59,26 @@ die() {
 	exit 1
 }
 
-[[ "$1" =~ ^(-h|--help)$ ]] &&	help && exit
-[[ "$1" =~ ^(-v|--version)$ ]] && version && exit
+_parse_arguments() {
+	[[ "$1" =~ ^(-h|--help)$ ]] &&	_print_help && exit
+	[[ "$1" =~ ^(-v|--version)$ ]] && _print_version && exit
 
-[[ -z "$1" ]] && die "missing operand"
-[[ -d "$1" ]] && die "$1: is a directory"
-[[ ! -f "$1" ]] &&\
-	die "cannot access '$1': No such file or directory" false
+	[[ -z "$1" ]] && _die "missing operand"
+	[[ -d "$1" ]] && _die "$1: is a directory"
+	[[ ! -f "$1" ]] &&\
+		_die "cannot access '$1': No such file or directory" false
+}
 
-file="$1"
-orig_size=$(wc -c < "$file")
-gzip_size=$(gzip -c "$file" | wc -c)
-ratio=$(echo "${gzip_size} * 100 / ${orig_size}" | bc -l)
+main() {
+	_parse_arguments "$@"
 
-printf "gz: original: %d bytes\\n" "$orig_size"
-printf "gz: gzipped: %d bytes (%2.2f%%)\\n" "$gzip_size" "${ratio}"
+	file="$1"
+	orig_size=$(wc -c < "$file")
+	gzip_size=$(gzip -c "$file" | wc -c)
+	ratio=$(echo "${gzip_size} * 100 / ${orig_size}" | bc -l)
+
+	printf "gz: original: %d bytes\\n" "$orig_size"
+	printf "gz: gzipped: %d bytes (%2.2f%%)\\n" "$gzip_size" "${ratio}"
+}
+
+main "$@"

@@ -53,24 +53,59 @@ _print_version() {
 	echo "${script} version ${version}"
 }
 
-port="8080"
-open_with_browser=false
-while [[ $# -gt 0 ]]; do
-	case $1 in
-		-o|--open-with-browser) open_with_browser=true; shift ;;
-		-v|--version) _print_version; exit ;;
-		-h|--help) _print_help; exit ;;
-		*) port="$1"; shift ;;
-	esac
-done
+_parse_arguments() {
+	port="8080"
+	open_with_browser=false
 
-first_digit=$(( port / 1000 ))
-if [[ $first_digit -eq 0 ]]; then
-	echo "${script}: invalid port number \`${port}\`" >&2
-	echo "Try '${script} --help' for more information."
-	exit 1
-fi
+	while [[ $# -gt 0 ]]; do
+		case $1 in
+			-o|--open-with-browser) open_with_browser=true; shift ;;
+			-v|--version) _print_version; exit ;;
+			-h|--help) _print_help; exit ;;
+			*) port="$1"; shift ;;
+		esac
+	done
 
-$open_with_browser && sleep 1 && xdg-open "http://localhost:${port}/"
+	first_digit=$(( port / 1000 ))
+	if [[ $first_digit -eq 0 ]]; then
+		echo "${script}: invalid port number \`${port}\`" >&2
+		echo "Try '${script} --help' for more information."
+		exit 1
+	fi
+}
 
-python "${script_directory}/httpserver.py" "$port"
+main() {
+  _parse_arguments "$@"
+
+	$open_with_browser && sleep 1 && xdg-open "http://localhost:${port}/"
+
+	python <<-EOF
+	import SimpleHTTPServer
+	import SocketServer
+	import os
+
+	PORT=${port}
+
+	map = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map
+	map[""] = "text/plain"
+
+	for key, value in map.items():
+	  map[key] = value + ";charset=UTF-8"
+
+	handler = SimpleHTTPServer.SimpleHTTPRequestHandler
+	httpd = SocketServer.TCPServer(("", PORT), handler)
+
+	print "httpserver: directory", os.getcwd(), "serving at", PORT
+	print "httpserver: press CTRL+C to kill server"
+
+	try:
+	  print "httpserver: logs"
+	  print "----------------"
+	  httpd.serve_forever()
+	except (KeyboardInterrupt, SystemExit):
+	  print "----------------"
+	  print "httpserver: killed server"
+	EOF
+}
+
+main "$@"

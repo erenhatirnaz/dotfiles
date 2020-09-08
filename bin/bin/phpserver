@@ -51,24 +51,33 @@ _print_version() {
 	echo "${script} version ${version}"
 }
 
-port="4000"
-open_with_browser=false
-while [[ $# -gt 0 ]]; do
-	case $1 in
-		-o|--open-with-browser) open_with_browser=true; shift ;;
-		-v|--version) _print_version; exit ;;
-		-h|--help) _print_help; exit ;;
-		*) port="$1"; shift ;;
-	esac
-done
+_parse_arguments() {
+	port="4000"
+	open_with_browser=false
 
-first_digit=$(( port / 1000 ))
-if [[ $first_digit -eq 0 ]]; then
-	echo "${script}: $port: invalid port number" >&2
-	echo "Try '${script} --help' for more information."
-	exit 1
-fi
+	while [[ $# -gt 0 ]]; do
+		case $1 in
+			-o|--open-with-browser) open_with_browser=true; shift ;;
+			-v|--version) _print_version; exit ;;
+			-h|--help) _print_help; exit ;;
+			*) port="$1"; shift ;;
+		esac
+	done
 
-$open_with_browser && sleep 1 && xdg-open "http://localhost:${port}/"
+	first_digit=$(( port / 1000 ))
+	if [[ $first_digit -eq 0 ]]; then
+		echo "${script}: $port: invalid port number" >&2
+		echo "Try '${script} --help' for more information."
+		exit 1
+	fi
+}
 
-php -S "127.0.0.1:${port}"
+main() {
+	_parse_arguments "$@"
+
+	$open_with_browser && sleep 1 && xdg-open "http://localhost:${port}/"
+
+	php -S "127.0.0.1:${port}"
+}
+
+main "$@"

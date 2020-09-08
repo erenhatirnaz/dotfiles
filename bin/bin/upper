@@ -48,9 +48,17 @@ _print_version() {
 	echo "${script} version ${version}"
 }
 
-[[ "$1" =~ ^(-v|--version)$ ]] && _print_version && exit
-[[ "$1" =~ ^(-h|--help)$ ]] && _print_help && exit
-[[ "$1" =~ ^--$ ]] && shift
+_parse_arguments() {
+  [[ "$1" =~ ^(-v|--version)$ ]] && _print_version && exit
+  [[ "$1" =~ ^(-h|--help)$ ]] && _print_help && exit
+  [[ "$1" =~ ^--$ ]] && shift
+}
 
-[ $# -eq 0 ] && read inp && set -- "$inp"
-echo "${@^^}"
+main() {
+  _parse_arguments "$@"
+
+  [ $# -eq 0 ] && read inp && set -- "$inp"
+  echo "${@^^}"
+}
+
+main "$@"

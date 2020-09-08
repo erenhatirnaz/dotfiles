@@ -59,29 +59,37 @@ _die() {
 	exit 1
 }
 
-with_url="false"
+_parse_arguments() {
+	with_url="false"
 
-while [[ $# -gt 0 ]]; do
-	case $1 in
-		-w|--with-url) with_url=true; shift ;;
-		-v|--version) _print_version; exit ;;
-		-h|--help) _print_help; exit ;;
-		*) file="$1"; shift ;;
-	esac
-done
+	while [[ $# -gt 0 ]]; do
+		case $1 in
+			-w|--with-url) with_url=true; shift ;;
+			-v|--version) _print_version; exit ;;
+			-h|--help) _print_help; exit ;;
+			*) file="$1"; shift ;;
+		esac
+	done
 
-[[ -z "$file" ]] && _die "missing operand"
-[[ -d "$file" ]] && _die "$file: is a directory"
-[[ ! -f "$file" ]] &&\
-	_die "cannot access '$file': No such file or directory" false
+	[[ -z "$file" ]] && _die "missing operand"
+	[[ -d "$file" ]] && _die "$file: is a directory"
+	[[ ! -f "$file" ]] &&\
+		_die "cannot access '$file': No such file or directory" false
+}
 
-if $with_url; then
-	mimetype=$(file -b --mime-type "$file")
-	if [[ "$mimetype" == "text/*" ]]; then
-		mimetype="${mimetype};charset=utf-8"
+main() {
+	_parse_arguments "$@"
+
+	if $with_url; then
+		mimetype=$(file -b --mime-type "$file")
+		if [[ "$mimetype" == "text/*" ]]; then
+			mimetype="${mimetype};charset=utf-8"
+		fi
+		url_part="data:${mimetype};base64,"
 	fi
-	url_part="data:${mimetype};base64,"
-fi
 
-encoded=$(openssl base64 -in "$file" | tr -d '\n')
-echo "${url_part}${encoded}"
+	encoded=$(openssl base64 -in "$file" | tr -d '\n')
+	echo "${url_part}${encoded}"
+}
+
+main "$@"

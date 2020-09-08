@@ -59,28 +59,37 @@ _die() {
 	exit 1
 }
 
-save_as_image="false"
-while [[ $# -gt 0 ]]; do
-	case $1 in
-		-v|--version) _print_version; exit ;;
-		-h|--help) _print_help; exit;;
-		-s|--save-as-image) save_as_image=true; shift ;;
-		*) file="$1"; shift
-	esac
-done
+_parse_arguments() {
+	save_as_image="false"
 
-[[ -z "$file" ]] && _die "missing operand"
-[[ -d "$file" ]] && _die "${file}: is a directory"
-[[ ! -f "$file" ]] &&\
-	_die "cannot access '${file}': No such file or directory" false
+	while [[ $# -gt 0 ]]; do
+		case $1 in
+			-v|--version) _print_version; exit ;;
+			-h|--help) _print_help; exit;;
+			-s|--save-as-image) save_as_image=true; shift ;;
+			*) file="$1"; shift
+		esac
+	done
 
-if $save_as_image; then
-	filename=$(basename "${file%.*}")
-	output="${filename}.png"
-	type="PNG"
-else
-	output=-
-	type="UTF8"
-fi
+	[[ -z "$file" ]] && _die "missing operand"
+	[[ -d "$file" ]] && _die "${file}: is a directory"
+	[[ ! -f "$file" ]] &&\
+		_die "cannot access '${file}': No such file or directory" false
+}
 
-cat -- "$file" | qrencode -o $output -t $type -s 13
+main() {
+	_parse_arguments "$@"
+
+	if $save_as_image; then
+		filename=$(basename "${file%.*}")
+		output="${filename}.png"
+		type="PNG"
+	else
+		output=-
+		type="UTF8"
+	fi
+
+	cat -- "$file" | qrencode -o $output -t $type -s 13
+}
+
+main "$@"

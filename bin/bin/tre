@@ -52,13 +52,21 @@ _print_version() {
 	echo "${script} version ${version}"
 }
 
-[[ "$1" =~ ^(-v|--version)$ ]] && _print_version && exit
-[[ "$1" =~ ^(-h|--help)$ ]] && _print_help && exit
+_parse_arguments() {
+	[[ "$1" =~ ^(-v|--version)$ ]] && _print_version && exit
+	[[ "$1" =~ ^(-h|--help)$ ]] && _print_help && exit
 
-if [[ -f "$1" ]]; then
-	echo "${script}: \`${1}\` is not a directory" >&2
-	exit 1
-fi
+	if [[ -f "$1" ]]; then
+		echo "${script}: \`${1}\` is not a directory" >&2
+		exit 1
+	fi
+}
 
-excluded='.git|node_modules|bower_components|.vscode'
-tree -aC -I ${excluded} --dirsfirst "$@" | less -FRNX
+main() {
+	_parse_arguments "$@"
+
+	excluded='.git|node_modules|bower_components|.vscode'
+	tree -aC -I ${excluded} --dirsfirst "$@" | less -FRNX
+}
+
+main "$@"

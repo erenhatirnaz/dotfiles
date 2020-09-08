@@ -46,17 +46,25 @@ _print_version() {
 	echo "${script} version ${version}"
 }
 
-[[ "$1" =~ ^(-h|--help)$ ]] && _print_help && exit
-[[ "$1" =~ ^(-v|--version)$ ]] && _print_version && exit
+_parse_arguments() {
+	[[ "$1" =~ ^(-h|--help)$ ]] && _print_help && exit
+	[[ "$1" =~ ^(-v|--version)$ ]] && _print_version && exit
+}
 
-if du -b /dev/null > /dev/null 2>&1; then
-	arg=-sbh
-else
-	arg=-sh
-fi
+main() {
+	_parse_arguments "$@"
 
-if [[ -n "$0" ]]; then
-	du $arg -- "$@"
-else
-	du $arg .[^.]* ./*
-fi
+	if du -b /dev/null > /dev/null 2>&1; then
+		arg=-sbh
+	else
+		arg=-sh
+	fi
+
+	if [[ -n "$0" ]]; then
+		du $arg -- "$@"
+	else
+		du $arg .[^.]* ./*
+	fi
+}
+
+main "$@"

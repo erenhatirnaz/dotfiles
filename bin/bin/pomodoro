@@ -54,23 +54,30 @@ _print_help() {
 _print_version() {
 	echo "${script} version ${version}"
 }
+_parse_arguments() {
+	[[ "$1" =~ ^(-v|--version)$ ]] && _print_version && exit
+	[[ "$1" =~ ^(-h|--help)$ ]] && _print_help && exit
 
-[[ "$1" =~ ^(-v|--version)$ ]] && _print_version && exit
-[[ "$1" =~ ^(-h|--help)$ ]] && _print_help && exit
+	work="${1:-45m}"
+	short_break="${2:-5m}"
+	long_break="${3:-15m}"
+	counter="${4:-4}"
+}
 
-work="${1:-45m}"
-short_break="${2:-5m}"
-long_break="${3:-15m}"
-counter="${4:-4}"
+main() {
+	_parse_arguments "$@"
 
-while true; do
-	notify-send "Focus on your work! Time left: ${work}" -t 5000
-	sleep "${work}"
-	if [[ $counter -eq 4 ]]; then
-		notify-send "Long break time! Time left: ${long_break}" -t 5000
-		counter=1
-	else
-		notify-send "Short break time! Time left: ${short_break}" -t 5000
-		counter=$((counter+1))
-	fi
-done
+	while true; do
+		notify-send "Focus on your work! Time left: ${work}" -t 5000
+		sleep "${work}"
+		if [[ $counter -eq 4 ]]; then
+			notify-send "Long break time! Time left: ${long_break}" -t 5000
+			counter=1
+		else
+			notify-send "Short break time! Time left: ${short_break}" -t 5000
+			counter=$((counter+1))
+		fi
+	done
+}
+
+main "$@"

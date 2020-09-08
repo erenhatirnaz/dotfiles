@@ -37,7 +37,7 @@ readonly version="1.0.0"
 _print_help() {
 	cat <<-EOF
 	Usage: ${script} [OPTIONS] YOUTUBE_URL
-	Download YouTube video as mp3 audio file.
+	Download YouTube video as MP3 audio file.
 
 	Options:
 	  -v, --version    Show ${script} version number
@@ -49,20 +49,28 @@ _print_version() {
 	echo "${script} version ${version}"
 }
 
-[[ "$1" =~ ^(-v|--version)$ ]] && _print_version && exit
-[[ "$1" =~ ^(-h|--help)$ ]] && _print_help && exit
+_parse_arguments() {
+	[[ "$1" =~ ^(-v|--version)$ ]] && _print_version && exit
+	[[ "$1" =~ ^(-h|--help)$ ]] && _print_help && exit
 
-if [[ ! "$1" =~ ^(http)s?:\/\/youtu(be)?\.(com|be) ]]; then
-	echo "${script}: invalid youtube url \`${1}\`" >&2
-	exit 1
-fi
+	if [[ ! "$1" =~ ^(http)s?:\/\/youtu(be)?\.(com|be) ]]; then
+		echo "${script}: invalid youtube url \`${1}\`" >&2
+		exit 1
+	fi
+}
 
-url="$1"
-output_directory="${home}/Music/YouTube/%(title)s.%(ext)s"
-format="bestaudio"
-ext="mp3"
+main() {
+	_parse_arguments "$@"
 
-youtube-dl --extract-audio --audio-format "$ext" \
-					 -f "$format" \
-					 -o "$output_directory" \
-					 "$url"
+	url="$1"
+	output_directory="${home}/Music/YouTube/%(title)s.%(ext)s"
+	format="bestaudio"
+	ext="mp3"
+
+	youtube-dl --extract-audio --audio-format "$ext" \
+						 -f "$format" \
+						 -o "$output_directory" \
+						 "$url"
+}
+
+main "$@"
