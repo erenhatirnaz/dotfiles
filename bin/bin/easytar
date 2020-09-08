@@ -44,6 +44,10 @@ _print_help() {
 	argument is the name of archive file to be created. See EXAMPLES section
 	below.
 
+	Options:
+	  -v, --version    Show ${script} version number
+	  -h, --help       Show this help message
+
 	Available EXTs:
 	  .tar, .tar.gz, .tar.bz2, .tar.xz
 
@@ -60,7 +64,7 @@ _print_version() {
 	echo "${script} version ${version}"
 }
 
-_parse_argument() {
+_parse_arguments() {
 	[[ "$1" =~ ^(-h|--help)$ ]] && _print_help && exit
 	[[ "$1" =~ ^(-v|--version)$ ]] && _print_version && exit
 
@@ -107,7 +111,7 @@ _extract_archive() {
 }
 
 main() {
-	_parse_argument "$@"
+	_parse_arguments "$@"
 
 	# determine archive type for send as parameter to tar
 	extension="${1##*.}"
