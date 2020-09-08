@@ -11,7 +11,10 @@
 # description : starts php server in current directory
 # author      : eren hatırnaz <erenhatirnaz@hotmail.com.tr> [GPG: 0x8e64942a]
 # source      : https://github.com/erenhatirnaz/dotfiles
-# dependency  : php 5.4+
+# depends     :
+# |+ php 5.4+
+# |+ xdg-open from xdg-utils
+# |+ basename, cat, echo and sleep from coreutils
 # license     : gnu general public license v3
 # | copyright (c) 2019 eren hatırnaz
 # |

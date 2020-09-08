@@ -12,7 +12,9 @@
 # |             this script changes current working directory.
 # author      : eren hatırnaz <erenhatirnaz@hotmail.com.tr> [GPG: 0x8e64942a]
 # source      : https://github.com/erenhatirnaz/dotfiles
-# dependency  : git
+# depends     :
+# |+ git from git
+# |+ basename, cat and echo from codeutils
 # license     : gnu general public license v3
 # | copyright (c) 2019 eren hatırnaz
 # |

@@ -11,7 +11,10 @@
 # description : Print original, gzipped file sizes and ratio
 # author      : eren hatırnaz <erenhatirnaz@hotmail.com.tr> [GPG: 0x8e64942a]
 # source      : https://github.com/erenhatirnaz/dotfiles
-# dependency  : gzip
+# depends     :
+# |+ gzip from gzip
+# |+ bc from bc
+# |+ basename, cat, echo and wc from coreutils
 # license     : gnu general public license v3
 # | copyright (c) 2019 eren hatırnaz
 # |

@@ -13,7 +13,9 @@
 # |             before run this script. it's includes important note.
 # author      : eren hatırnaz <erenhatirnaz@hotmail.com.tr> [GPG: 0x8e64942a]
 # source      : http://github.com/erenhatirnaz/dotfiles
-# dependency  : xinput
+# depends     :
+# |+ xinput from xinput
+# |+ basename, cat, echo and sleep from coreutils
 # license     : gnu general public license v3
 # | copyright (c) 2019 eren hatırnaz
 # |

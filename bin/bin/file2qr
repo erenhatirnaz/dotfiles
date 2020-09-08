@@ -11,7 +11,9 @@
 # description  : converts file content to qrcode
 # author       : eren hatırnaz <erenhatirnaz@hotmail.com.tr> [GPG: 0x8e64942a]
 # source       : https://github.com/erenhatirnaz/dotfiles
-# dependency   : qrencode
+# depends      :
+# |+ qrencode from qrencode
+# |+ basename, cat and echo from coreutils
 # license      : gnu general public license v3.0
 # | copyright (c) 2019 eren hatırnaz
 # |

@@ -10,7 +10,10 @@
 # description : shorthand for tree
 # author      : eren hatırnaz <erenhatirnaz@hotmail.com.tr> [GPG: 0x8e64942a]
 # source      : https://github.com/erenhatirnaz/dotfiles
-# dependency  : tree
+# depends     :
+# |+ tree from tree
+# |+ less from less
+# |+ basename, cat and echo from coreutils
 # license     : gnu general public license v3
 # | copyright (c) 2019 eren hatırnaz
 # |
