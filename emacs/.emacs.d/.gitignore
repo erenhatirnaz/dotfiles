@@ -5,6 +5,8 @@ elpa/
 transient/
 var/
 backups/
+eshell/
+url/
 
 places
 configuration.el
@@ -13,3 +15,4 @@ sensible-defaults.el
 ido.last
 smex-items
 bookmarks
+custom.el
