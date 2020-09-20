@@ -368,6 +368,14 @@ Indent with 2 spaces.
     (yas-global-mode t)
     (yas-reload-all))
 #+END_SRC
+** Markdown
+   #+BEGIN_SRC emacs-lisp
+     (use-package markdown-mode
+       :ensure
+       :mode (("README\\.md\\'" . gfm-mode)
+              ("\\.md\\'" . markdown-mode)
+              ("\\.markdown\\'" . markdown-mode)))
+   #+END_SRC
 * Org-mode
 ** Display preferences
 Pretty bullets instead of a list of asterisks
