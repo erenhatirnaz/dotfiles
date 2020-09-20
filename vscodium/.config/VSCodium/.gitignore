@@ -1,0 +1,15 @@
+*[Cc]ache*/
+Backups/
+*Crash Reports*/
+Dictionaries/
+*[sS]torage*/
+logs/
+
+Cookies*
+Network Persistent State
+Preferences
+TransportSecurity
+languagepacks.json
+machineid
+rapid_render.json
+storage.json
