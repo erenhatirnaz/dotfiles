@@ -107,7 +107,7 @@ main() {
 
 	_countdown "$time_left"
 
-  echo "afk [$(date +%H:%m:%S)]: zZz..."
+  echo "afk [$(date +%H:%M:%S)]: zZz..."
 	systemctl suspend
 }
 
