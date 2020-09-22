@@ -107,6 +107,42 @@
     :init
     (load-theme 'gruvbox-dark-medium :t))
    #+END_SRC
+** Toggle light/dark mode
+   Toggle light or dark theme modes when pressed <f10>.
+   [[https://lists.gnu.org/archive/html/emacs-devel/2020-09/msg01247.html][Source]]
+
+   #+BEGIN_SRC emacs-lisp
+     (defun toggle-light-dark-theme--custom-choices (theme)
+       "Function used to create the choice widget options of the
+     `toggle-light-dark-theme' custom variables."
+       `(const :tag ,(symbol-name theme) ,theme))
+
+     (defcustom toggle-light-dark-theme-light-theme 'gruvbox-light-medium
+       "The light theme that the function `toggle-light-dark-theme' will use."
+       :type `(choice ,@(mapcar #'toggle-light-dark-theme--custom-choices
+                                (custom-available-themes))))
+
+     (defcustom toggle-light-dark-theme-dark-theme 'gruvbox-dark-medium
+       "The dark theme that the function `toggle-light-dark-theme' will use."
+       :type `(choice ,@(mapcar #'toggle-light-dark-theme--custom-choices
+                                (custom-available-themes))))
+
+     (defvar toggle-light-dark-theme--current-theme 'dark)
+
+     (defun toggle-light-dark-theme ()
+       "Disables all custom enabled themes and then toggles between a
+     light and a dark theme, which are the values of the variables
+     `toggle-light-dark-theme-light-theme' and `toggle-light-dark-theme-dark-theme'."
+       (interactive)
+       (mapc #'disable-theme custom-enabled-themes)
+       (cond ((eq toggle-light-dark-theme--current-theme 'light)
+              (load-theme toggle-light-dark-theme-dark-theme)
+              (setq toggle-light-dark-theme--current-theme 'dark))
+             (t (load-theme toggle-light-dark-theme-light-theme)
+                (setq toggle-light-dark-theme--current-theme 'light))))
+
+     (define-key global-map (kbd "<f10>") 'toggle-light-dark-theme)
+   #+END_SRC
 ** Set default font and configure font resizing
    #+BEGIN_SRC emacs-lisp
      (setq eren/default-font "JetBrains Mono")
