@@ -348,6 +348,33 @@
     (use-package projectile
       :ensure t)
   #+END_SRC
+* Buffer management
+  #+BEGIN_SRC emacs-lisp
+    (use-package ibuffer
+      :config
+      (setq ibuffer-saved-filter-groups
+            (quote (("default"
+                     ("dired" (mode . dired-mode))
+                     ("magit" (or
+                               (mode . magit-mode)
+                               (mode . magit-diff-mode)
+                               (name . "^COMMIT_EDITMSG$")
+                               (name . "^magit*")))
+                     ("emacs" (or
+                               (name . "^\\*scratch\\*$")
+                               (name . "^\\*Messages\\*$")))
+                     ("gnus" (or
+                              (mode . message-mode)
+                              (mode . bbdb-mode)
+                              (mode . mail-mode)
+                              (mode . gnus-group-mode)
+                              (mode . gnus-summary-mode)
+                              (mode . gnus-article-mode)
+                              (name . "^\\.bbdb$")
+                              (name . "^\\.newsrc-dribble")))))))
+      :hook (ibuffer-mode . (lambda () (ibuffer-switch-to-saved-filter-groups "default")))
+      :bind ("C-x C-b" . 'ibuffer-list-buffers))
+  #+END_SRC
 * Programming environments
   Set default =tab-width= to 2.
   #+BEGIN_SRC emacs-lisp
