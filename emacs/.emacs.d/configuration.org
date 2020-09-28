@@ -219,6 +219,21 @@
      (diminish-major-mode 'emacs-lisp-mode-hook "el")
      (diminish-major-mode 'lisp-interaction-mode-hook "λ")
    #+END_SRC
+** Startup dashboard
+   #+BEGIN_SRC emacs-lisp
+     (use-package dashboard
+       :ensure t
+       :config
+       (setq dashboard-startup-banner 'logo
+             dashboard-set-file-icons t
+             dashboard-set-heading-icons t
+             dashboard-items '((projects . 5)
+                               (bookmarks . 5)
+                               (recents . 5)
+                               (agenda . 5)
+                               (registers . 5)))
+       (dashboard-setup-startup-hook))
+   #+END_SRC
 ** Highlight the current line
   #+BEGIN_SRC emacs-lisp
     (use-package hl-line
