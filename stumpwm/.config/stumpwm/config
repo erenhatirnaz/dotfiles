@@ -7,12 +7,12 @@
 (load-module "battery-portable")
 (load-module "net")
 
-(set-focus-color "#b45741")
+(set-focus-color "#D65D0E")
 (set-font `("terminus-bold-16"))
 
 ;; Set `mode-line' colors and toggle toggle `mode-line' for current screen (monitor).
-(setf *mode-line-foreground-color* "#b45741"
-      *mode-line-background-color* "#272531"
+(setf *mode-line-foreground-color* "#D65D0E"
+      *mode-line-background-color* "#32302F"
       *mode-line-timeout* 5
       *screen-mode-line-format* "[^B%n^b] %W ^> [%l] [BAT: %B] ^n[%d]")
 (toggle-mode-line (current-screen) (current-head))
