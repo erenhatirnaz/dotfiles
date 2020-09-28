@@ -289,22 +289,6 @@
       :ensure
       :hook (dired-mode . all-the-icons-dired-mode))
   #+END_SRC
-** List directories first on dired mode
-  #+BEGIN_SRC emacs-lisp
-    (use-package dired
-      :config
-      (defun directory-first-sort ()
-        "Sort dired listings with directories first."
-        (save-excursion
-          (let (buffer-read-only)
-            (forward-line 2) ;; beyond dir. header
-            (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
-          (set-buffer-modified-p nil)))
-      (defadvice dired-readin
-          (after dired-after-updating-hook first () activate)
-        "Sort dired listings with directories first before adding marks."
-        (directory-first-sort)))
-  #+END_SRC
 ** =treemacs=
   #+BEGIN_SRC emacs-lisp
     (use-package treemacs
@@ -374,6 +358,30 @@
                               (name . "^\\.newsrc-dribble")))))))
       :hook (ibuffer-mode . (lambda () (ibuffer-switch-to-saved-filter-groups "default")))
       :bind ("C-x C-b" . 'ibuffer-list-buffers))
+  #+END_SRC
+* File management
+  Use =dired= for file management
+
+  #+BEGIN_SRC emacs-lisp
+    (use-package dired
+      :bind (("C-x j" . 'dired-jump)
+             ("C-x J" . 'dired-jump-other-window)))
+  #+END_SRC
+** List directories first on dired mode
+  #+BEGIN_SRC emacs-lisp
+    (use-package dired
+      :config
+      (defun directory-first-sort ()
+        "Sort dired listings with directories first."
+        (save-excursion
+          (let (buffer-read-only)
+            (forward-line 2) ;; beyond dir. header
+            (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
+          (set-buffer-modified-p nil)))
+      (defadvice dired-readin
+          (after dired-after-updating-hook first () activate)
+        "Sort dired listings with directories first before adding marks."
+        (directory-first-sort)))
   #+END_SRC
 * Programming environments
   Set default =tab-width= to 2.
