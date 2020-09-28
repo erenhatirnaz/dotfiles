@@ -17,15 +17,12 @@
 	hmc = rev-list --all --count
 	lg = log --color --graph --pretty=format:'%C(bold red)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an %G?>%Creset' --abbrev-commit
 	ls-ignored = ls-files --others --ignored --exclude-standard
-	meld = !/home/erenhatirnaz/tools/git-meld/git-meld.pl
 [filter "lfs"]
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 	required = true
 [url "https://github"]
 	insteadOf = git://github
-[merge]
-	tool = meld
 [procotol]
 	version = 2
 [pull]
