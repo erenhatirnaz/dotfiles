@@ -315,6 +315,10 @@
       :ensure
       :bind (("C-x g" . magit-status)))
   #+END_SRC
+
+  Set transient level:
+  #+BEGIN_SRC emacs-lisp
+    (setq transient-default-level 7)
   #+END_SRC
 ** Highlight uncommitted changes
   #+BEGIN_SRC emacs-lisp
