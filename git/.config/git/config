@@ -17,6 +17,8 @@
 	hmc = rev-list --all --count
 	lg = log --color --graph --pretty=format:'%C(bold red)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an %G?>%Creset' --abbrev-commit
 	ls-ignored = ls-files --others --ignored --exclude-standard
+  recommit = commit --amend
+  commend = commit --amend --no-edit
 [filter "lfs"]
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
