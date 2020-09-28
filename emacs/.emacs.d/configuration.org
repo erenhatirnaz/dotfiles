@@ -86,10 +86,10 @@
    minibuffer.
 
    #+BEGIN_SRC emacs-lisp
-     (use-package emacs
+     (use-package scroll-bar
        :init
        (set-scroll-bar-mode 'right)
-       (set-face-foreground 'scroll-bar "darkorange")
+       (set-face-foreground 'scroll-bar "#D65D0E")
        (set-window-scroll-bars (minibuffer-window) nil nil))
    #+END_SRC
 ** Customize cursor color
