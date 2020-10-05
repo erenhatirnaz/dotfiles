@@ -677,9 +677,3 @@
   #+BEGIN_SRC emacs-lisp
     (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
   #+END_SRC
-* =browse-url.el=
-  Set default browser to =qutebrowser=
-  #+BEGIN_SRC emacs-lisp
-    (setq browse-url-browser-function 'browse-url-generic
-          browse-url-generic-program "qutebrowser")
-  #+END_SRC
