@@ -320,7 +320,10 @@
 
    #+BEGIN_SRC emacs-lisp
      (use-package ag
-       :ensure t)
+       :ensure t
+       :bind (("C-x C-a" . ag)
+              :map projectile-command-map
+              ("C-a" . projectile-ag)))
    #+END_SRC
 * Buffer management
 ** Use =ibuffer= instead of =ListBuffers=
@@ -542,7 +545,7 @@
    #+BEGIN_SRC emacs-lisp
      (use-package org-cliplink
        :ensure t
-       :bind (("C-c p i" . 'org-cliplink)))
+       :bind (("C-x p i" . 'org-cliplink)))
    #+END_SRC
 * Navigating
 ** Use =windmove= insted of default bindings
