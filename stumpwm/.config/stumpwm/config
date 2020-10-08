@@ -14,8 +14,8 @@
 (setf *mode-line-foreground-color* "#D65D0E"
       *mode-line-background-color* "#32302F"
       *mode-line-timeout* 5
-      *screen-mode-line-format* "[^B%n^b] %W ^> [%l] [BAT: %B] ^n[%d]")
-(toggle-mode-line (current-screen) (current-head))
+      *screen-mode-line-format* "[^B%n^b] %W ^> [%l] [BAT0: %B] ^n[%d]")
+(enable-mode-line (current-screen) (current-head) t)
 
 ;; xterm -> x-terminal-emulator
 (undefine-key *root-map* (kbd "c"))
@@ -69,6 +69,7 @@
 (fill-keymap *launch-map*
              (kbd "f") "exec firefox"
              (kbd "q") "exec qutebrowser"
+             (kbd "v") "exec vivaldi"
              (kbd "t") "exec thunderbird"
              (kbd "n") "exec nautilus"
              (kbd "T") "exec telegram-desktop"
