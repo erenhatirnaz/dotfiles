@@ -1,0 +1,100 @@
+#!/bin/bash
+#              _
+#  _ __  _   _| |_
+# | '_ \| | | | __|
+# | |_) | |_| | |_
+# | .__/ \__,_|\__|
+# |_|
+# script      : put
+# version     : 1.0.0
+# description : takes contents from clipboard and puts it to a the given file
+# author      : eren hatırnaz <erenhatirnaz@hotmail.com.tr> [GPG: 0x8e64942a]
+# source      : http://github.com/erenhatirnaz/dotfiles
+# depends     :
+# |+ xclip from xclip
+# |+ basename, cat, echo and tee from coreutils
+# license     : gnu general public license v3
+# | copyright (c) 2020 eren hatırnaz
+# |
+# | this program is free software: you can redistribute it and/or modify
+# | it under the terms of the gnu general public license as published by
+# | the free software foundation, either version 3 of the license, or
+# | (at your option) any later version.
+# |
+# | this program is distributed in the hope that it will be useful,
+# | but without any warranty; without even the implied warranty of
+# | merchantability or fitness for a particular purpose.	see the
+# | gnu general public license for more details.
+# |
+# | you should have received a copy of the gnu general public license
+# | along with this program.	if not, see <https://www.gnu.org/licenses/>.
+
+readonly script=$(basename "$0")
+readonly version="1.0.0"
+
+_print_help() {
+	cat <<-EOF
+	Usage: ${script} [OPTIONS] FILE
+	Takes content from clipboard and puts the content to FILE.
+
+	Options:
+	  -a, --append      Don't overwrite FILE. Instead, append the content to FILE
+	  -v, --version     Show ${script} version number
+	  -h, --help        Show this help message
+	EOF
+}
+
+_print_version() {
+	echo "${script} version ${version}"
+}
+
+_die() {
+	local -r message="$1"
+	local -r be_helpful="${2:-true}"
+
+	echo "${script}: ${message}" >&2
+	$be_helpful &&\
+		echo "Try '${script} --help' for more information."
+	exit 1
+}
+
+parse_arguments() {
+	APPEND=false
+
+	while [[ $# -gt 0 ]]; do
+		case $1 in
+			-a|--append) APPEND=true; shift ;;
+			-v|--version) _print_version; exit ;;
+			-h|--help) _print_help; exit ;;
+			*) FILE="$1"; shift
+		esac
+	done
+
+	[[ -z "${FILE}" ]] && _die "missing operand"
+	[[ -d "${FILE}" ]] && _die "${FILE}: is a directory"
+	[[ ! -w "$(pwd)" ]] && _die "${FILE}: permission denied" false
+
+	if [[ -f "${FILE}" ]] && ! $APPEND; then
+		read -rp "${script}: ${FILE}: file is already exists. do you want to overwrite it? (y/N): " -n1 answer
+		answer=${answer:-n}
+		[[ ! $answer =~ [yY$] ]] && echo && exit 0
+		echo -e "\n${script}: ${FILE}: file is overwriting"
+	elif $APPEND; then
+		echo "${script}: ${FILE}: appending to file"
+	fi
+}
+
+main() {
+	parse_arguments "$@"
+
+	set -o pipefail
+	if $APPEND; then
+		xclip -selection clipboard -o | tee --append -- "${FILE}"
+	else
+		xclip -selection clipboard -o | tee "${FILE}"
+	fi
+
+	echo -e "\n${script}: ${FILE}: the content of the clipboard saved into file"
+}
+
+main "$@"
