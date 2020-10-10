@@ -311,7 +311,9 @@
       :ensure t
       :config
       (projectile-mode t)
-      :bind (("C-c p" . projectile-command-map)))
+      :bind (("C-c p" . projectile-command-map)
+             :map projectile-command-map
+             ("C-a" . projectile-ag)))
   #+END_SRC
 ** =ag=
    =ag= is very powerfull search tool. I use it commonly on the terminal. In
@@ -321,9 +323,7 @@
    #+BEGIN_SRC emacs-lisp
      (use-package ag
        :ensure t
-       :bind (("C-x C-a" . ag)
-              :map projectile-command-map
-              ("C-a" . projectile-ag)))
+       :bind (("C-x C-a" . ag)))
    #+END_SRC
 * Buffer management
 ** Use =ibuffer= instead of =ListBuffers=
