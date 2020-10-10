@@ -262,11 +262,11 @@
              (prog-mode . whitespace-mode))
       :bind (("<f6>" . whitespace-mode)))
   #+END_SRC
-** TODO Show fill column indicator
+** TODO Show fill column indicator only programming mode
    The fill column indicator is useful visual helper when typing.
 
    #+BEGIN_SRC emacs-lisp
-     (global-display-fill-column-indicator-mode t)
+     (add-hook 'prog-mode-hook (lambda () (display-fill-column-indicator-mode 1)))
    #+END_SRC
 ** Show battery information on modeline
   #+BEGIN_SRC emacs-lisp
