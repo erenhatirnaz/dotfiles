@@ -501,6 +501,17 @@
    #+END_SRC
 * Org-mode
 ** Display preferences
+   Little downward-pointing arrow instead of the usual ellipsis(=...=)
+   #+BEGIN_SRC emacs-lisp
+     (setq org-ellipsis " ⤵")
+     (custom-set-faces '(org-ellipsis ((t (:weight bold :height 1.1 :box nil)))))
+   #+END_SRC
+
+   Bigger document title
+   #+begin_src emacs-lisp
+     (custom-set-faces '(org-document-title ((t (:weight bold :height 1.5)))))
+   #+end_src
+
    Pretty bullets instead of a list of asterisks
    #+BEGIN_SRC emacs-lisp
      (use-package org-bullets
