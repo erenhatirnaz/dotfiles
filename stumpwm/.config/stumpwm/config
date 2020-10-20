@@ -17,6 +17,9 @@
       *screen-mode-line-format* "[^B%n^b] %W ^> [%l] [BAT0: %B] ^n[%d]")
 (enable-mode-line (current-screen) (current-head) t)
 
+;; Show only 6 character of window title in modeline
+(setf *window-format* "%m%n%s%6t")
+
 ;; Emacs-like command execute menu keybinding. Use 'C-t M-x' instead of 'C-t ;'
 (undefine-key *root-map* (kbd ";"))
 (define-key *root-map* (kbd "M-x") "colon")
