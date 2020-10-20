@@ -17,6 +17,13 @@
       *screen-mode-line-format* "[^B%n^b] %W ^> [%l] [BAT0: %B] ^n[%d]")
 (enable-mode-line (current-screen) (current-head) t)
 
+;; Emacs-like command execute menu keybinding. Use 'C-t M-x' instead of 'C-t ;'
+(undefine-key *root-map* (kbd ";"))
+(define-key *root-map* (kbd "M-x") "colon")
+
+;; Use 'C-t C-r' to reload configuration
+(define-key *root-map* (kbd "C-r") "loadrc")
+
 ;; xterm -> x-terminal-emulator
 (undefine-key *root-map* (kbd "c"))
 (undefine-key *root-map* (kbd "C-c"))
