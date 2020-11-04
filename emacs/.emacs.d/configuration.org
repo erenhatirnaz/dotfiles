@@ -437,6 +437,18 @@
      (use-package web-mode
        :ensure t)
    #+END_SRC
+*** Register Projectile project types
+**** Laravel
+    #+begin_src emacs-lisp
+      (projectile-register-project-type 'php-laravel '("composer.json" "artisan")
+                                        :project-file "composer.json"
+                                        :src-dir "app/"
+                                        :compile "php ./vendor/bin/phpcs"
+                                        :run "php artisan serve"
+                                        :test "php ./vendor/bin/phpunit"
+                                        :test-dir "tests/"
+                                        :test-suffix "Test.php")
+    #+end_src
 ** Javascript
    Indent 2 spaces
 
