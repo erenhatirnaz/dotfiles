@@ -551,9 +551,9 @@
      (setq org-src-window-setup 'current-window)
    #+END_SRC
 
-   No space before tags:
+   Align tags to right.
    #+BEGIN_SRC emacs-lisp
-     (setq org-tags-column 0)
+     (setq org-tags-column -80)
    #+END_SRC
 
    UTF-8 entities
