@@ -602,6 +602,11 @@
    #+BEGIN_SRC emacs-lisp
      (setq scroll-step 1)
    #+END_SRC
+* Hyperbole
+  #+begin_src emacs-lisp
+    (use-package hyperbole
+      :ensure t)
+  #+end_src
 * Editing preferences
 ** =utf-8= everywhere
    #+BEGIN_SRC emacs-lisp
