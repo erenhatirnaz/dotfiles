@@ -5,6 +5,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'morhetz/gruvbox'
+Plugin 'scrooloose/nerdtree'
 
 call vundle#end()
 filetype plugin indent on
@@ -15,6 +16,9 @@ colorscheme gruvbox
 
 " Dark background
 set background=dark
+
+" Nerdtree Toggle
+nmap <F8> :NERDTreeToggle<CR>
 
 " Disable arrow keys for adopt vim navigation
 noremap <Up> <Nop>
