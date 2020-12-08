@@ -41,7 +41,7 @@ alias dayofyear="date +%j" # day number of the year
 alias stopwatch="time read -N 1"
 
 # tty-clock
-alias clock="tty-clock -scbD -C 6"
+alias clock="tty-clock -scbDC 3"
 
 # List all upgradable packages
 alias uplist="sudo apt update && apt list --upgradable"
