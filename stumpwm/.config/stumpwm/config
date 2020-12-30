@@ -92,3 +92,24 @@
              (kbd "C-g") "keyboard-quit")
 
 (define-key *root-map* (kbd "L") '*launch-map*)
+
+;; Implement `renumber-map' for renumber windows. ~C-t M-u~
+(defvar *renumber-top-map* nil)
+(defvar *renumber-root-map* nil)
+(defvar *renumber-map* nil)
+
+(fill-keymap *renumber-map*
+             (kbd "0") "renumber 0"
+             (kbd "1") "renumber 1"
+             (kbd "2") "renumber 2"
+             (kbd "3") "renumber 3"
+             (kbd "4") "renumber 4"
+             (kbd "5") "renumber 5"
+             (kbd "6") "renumber 6"
+             (kbd "7") "renumber 7"
+             (kbd "8") "renumber 8"
+             (kbd "9") "renumber 9"
+             (kbd "ESC") "keyboard-quit"
+             (kbd "C-g") "keyboard-quit")
+
+(define-key *root-map* (kbd "M-u") '*renumber-map*)
