@@ -86,6 +86,9 @@
              (kbd "T") "exec telegram-desktop"
              (kbd "g") "exec gimp"
              (kbd "s") "exec spotify"
-             (kbd "o") "exec rofi -show drun")
+             (kbd "c") "exec speedcrunch"
+             (kbd "o") "exec rofi -show drun"
+             (kbd "ESC") "keyboard-quit"
+             (kbd "C-g") "keyboard-quit")
 
 (define-key *root-map* (kbd "L") '*launch-map*)
