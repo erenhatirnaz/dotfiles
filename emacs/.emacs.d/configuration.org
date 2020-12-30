@@ -620,6 +620,18 @@
               ("C-c M-S-<up>" . 'windmove-swap-states-up)
               ("C-c M-S-<down>" . 'windmove-swap-states-down)))
    #+END_SRC
+** Pulse line when switch window or recenter buffer
+   #+begin_src emacs-lisp
+     (defun pulse-line (&rest _)
+       "Pulse the current line."
+       (pulse-momentary-highlight-one-line (point)))
+
+     (dolist (command '(scroll-up-command
+                        scroll-down-command
+                        recenter-top-bottom
+                        other-window))
+       (advice-add command :after #'pulse-line))
+   #+end_src
 ** Smooth Scrolling
    [[https://www.emacswiki.org/emacs/SmoothScrolling][Source]]
 
