@@ -391,6 +391,18 @@
           "Sort dired listings with directories first before adding marks."
           (directory-first-sort)))
     #+END_SRC
+*** Remove files to system trash
+    #+begin_src emacs-lisp
+      (setq-default delete-by-moving-to-trash t)
+    #+end_src
+*** Offer create directory when copying destination doesn't exist
+    #+begin_src emacs-lisp
+      (setq dired-create-destination-dirs 'ask)
+    #+end_src
+*** Offer copy destination to the next windows' current directory
+    #+begin_src emacs-lisp
+      (setq dired-dwim-target 'dired-dwim-target-next)
+    #+end_src
 ** Show file icons
   #+BEGIN_SRC emacs-lisp
     (use-package all-the-icons
