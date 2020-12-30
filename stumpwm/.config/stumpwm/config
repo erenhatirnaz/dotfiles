@@ -6,6 +6,7 @@
 (load-module "ttf-fonts")
 (load-module "battery-portable")
 (load-module "net")
+(load-module "cpu")
 
 (set-focus-color "#D65D0E")
 (set-font `("terminus-bold-16"))
@@ -14,7 +15,7 @@
 (setf *mode-line-foreground-color* "#D65D0E"
       *mode-line-background-color* "#32302F"
       *mode-line-timeout* 5
-      *screen-mode-line-format* "[^B%n^b] %W ^> [%l] [BAT0: %B] ^n[%d]")
+      *screen-mode-line-format* "[^B%n^b] %W ^> [%l] [CPU: %C] [BAT1: %B] ^n[%d]")
 (enable-mode-line (current-screen) (current-head) t)
 
 ;; Show only 6 character of window title in modeline
