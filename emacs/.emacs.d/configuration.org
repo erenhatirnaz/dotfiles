@@ -607,9 +607,18 @@
 ** Use =windmove= insted of default bindings
    #+BEGIN_SRC emacs-lisp
      (use-package windmove
-       :config
-       (windmove-default-keybindings 'meta)
-       (windmove-delete-default-keybindings))
+       :bind (("M-S-<left>" . 'windmove-left)
+              ("M-S-<right>" . 'windmove-right)
+              ("M-S-<up>" . 'windmove-up)
+              ("M-S-<down>" . 'windmove-down)
+              ("C-x M-S-<left>" . 'windmove-delete-left)
+              ("C-x M-S-<right>" . 'windmove-delete-right)
+              ("C-x M-S-<up>" . 'windmove-delete-up)
+              ("C-x M-S-<down>" . 'windmove-delete-down)
+              ("C-c M-S-<left>" . 'windmove-swap-states-left)
+              ("C-c M-S-<right>" . 'windmove-swap-states-right)
+              ("C-c M-S-<up>" . 'windmove-swap-states-up)
+              ("C-c M-S-<down>" . 'windmove-swap-states-down)))
    #+END_SRC
 ** Smooth Scrolling
    [[https://www.emacswiki.org/emacs/SmoothScrolling][Source]]
