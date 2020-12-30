@@ -265,7 +265,7 @@
              (prog-mode . whitespace-mode))
       :bind (("<f6>" . whitespace-mode)))
   #+END_SRC
-** TODO Show fill column indicator only programming mode
+** Show fill column indicator only programming mode
    The fill column indicator is useful visual helper when typing.
 
    #+BEGIN_SRC emacs-lisp
