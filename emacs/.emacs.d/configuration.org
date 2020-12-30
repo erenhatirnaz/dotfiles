@@ -73,8 +73,11 @@
   #+END_SRC
 ** Theme customizations
    #+BEGIN_SRC emacs-lisp
-     (use-package modus-operandi-theme
-       :ensure t)
+     (use-package modus-themes
+       :ensure t
+       :config
+       (setq modus-themes-links 'neutral-underline
+             modus-themes-syntax 'green-strings))
 
      (use-package gruvbox-theme
        :ensure t
