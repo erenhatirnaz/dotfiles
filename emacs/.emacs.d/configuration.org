@@ -261,8 +261,7 @@
         (setq whitespace-style '(face tabs spaces trailing space-before-tab
                                       newline indentation empty space-after-tab
                                       space-mark tab-mark)))
-      :hook ((whitespace-mode . eh/set-whitespace-style)
-             (prog-mode . whitespace-mode))
+      :hook ((whitespace-mode . eh/set-whitespace-style))
       :bind (("<f6>" . whitespace-mode)))
   #+END_SRC
 ** Show fill column indicator only programming mode
