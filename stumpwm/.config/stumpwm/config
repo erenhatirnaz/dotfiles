@@ -87,7 +87,7 @@
              (kbd "g") "exec gimp"
              (kbd "s") "exec spotify"
              (kbd "c") "exec speedcrunch"
-             (kbd "o") "exec rofi -show drun"
+             (kbd "o") "exec rofi -show drun -matching fuzzy"
              (kbd "ESC") "keyboard-quit"
              (kbd "C-g") "keyboard-quit")
 
