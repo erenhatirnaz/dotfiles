@@ -36,8 +36,8 @@ readonly script=$(basename "$0")
 readonly version="1.0.0"
 
 # Edit these 2 lines by yourself
-keyboard_devices=(12 14)
-mouse_devices=(13 15)
+keyboard_devices=(11 13)
+mouse_devices=(12 14)
 
 _print_help() {
 	cat <<-EOF
