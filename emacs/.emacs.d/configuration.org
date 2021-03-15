@@ -558,9 +558,11 @@
 
    Pretty bullets instead of a list of asterisks
    #+BEGIN_SRC emacs-lisp
-     (use-package org-bullets
+     (use-package org-superstar
        :ensure t
-       :hook (org-mode . org-bullets-mode))
+       :config
+       (org-superstar-configure-like-org-bullets)
+       :hook (org-mode . org-superstar-mode))
    #+END_SRC
 
    Load =org-tempo=
