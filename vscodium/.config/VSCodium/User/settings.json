@@ -21,12 +21,12 @@
 
   // Workbench
   "workbench.editor.tabSizing": "shrink",
-  "workbench.colorTheme": "Gruvbox Dark Hard",
+  "workbench.colorTheme": "Gruvbox Light Medium",
   "workbench.iconTheme": "vscode-icons",
   "workbench.sideBar.location": "left",
 
   // Integrated Terminal
-  "terminal.integrated.fontFamily": "DejaVu Sans Mono",
+  "terminal.integrated.fontFamily": "JetBrains Mono",
   "terminal.integrated.cursorStyle": "block",
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.fontSize": 16,
