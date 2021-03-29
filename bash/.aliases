@@ -121,3 +121,13 @@ alias restpulse="pulseaudio -k && pulseaudio --start"
 
 # Magit
 alias magit="emacs --eval \"(setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)\" -f magit-status"
+
+# PHP setup
+alias php2="/usr/bin/php7.2"
+alias php4="/usr/bin/php7.4"
+
+alias composer2="/usr/bin/php7.2 /usr/local/bin/composer"
+alias composer4="/usr/bin/php7.4 /usr/local/bin/composer"
+
+alias laravel2="composer2 create-project laravel/laravel"
+alias laravel4="composer4 create-project laravel/laravel"
