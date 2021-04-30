@@ -7,6 +7,7 @@
 (load-module "battery-portable")
 (load-module "net")
 (load-module "cpu")
+(load-module "pass")
 
 (set-focus-color "#D65D0E")
 (set-font `("terminus-bold-16"))
@@ -71,6 +72,10 @@
 
 ;; C-t C-g f for create new float group
 (define-key *groups-map* (kbd "f") "gnew-float")
+
+;; Utilities
+(define-key *root-map* (kbd "M") "pass-copy-menu")
+(define-key *root-map* (kbd "z") "exec boomer")
 
 ;; Implement `launch-map' for launch some common used applications. C-t L
 (defvar *launch-top-map* nil)
