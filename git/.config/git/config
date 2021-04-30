@@ -29,3 +29,8 @@
 	version = 2
 [pull]
 	rebase = false
+[init]
+	defaultBranch = main
+
+[includeIf "gitdir:~/code/work/**"]
+  path = gitconfig-work
