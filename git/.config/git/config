@@ -19,6 +19,7 @@
 	ls-ignored = ls-files --others --ignored --exclude-standard
   recommit = commit --amend
   commend = commit --amend --no-edit
+	pushall = !git remote | xargs -L1 git push --all
 [filter "lfs"]
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
