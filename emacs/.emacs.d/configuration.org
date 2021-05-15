@@ -591,6 +591,11 @@
    #+BEGIN_SRC emacs-lisp
      (setq org-pretty-entities t)
    #+END_SRC
+
+   Fold everything when open a file:
+   #+begin_src emacs-lisp
+     (setq org-startup-folded t)
+   #+end_src
 ** Open external links in Vivaldi Browser instead of default
    #+BEGIN_SRC emacs-lisp
      (add-hook 'org-mode-hook (lambda ()
