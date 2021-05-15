@@ -455,9 +455,8 @@
        :diminish (yas-minor-mode)
        :config
        (setq yas-snippet-dirs '("~/.emacs.d/snippets/"))
-       :init
-       (yas-global-mode t)
-       (yas-reload-all))
+       (yas-reload-all)
+       :hook ((prog-mode . yas-minor-mode)))
    #+END_SRC
 ** PHP
    #+BEGIN_SRC emacs-lisp
