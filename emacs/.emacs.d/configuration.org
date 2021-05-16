@@ -756,6 +756,7 @@
     :ensure t
     :diminish
     :config
+    (setq company-dabbrev-downcase nil)
     (global-company-mode t))
 #+END_SRC
 * Password Store
