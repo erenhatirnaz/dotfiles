@@ -59,18 +59,18 @@
    #+END_SRC
 
    Disable dialog box prompts.
-  #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
     (setq use-dialog-box nil
           use-file-dialog nil)
-  #+END_SRC
+   #+END_SRC
 
-  Disable splash screen and startup messages.
-  #+BEGIN_SRC emacs-lisp
+   Disable splash screen and startup messages.
+   #+BEGIN_SRC emacs-lisp
     (setq inhibit-splash-screen t
           inhibit-startup-screen t
           inhibit-startup-message t
           inhibit-startup-echo-area-message t)
-  #+END_SRC
+   #+END_SRC
 ** Theme customizations
    #+BEGIN_SRC emacs-lisp
      (use-package modus-themes
@@ -87,7 +87,7 @@
 ** Toggle light/dark mode
    Generally I prefer dark themes even day time but light themes are more
    visible in suny days. So, I add this toggle function to switch between dark
-   and light themes. The function binded to =<F10>= key. Codes copied from [[https://lists.gnu.org/archive/html/emacs-devel/2020-09/msg01247.html][here]].
+   and light themes. The function binded to =<F10>= key. Code copied from [[https://lists.gnu.org/archive/html/emacs-devel/2020-09/msg01247.html][here]].
 
    * My current light theme is: *=modus-operandi=*.
    * My current dark theme is: *=gruvbox-dark-medium=*.
