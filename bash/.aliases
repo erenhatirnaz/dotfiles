@@ -7,11 +7,13 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias -- -="cd -"
 
+# Paper shredder
+alias rmrf="rm -rf"
+
 # Directory bookmarks
 alias dl="cd ${HOME}/Downloads"
 alias dt="cd ${HOME}/Desktop"
 alias dm="cd ${HOME}/Documents"
-alias rmrf="rm -rf"
 alias msc="cd ${HOME}/Music && cmus"
 
 # List all files colorized in long format
@@ -33,9 +35,11 @@ alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
 
 # Print calendar numbers
-alias week="date +%V" # week
-alias month="date +%m" # month
-alias dayofyear="date +%j" # day number of the year
+alias week="date +%V"
+alias month="date '+%m %B'"
+alias dayofyear="date +%j"
+alias dayofmonth="date +%d"
+alias dayofweek="date '+%u %A'"
 
 # A basic stop watch
 alias stopwatch="time read -N 1"
@@ -48,9 +52,6 @@ alias uplist="sudo apt update && apt list --upgradable"
 
 # Print IP address
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-
-# Show active network interfaces
-alias ifactive="ifconfig | grep 'wl' | cut -d: -f1"
 
 # Show local IP addresses (IPv4 and IPv6)
 alias lip="ifconfig $(ifconfig | grep 'wl' | cut -d: -f1) | grep 'inet' | awk '{print \$2}'"
@@ -76,11 +77,6 @@ alias path="echo -e ${PATH//:/\\n}"
 # Convert clipboard content to QRCode
 alias clip2qr="xclip -out -selection clipboard | qrencode -o - -t UTF8"
 
-# Shortcuts to translation tool
-alias tr-en="trans tr:en"
-alias en-tr="trans en:tr"
-alias en-en="trans en:en -d"
-
 # Copy & Paste
 alias copy="xclip -selection clipboard"
 alias paste="xclip -selection clipboard -o"
@@ -104,14 +100,6 @@ alias clonecd=". clonecd"
 
 # jobs always shows PID
 alias jobs="jobs -l"
-
-# Libre office shortcuts
-alias lwriter="libreoffice --writer"
-alias lcalc="libreoffice --calc"
-alias ldraw="libreoffice --draw"
-alias limpress="libreoffice --impress"
-alias lbase="libreoffice --base"
-alias lmath="libreoffice --math"
 
 # Password generator
 alias genpass="cat /dev/urandom | tr -dc 'a-zA-Z0-9-!@#$%&*()_+~' | fold -w 15 | head -n 1"
