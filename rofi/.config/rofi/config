@@ -1,4 +1,0 @@
-rofi.modi: window,run,ssh,drun,keys,windowcd
-rofi.theme: themes/gruvbox-dark-hard.rasi
-
-rofi.show-icons: true

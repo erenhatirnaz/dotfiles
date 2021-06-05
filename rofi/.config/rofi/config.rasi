@@ -1,0 +1,5 @@
+configuration {
+	modi: "window,run,ssh,drun,keys,windowcd";
+	show-icons: true;
+	theme: "themes/gruvbox-dark-hard.rasi";
+}
