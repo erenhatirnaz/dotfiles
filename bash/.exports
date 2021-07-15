@@ -40,6 +40,9 @@ LS_COLORS+="*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:"
 LS_COLORS+="*.Z=01;31:*.tgz=01;31:"
 export LS_COLORS
 
+# Fix GTK3+ scolling issue stumpwm
+export GDK_CORE_DEVICE_EVENTS=1
+
 # My scripts
 export PATH=${PATH}:${HOME}/bin
 
