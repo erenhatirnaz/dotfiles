@@ -91,6 +91,9 @@ alias fontlist="fc-list | cut -d: -f2 | sort -u | uniq"
 # Clear swap partition
 alias clearswap="sudo swapoff -a && sudo swapon -a"
 
+# Clear memory caches
+alias clearcache="sudo sysctl vm.drop_caches=1 && sudo sysctl vm.drop_caches=2 && sudo sysctl vm.drop_caches=3"
+
 # Shutdown PC
 alias bye="shutdown -h now"
 
