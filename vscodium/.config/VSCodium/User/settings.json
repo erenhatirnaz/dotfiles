@@ -133,5 +133,8 @@
   "auto-rename-tag.activationOnLanguage": [
     "*"
   ],
+  "terminal.integrated.tabs.enabled": true,
+  "terminal.integrated.allowChords": false,
+  "workbench.editor.untitled.hint": "hidden",
   // -- extentions settings ends --
 }
