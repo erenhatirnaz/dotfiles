@@ -30,7 +30,6 @@
   "terminal.integrated.cursorStyle": "block",
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.fontSize": 16,
-  "terminal.integrated.rendererType": "canvas",
   "terminal.integrated.env.linux": {
     "COLORTERM": "truecolor"
   },
@@ -100,11 +99,6 @@
     "containers"
   ],
   "gitlens.currentLine.scrollable": false,
-  "gitlens.recentChanges.highlight.locations": [
-    "line",
-    "overview",
-    "gutter"
-  ],
   "gitlens.currentLine.enabled": false,
   "gitlens.hovers.currentLine.over": "line",
   "gitlens.advanced.messages": {
@@ -114,24 +108,11 @@
     "suppressGitVersionWarning": false,
     "suppressLineUncommittedWarning": false,
     "suppressNoRepositoryWarning": false,
-    "suppressResultsExplorerNotice": false,
-    "suppressShowKeyBindingsNotice": true,
-    "suppressUpdateNotice": false,
-    "suppressWelcomeNotice": true
   },
-
-  // C/C++
-  "C_Cpp.default.includePath": [
-    "/usr/lib/"
-  ],
 
   // Shellcheck
   "shellcheck.run": "onSave",
   "shellcheck.disableVersionCheck": true,
 
-  // Auto Rename tags
-  "auto-rename-tag.activationOnLanguage": [
-    "*"
-  ],
   // -- extentions settings ends --
 }
