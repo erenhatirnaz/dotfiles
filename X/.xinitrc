@@ -1,13 +1,30 @@
 #!/usr/bin/env bash
 
+if [ -d /etc/X11/xinit/xinitrc.d ]; then
+  for f in /etc/X11/xinit/xinitrc.d/*; do
+    [ -x "$f" ] && . "$f"
+  done
+  unset f
+fi
+
+# set dpi
+xrandr --dpi 96
+
+# load .Xresources
+xrdb -merge $HOME/.Xresources
+
+# brightness
+xbacklight -set 55% &
+
 # turn off bell
 xset -b
 
 # set keyboard repeat rate
 xset r rate 350 35
 
+# set keyboard model and layot
 # remap caps lock to ctrl key
-setxkbmap -option ctrl:nocaps
+setxkbmap -model pc105+inet -layout tr -option ctrl:nocaps
 
 # set background image
 export WALLPAPER="${HOME}/Pictures/wallpapers/firewatch/wild-sunset.png"
@@ -15,3 +32,16 @@ feh --bg-scale $WALLPAPER
 
 # disable touchpad when typing
 syndaemon -dti1
+
+# clipboard synching
+autocutsel -fork &
+autocutsel -selection PRIMARY -fork &
+
+# set mouse sensitive
+setmousesens
+
+# launch polkit
+/usr/bin/lxpolkit &
+
+# launch stumpwm
+exec stumpwm
