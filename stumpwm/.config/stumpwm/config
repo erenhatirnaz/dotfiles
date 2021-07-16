@@ -1,22 +1,26 @@
 ;; -*-lisp-*-
 (in-package :stumpwm)
 
-(set-module-dir "/home/erenhatirnaz/stumpwm/contrib")
-(ql:quickload :clx-truetype)
-(load-module "ttf-fonts")
+(set-module-dir "/home/eh/.config/stumpwm/contrib")
 (load-module "battery-portable")
 (load-module "net")
 (load-module "cpu")
 (load-module "pass")
 
 (set-focus-color "#D65D0E")
-(set-font `("terminus-bold-16"))
+(set-font "-*-terminus-bold-r-normal-*-16-*-*-*-*-*-*-*")
+
+;; show only cpu usage and tempeture
+(setf cpu::*cpu-modeline-fmt* "%c %t")
+
+;; minus sign is enough when no battery info
+(setf battery-portable::*no-battery-info* "-")
 
 ;; Set `mode-line' colors and toggle toggle `mode-line' for current screen (monitor).
 (setf *mode-line-foreground-color* "#D65D0E"
       *mode-line-background-color* "#32302F"
       *mode-line-timeout* 5
-      *screen-mode-line-format* "[^B%n^b] %W ^> [%l] [CPU: %C] [BAT1: %B] ^n[%d]")
+      *screen-mode-line-format* "[^B%n^b] %W ^> [%l] [%C] [BAT1: %B] ^n[%d]")
 (enable-mode-line (current-screen) (current-head) t)
 
 ;; Show only 6 character of window title in modeline
