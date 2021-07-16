@@ -45,6 +45,11 @@
 (define-key *top-map* (kbd "XF86AudioRaiseVolume") "amixer-Master-1+")
 (define-key *top-map* (kbd "XF86AudioMute") "amixer-Master-toggle pulse")
 
+;; Music control
+(define-key *top-map* (kbd "XF86AudioPlay") "exec playerctl play-pause")
+(define-key *top-map* (kbd "XF86AudioNext") "exec playerctl next")
+(define-key *top-map* (kbd "XF86AudioPrev") "exec playerctl previous")
+
 ;; Screenshot utils
 (define-key *top-map* (kbd "SunPrint_Screen") "exec ksnip -m")
 (define-key *top-map* (kbd "C-SunPrint_Screen") "exec ksnip -r")
