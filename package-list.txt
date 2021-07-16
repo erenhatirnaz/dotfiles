@@ -133,3 +133,4 @@ binwalk
 cloc
 xclip
 usbutils
+x11-ssh-askpass
