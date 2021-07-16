@@ -9,12 +9,14 @@ if ! shopt -oq posix; then
   fi
 fi
 
-
 # Load the shell dotfiles, and then some:
 for file in ~/.{bash_prompt,exports,aliases,functions}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
+
+# Load dircolors
+eval "$(dircolors .dircolors)"
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob
