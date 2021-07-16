@@ -132,3 +132,4 @@ nnn
 binwalk
 cloc
 xclip
+usbutils
