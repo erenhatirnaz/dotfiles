@@ -44,17 +44,15 @@ alias dayofweek="date '+%u %A'"
 # A basic stop watch
 alias stopwatch="time read -N 1"
 
-# tty-clock
-alias clock="tty-clock -scbDC 3"
-
 # List all upgradable packages
-alias uplist="sudo apt update && apt list --upgradable"
+alias uplist="pacman -Qu"
 
 # Print IP address
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 
 # Show local IP addresses (IPv4 and IPv6)
-alias lip="ifconfig $(ifconfig | grep 'wl' | cut -d: -f1) | grep 'inet' | awk '{print \$2}'"
+# alias lip="ifconfig $(ifconfig | grep 'wl' | cut -d: -f1) | grep 'inet' | awk '{print \$2}'"
+# alias lip="nmcli -p device show | grep -i IP4.ADDRESS | head -n1 | awk '{print $2}' | cut -d/ -f1"
 
 # List all open network ports
 alias openports4="ss --all --numeric --processes --ipv4"
