@@ -16,7 +16,9 @@ done
 unset file
 
 # Load dircolors
-eval "$(dircolors .dircolors)"
+if [[ -r ~/.dircolors ]] && type -p dircolors >/dev/null; then
+  eval $(dircolors -b "$HOME/.dircolors")
+fi
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob
