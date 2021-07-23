@@ -134,4 +134,11 @@
              (kbd "C-g") "keyboard-quit")
 
 (define-key *root-map* (kbd "M-u") '*renumber-map*)
+
+(when *initializing*
+  (grename "HOME")
+  (dolist (group '("CODE" "MEDIA" "WEB" "CHAT"))
+    (gnewbg group))
+  (gselect "1"))
+
 (clipboard-history:start-clipboard-manager)
