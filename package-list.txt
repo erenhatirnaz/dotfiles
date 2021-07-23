@@ -44,10 +44,12 @@ git
 docker
 mysql-workbench
 php8
-php7.4
-php7.2
+php7
+php72
+php71
 postman
 composer
+meld
 
 dotfiles
 --------
@@ -76,6 +78,18 @@ audacity
 vlc
 gst-libav
 kdenlive
+picard
+
+
+thumbnailers
+------------
+ufraw-thumbnailer
+epub-thumbnailer-git
+ffmpegthumbnailer
+ffmpegthumbnailer-mp3
+appimage-thumbnailer-git
+gnome-xcf-thumbnailer
+webp-thumbnailer
 
 office
 ------
@@ -134,3 +148,11 @@ cloc
 xclip
 usbutils
 x11-ssh-askpass
+gnome-keyring
+figlet
+ntfs-3g
+ethtool
+glances
+unzip
+bind-tools
+libimobiledevice
