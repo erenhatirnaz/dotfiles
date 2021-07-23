@@ -6,6 +6,7 @@
 (load-module "net")
 (load-module "cpu")
 (load-module "pass")
+(load-module "mem")
 
 (set-focus-color "#D65D0E")
 (set-font "-*-terminus-bold-r-normal-*-16-*-*-*-*-*-*-*")
@@ -20,7 +21,7 @@
 (setf *mode-line-foreground-color* "#D65D0E"
       *mode-line-background-color* "#32302F"
       *mode-line-timeout* 5
-      *screen-mode-line-format* "[^B%n^b] %W ^> [%l] [%C] [BAT1: %B] ^n[%d]")
+      *screen-mode-line-format* "[^B%n^b] %W ^> [%l] [%C] [%M] [BAT1: %B] ^n[%d]")
 (enable-mode-line (current-screen) (current-head) t)
 
 ;; Show only 6 character of window title in modeline
