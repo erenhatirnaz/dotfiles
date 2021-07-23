@@ -7,7 +7,9 @@
 (load-module "cpu")
 (load-module "pass")
 (load-module "mem")
+(load-module "clipboard-history")
 
+;; set focus color and font
 (set-focus-color "#D65D0E")
 (set-font "-*-terminus-bold-r-normal-*-16-*-*-*-*-*-*-*")
 
@@ -89,6 +91,7 @@
 ;; Utilities
 (define-key *root-map* (kbd "M") "pass-copy-menu")
 (define-key *root-map* (kbd "z") "exec boomer")
+(define-key *root-map* (kbd "C-y") "show-clipboard-history")
 
 ;; Implement `launch-map' for launch some common used applications. C-t L
 (defvar *launch-top-map* nil)
@@ -131,3 +134,4 @@
              (kbd "C-g") "keyboard-quit")
 
 (define-key *root-map* (kbd "M-u") '*renumber-map*)
+(clipboard-history:start-clipboard-manager)
