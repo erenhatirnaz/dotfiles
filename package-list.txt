@@ -94,6 +94,8 @@ webp-thumbnailer
 office
 ------
 libreoffice
+zathura
+zathura-pdf-poppler
 
 browsers
 --------
