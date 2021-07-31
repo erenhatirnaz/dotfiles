@@ -50,6 +50,7 @@ php71
 postman
 composer
 meld
+inotify-tools
 
 dotfiles
 --------
@@ -158,3 +159,4 @@ glances
 unzip
 bind-tools
 libimobiledevice
+tlp
