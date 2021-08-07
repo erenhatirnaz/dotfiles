@@ -11,9 +11,6 @@
   "editor.minimap.renderCharacters": false,
   "editor.smoothScrolling": true,
   "editor.cursorBlinking": "smooth",
-
-  // Window
-  "window.zoomLevel": 0,
   "window.titleBarStyle": "native",
   "window.restoreFullscreen": false,
   "window.menuBarVisibility": "toggle",
@@ -113,6 +110,7 @@
   // Shellcheck
   "shellcheck.run": "onSave",
   "shellcheck.disableVersionCheck": true,
+  "terminal.integrated.allowChords": false,
 
   // -- extentions settings ends --
 }
