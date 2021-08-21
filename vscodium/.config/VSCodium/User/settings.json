@@ -4,7 +4,7 @@
   "editor.fontFamily": "JetBrains Mono",
   "editor.fontLigatures": true,
   "editor.rulers": [ 80, 120 ],
-  "editor.tabSize": 2,
+  "editor.tabSize": 4,
   "editor.renderWhitespace": "boundary",
   "editor.renderIndentGuides": true,
   "editor.minimap.enabled": true,
@@ -26,6 +26,7 @@
   "terminal.integrated.fontFamily": "JetBrains Mono",
   "terminal.integrated.cursorStyle": "block",
   "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.allowChords": false,
   "terminal.integrated.fontSize": 16,
   "terminal.integrated.env.linux": {
     "COLORTERM": "truecolor"
@@ -110,7 +111,9 @@
   // Shellcheck
   "shellcheck.run": "onSave",
   "shellcheck.disableVersionCheck": true,
-  "terminal.integrated.allowChords": false,
+
+  // TODO Tree
+  "todo-tree.tree.showScanModeButton": false,
 
   // -- extentions settings ends --
 }
