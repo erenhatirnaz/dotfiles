@@ -118,20 +118,24 @@ alias magit="emacs --eval \"(setq magit-display-buffer-function #'magit-display-
 # PHP setup
 alias php1="/usr/bin/php71"
 alias php2="/usr/bin/php72"
+alias php3="/usr/bin/php73"
 alias php4="/usr/bin/php7"
 alias php8="/usr/bin/php"
 
 alias composer1="/usr/bin/php71 /usr/bin/composer"
 alias composer2="/usr/bin/php72 /usr/bin/composer"
+alias composer3="/usr/bin/php73 /usr/bin/composer"
 alias composer4="/usr/bin/php7 /usr/bin/composer"
 alias composer8="/usr/bin/php /usr/bin/composer"
 
 alias laravel1="composer1 create-project laravel/laravel"
 alias laravel2="composer2 create-project laravel/laravel"
+alias laravel3="composer3 create-project laravel/laravel"
 alias laravel4="composer4 create-project laravel/laravel"
 alias laravel8="composer8 create-project laravel/laravel"
 
 alias artisan1="php1 artisan"
 alias artisan2="php2 artisan"
+alias artisan3="php3 artisan"
 alias artisan4="php4 artisan"
 alias artisan8="php8 artisan"
