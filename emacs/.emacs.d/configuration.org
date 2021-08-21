@@ -554,7 +554,7 @@
    Little downward-pointing arrow instead of the usual ellipsis(=...=)
    #+BEGIN_SRC emacs-lisp
      (setq org-ellipsis " ⤵")
-     (custom-set-faces '(org-ellipsis ((t (:weight bold :height 1.1 :box nil)))))
+     (custom-set-faces '(org-ellipsis ((t (:weight bold :height 1.3 :box nil :underline nil)))))
    #+END_SRC
 
    Bigger document title
