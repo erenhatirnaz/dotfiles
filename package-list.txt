@@ -163,3 +163,4 @@ tlp
 unrar
 seahorse
 nautilus-open-any-terminal
+bat
