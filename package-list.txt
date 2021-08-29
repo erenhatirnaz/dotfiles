@@ -80,7 +80,7 @@ vlc
 gst-libav
 kdenlive
 picard
-
+streamerlink
 
 thumbnailers
 ------------
@@ -123,6 +123,7 @@ vimix-icon-theme
 chat
 ----
 telegram-desktop
+chatterino2-7tv-git
 
 graphic editors
 ---------------
@@ -155,7 +156,6 @@ gnome-keyring
 figlet
 ntfs-3g
 ethtool
-glances
 unzip
 bind-tools
 libimobiledevice
@@ -164,3 +164,7 @@ unrar
 seahorse
 nautilus-open-any-terminal
 bat
+cava
+tesseract
+tesseract-data-eng
+tesseract-data-tur
