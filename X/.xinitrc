@@ -36,5 +36,8 @@ syndaemon -dti1
 # launch polkit
 /usr/bin/lxpolkit &
 
+# launch keyring daemon
+eval $(gnome-keyring-daemon --start)
+
 # launch stumpwm
 exec stumpwm
