@@ -274,7 +274,7 @@
   #+BEGIN_SRC emacs-lisp
     (use-package battery
       :config
-      (setq battery-mode-line-format "[BAT0: %b%p%% - %t]")
+      (setq battery-mode-line-format "[BAT1: %b%p%% - %t]")
       :init
       (display-battery-mode :t))
   #+END_SRC
