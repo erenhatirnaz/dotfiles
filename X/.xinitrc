@@ -29,12 +29,9 @@ setxkbmap -model pc105+inet -layout tr -option ctrl:nocaps
 # disable touchpad when typing
 syndaemon -dti1
 
-# clipboard synching
-autocutsel -fork &
-autocutsel -selection PRIMARY -fork &
-
-# set mouse sensitive
-setmousesens
+# clipboard syncing
+# autocutsel -fork &
+# autocutsel -selection PRIMARY -fork &
 
 # launch polkit
 /usr/bin/lxpolkit &
