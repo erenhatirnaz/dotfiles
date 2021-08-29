@@ -23,6 +23,7 @@
 (setf *mode-line-foreground-color* "#D65D0E"
       *mode-line-background-color* "#32302F"
       *mode-line-timeout* 5
+      *time-modeline-string* "^7^B%a • %d.%m.%y %k:%M:%S^b^n"
       *screen-mode-line-format* "[^B%n^b] %W ^> [%l] [%C] [%M] [BAT1: %B] ^n[%d]")
 (enable-mode-line (current-screen) (current-head) t)
 
@@ -132,9 +133,9 @@
              (kbd "9") "renumber 9"
              (kbd "ESC") "keyboard-quit"
              (kbd "C-g") "keyboard-quit")
-
 (define-key *root-map* (kbd "M-u") '*renumber-map*)
 
+;; initializing setup
 (when *initializing*
   (grename "HOME")
   (dolist (group '("CODE" "MEDIA" "WEB" "CHAT"))
