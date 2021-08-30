@@ -1,0 +1,127 @@
+#!/bin/bash
+#  _           _   _                                    _   _  __ _
+# | |__   __ _| |_| |_ ___ _ __ _   _       _ __   ___ | |_(_)/ _(_) ___ _ __
+# | '_ \ / _` | __| __/ _ \ '__| | | |_____| '_ \ / _ \| __| | |_| |/ _ \ '__|
+# | |_) | (_| | |_| ||  __/ |  | |_| |_____| | | | (_) | |_| |  _| |  __/ |
+# |_.__/ \__,_|\__|\__\___|_|   \__, |     |_| |_|\___/ \__|_|_| |_|\___|_|
+#                               |___/
+# #
+# script      : battery-notifier
+# version     : 1.0.0
+# description : Simple battery notifier
+# author      : eren hatırnaz <erenhatirnaz@hotmail.com.tr> [GPG: 0x8e64942a]
+# source      : https://github.com/erenhatirnaz/dotfiles
+# depends     :
+# |+ upower
+# |+ notify-send
+# |+ date
+# |+ awk
+# |+ basename
+# |+ cat
+# license     : gnu general public license v3
+# | copyright (c) 2019 eren hatırnaz
+# |
+# | this program is free software: you can redistribute it and/or modify
+# | it under the terms of the gnu general public license as published by
+# | the free software foundation, either version 3 of the license, or
+# | (at your option) any later version.
+# |
+# | this program is distributed in the hope that it will be useful,
+# | but without any warranty; without even the implied warranty of
+# | merchantability or fitness for a particular purpose.  see the
+# | gnu general public license for more details.
+# |
+# | you should have received a copy of the gnu general public license
+# | along with this program.  if not, see <https://www.gnu.org/licenses/>.
+
+readonly script=$(basename "$0")
+readonly version="1.0.0"
+
+_print_help() {
+	cat <<-EOF
+	Usage: ${script} [OPTIONS] [BATTERY]
+	Simple battery notifier. Run this script on the background. If the BATTERY given,
+	tracks that BATTERY, otherwise default is "/org/freedesktop/UPower/devices/battery_BAT1".
+
+	Options:
+		-v, --version    Show ${script} version number
+		-h, --help       Show this help message
+	EOF
+}
+
+_print_version() {
+	echo "${script} version ${version}"
+}
+
+_parse_arguments() {
+	# Simple argument parsing
+	[[ "$1" =~ ^(-h|--help)$ ]] && _print_help && exit
+	[[ "$1" =~ ^(-v|--version)$ ]] && _print_version && exit
+
+	# Input validation
+	if [[ -n "$1" && $(upower -i "$1") =~ ^(failed).* ]]; then
+		echo "${script}: invalid battery \`$1\`" >&2
+		exit 1
+	fi
+}
+
+_get_battery_property() {
+	local -r battery="$1"
+	local -r property="$2"
+
+	local -r result=$(upower -i "$battery" | grep -i "$property" | awk '{print $2}')
+	if [[ -z "$result" ]]; then
+		echo "${script}: there's no such property '${property}' of the '${battery}'" >&2
+		exit 1
+	fi
+
+	echo "$result"
+}
+
+main() {
+	_parse_arguments "$@"
+
+	BATTERY="${1:-/org/freedesktop/UPower/devices/battery_BAT1}"
+	echo "${script}: notifier started."
+	echo "${script}: selected battery: \"${BATTERY}\""
+
+	while :
+	do
+		set -e
+		battery_percentage=$(_get_battery_property "$BATTERY" "percentage")
+		battery_percentage="${battery_percentage/\%/}"
+		battery_status=$(_get_battery_property "$BATTERY" "state")
+		set +e
+
+		printf "${script}: $(date '+%d.%m.%Y %H:%M:%S'): percentage \`${battery_percentage}\`, status \`${battery_status}\`"
+
+		if [[ $battery_percentage -ge 50 && $battery_percentage -lt 75 ]]; then
+			urgency="low"
+			icon="/usr/share/icons/Vimix-dark/24@2x/panel/battery-060.svg"
+			message="Battery level is lower than 75%!"
+		fi
+		if [[ $battery_percentage -ge 30 && $battery_percentage -lt 50 ]]; then
+			urgency="normal"
+			icon="/usr/share/icons/Vimix-dark/24@2x/panel/battery-040.svg"
+			message="Battery level is lower than 50!"
+		fi
+		if [[ $battery_percentage -ge 10 && $battery_percentage -lt 30 ]]; then
+			urgency="critical"
+			icon="/usr/share/icons/Vimix-dark/24@2x/panel/battery-020.svg"
+			message="Battery level is lower than 30!"
+		fi
+
+		if [[ -n "$message" && -n "$urgency" && -n "$icon" && "$battery_status" != "charging"	 ]]; then
+			 if notify-send --urgency="${urgency}" --icon="${icon}" "${message} Current Level: ${battery_percentage}"; then
+				 printf ", notification sent!\n";
+			 fi
+		else
+			printf ", no need to notification.\n"
+		fi
+		unset urgency icon message
+
+		sleep 5m
+	done
+}
+
+main "$@"
