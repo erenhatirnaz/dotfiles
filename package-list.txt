@@ -27,12 +27,13 @@ hardware drivers
 ----------------
 nvidia
 
-editors
+editors / ide's
 -------
 emacs
 nano
 vscodium
 vim
+phpstorm
 
 terminal emulator
 -----------------
@@ -51,6 +52,8 @@ postman
 composer
 meld
 inotify-tools
+jre8-openjdk
+phpstorm-jre
 
 dotfiles
 --------
@@ -168,3 +171,7 @@ cava
 tesseract
 tesseract-data-eng
 tesseract-data-tur
+anydesk
+libgphoto2
+gvfs
+gvfs-gphoto2
