@@ -14,7 +14,7 @@ xrandr --dpi 96
 xrdb -merge $HOME/.Xresources
 
 # brightness
-xbacklight -set 55% &
+# xbacklight -set 55% &
 
 # turn off bell
 xset -b
