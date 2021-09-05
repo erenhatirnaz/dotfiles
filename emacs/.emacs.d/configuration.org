@@ -790,7 +790,7 @@
            (kill-region (point-min) (point-max)))
          (deactivate-mark)))
 
-     (add-hook 'org-mode-hook (lambda () (local-set-key (kbd "M-w") #'my-copy-simple)))
+     (add-hook 'org-mode-hook (lambda () (local-set-key (kbd "C-u M-w") #'my-copy-simple)))
    #+end_src
 ** Change =auto-save-list= directory
    #+begin_src emacs-lisp
