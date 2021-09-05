@@ -1,5 +1,5 @@
 configuration {
-	modi: "window,run,ssh,drun,keys,windowcd";
+	modi: "window,run,ssh,drun,keys,windowcd,filebrowser";
 	show-icons: true;
 	theme: "themes/gruvbox-dark-hard.rasi";
 }
