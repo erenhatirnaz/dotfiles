@@ -816,6 +816,12 @@
       :config
       (auth-source-pass-enable))
   #+end_src
+* Terminal
+** Vterm
+   #+begin_src emacs-lisp
+     (use-package vterm
+         :ensure t)
+   #+end_src
 * Set custom keybindings
   #+BEGIN_SRC emacs-lisp
     (global-set-key (kbd "M-o") 'other-window)
