@@ -37,7 +37,7 @@ phpstorm
 
 terminal emulator
 -----------------
-rxvt-unicode
+rxvt-unicode-256xresources
 
 development
 -----------
