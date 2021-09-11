@@ -815,7 +815,8 @@
 ** Vterm
    #+begin_src emacs-lisp
      (use-package vterm
-         :ensure t)
+       :ensure t
+       :bind (("C-x v" . 'vterm)))
    #+end_src
 * Set custom keybindings
   #+BEGIN_SRC emacs-lisp
