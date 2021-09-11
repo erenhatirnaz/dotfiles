@@ -11,6 +11,9 @@
   "editor.minimap.renderCharacters": false,
   "editor.smoothScrolling": true,
   "editor.cursorBlinking": "smooth",
+  "editor.bracketPairColorization.enabled": true,
+
+  // Window
   "window.titleBarStyle": "native",
   "window.restoreFullscreen": false,
   "window.menuBarVisibility": "toggle",
@@ -21,13 +24,18 @@
   "workbench.colorTheme": "Gruvbox Dark Hard",
   "workbench.iconTheme": "vscode-icons",
   "workbench.sideBar.location": "left",
+  "workbench.editor.untitled.hint": "hidden",
 
   // Integrated Terminal
+  "terminal.integrated.fontSize": 16,
   "terminal.integrated.fontFamily": "JetBrains Mono",
   "terminal.integrated.cursorStyle": "block",
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.allowChords": false,
-  "terminal.integrated.fontSize": 16,
+  "terminal.integrated.gpuAcceleration": "on",
+  "terminal.integrated.confirmOnExit": "hasChildProcesses",
+  "terminal.integrated.confirmOnKill": "always",
+  "terminal.integrated.showLinkHover": false,
   "terminal.integrated.env.linux": {
     "COLORTERM": "truecolor"
   },
@@ -35,6 +43,9 @@
   // Files
   "files.eol": "\n",
   "files.trimTrailingWhitespace": true,
+  "files.associations": {
+    ".env": "dotenv"
+  },
 
   // Zenmode
   "zenMode.hideStatusBar": false,
