@@ -2,39 +2,51 @@
 (in-package :stumpwm)
 
 (set-module-dir "/home/eh/.config/stumpwm/contrib")
-(load-module "battery-portable")
 (load-module "net")
-(load-module "cpu")
 (load-module "pass")
 (load-module "mem")
 (load-module "clipboard-history")
-(load-module "swm-gaps")
 
-;; set focus color and font
+;; ignore size hints
+(setf *ignore-wm-inc-hints* :t)
+
+;; set border style, sizes and colors
+(setf *window-border-style* :thin
+      *maxsize-border-width* 1
+      *normal-border-width* 3
+      *transient-border-width* 4)
 (set-focus-color "#D65D0E")
+(set-unfocus-color "#1d2021")
+
+;; set background and foreground colors
 (set-bg-color "#282828")
 (set-fg-color "#FBF1C7")
+
+;; set font
 (set-font "-*-terminus-bold-r-normal-*-16-*-*-*-*-*-*-*")
 
 ;; show only cpu usage and tempeture
+(load-module "cpu")
 (setf cpu::*cpu-modeline-fmt* "%c %t")
 
 ;; minus sign is enough when no battery info
+(load-module "battery-portable")
 (setf battery-portable::*no-battery-info* "-")
+
+;; Show only 6 character of window title in modeline
+(setf *window-format* "%m%n%s%6t")
 
 ;; Set `mode-line' colors and toggle toggle `mode-line' for current screen (monitor).
 (setf *mode-line-foreground-color* "#D65D0E"
       *mode-line-background-color* "#282828"
       *mode-line-border-color* "#665c54"
       *mode-line-timeout* 5
-      *time-modeline-string* "^7^B%a • %d.%m.%y %k:%M:%S^b^n"
+      *time-modeline-string* "^B%a • %d.%m.%y %k:%M:%S^b^n"
       *screen-mode-line-format* "[^B%n^b] %W ^> [%l] [%C] [%M] [BAT1: %B] ^n[%d]")
 (enable-mode-line (current-screen) (current-head) t)
 
-;; Show only 6 character of window title in modeline
-(setf *window-format* "%m%n%s%6t")
-
 ;; toggle gaps
+(load-module "swm-gaps")
 (define-key *root-map* (kbd "u") "toggle-gaps")
 
 ;; Emacs-like command execute menu keybinding. Use 'C-t M-x' instead of 'C-t ;'
