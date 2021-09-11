@@ -18,8 +18,6 @@ URxvt.font: xft:terminus:size=12
 URxvt*antialias: true
 URxvt*renderFont: true
 URxvt*allowBoldFonts: true
-URxvt*background: black
-URxvt*foreground: white
 URxvt*scrollBar: false
 URxvt*cursorBlink: true
 
