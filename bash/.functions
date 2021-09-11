@@ -7,3 +7,11 @@ function _c() {
 	COMPREPLY=( "${tmp[@]// /\ }" )
 }
 complete -o default -F _c c
+
+# My project switcher for work project with tab completion
+function cw() { cd "$HOME/code/work/$1" || return; }
+function _cw() {
+	IFS=$'\n' tmp=($(compgen -W "$(ls --color=never "$HOME/code/work/")" -- "${COMP_WORDS[$COMP_CWORD]}"))
+	COMPREPLY=( "${tmp[@]// /\ }" )
+}
+complete -o default -F _cw cw
