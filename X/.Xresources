@@ -20,6 +20,7 @@ URxvt*renderFont: true
 URxvt*allowBoldFonts: true
 URxvt*scrollBar: false
 URxvt*cursorBlink: true
+URxvt*depth: 24
 
 URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher: /usr/bin/xdg-open
