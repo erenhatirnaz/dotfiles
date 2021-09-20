@@ -19,10 +19,6 @@
   recommit = commit --amend
   commend = commit --amend --no-edit
 	pushall = !git remote | xargs -L1 git push --all
-[filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
 [url "https://github"]
 	insteadOf = git://github
 [procotol]
