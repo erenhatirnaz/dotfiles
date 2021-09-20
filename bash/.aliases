@@ -109,8 +109,14 @@ alias genpass="cat /dev/urandom | tr -dc 'a-zA-Z0-9-!@#$%&*()_+~' | fold -w 15 |
 # Restart pulseaudio
 alias restpulse="pulseaudio -k && pulseaudio --start"
 
+# Colored neofetch
+alias neofetch="neofetch --ascii_colors 3 3 3 3 3 3 --colors 3 2 2 2 3 15"
+
 # Magit
 alias magit="emacs --eval \"(setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)\" -f magit-status"
+
+# SSH with working key
+alias sshw="ssh -F ~/.ssh/config-work"
 
 # PHP setup
 alias php1="/usr/bin/php71"
