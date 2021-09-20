@@ -43,6 +43,7 @@ alacritty
 development
 -----------
 git
+git-lfs
 docker
 mysql-workbench
 php8
@@ -70,6 +71,10 @@ terminus-font-ll2-td1
 ttf-dejavu
 ttf-jetbrains-mono
 ttf-liberation
+ttc-iosevka
+ttf-input
+inter-font
+ttf-juliamono
 
 media
 -----
@@ -176,3 +181,6 @@ anydesk
 libgphoto2
 gvfs
 gvfs-gphoto2
+texlive-bin
+texlive-core
+texlive-latexextra
