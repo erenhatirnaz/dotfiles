@@ -75,6 +75,8 @@ ttc-iosevka
 ttf-input
 inter-font
 ttf-juliamono
+noto-fonts-color
+noto-color-emoji-fontconfig
 
 media
 -----
