@@ -47,6 +47,9 @@
     ".env": "dotenv"
   },
 
+  // Explorer
+  "explorer.compactFolders": false,
+
   // Zenmode
   "zenMode.hideStatusBar": false,
 
