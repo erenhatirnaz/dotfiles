@@ -80,31 +80,31 @@ main() {
 	$open_with_browser && sleep 1 && xdg-open "http://localhost:${port}/"
 
 	python <<-EOF
-	import SimpleHTTPServer
-	import SocketServer
+	import http.server
+	import socketserver
 	import os
 
 	PORT=${port}
 
-	map = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map
+	map = http.server.SimpleHTTPRequestHandler.extensions_map
 	map[""] = "text/plain"
 
 	for key, value in map.items():
 	  map[key] = value + ";charset=UTF-8"
 
-	handler = SimpleHTTPServer.SimpleHTTPRequestHandler
-	httpd = SocketServer.TCPServer(("", PORT), handler)
+	handler = http.server.SimpleHTTPRequestHandler
+	httpd = socketserver.TCPServer(("", PORT), handler)
 
-	print "httpserver: directory", os.getcwd(), "serving at", PORT
-	print "httpserver: press CTRL+C to kill server"
+	print("httpserver: directory", os.getcwd(), "serving at", PORT)
+	print("httpserver: press CTRL+C to kill server")
 
 	try:
-	  print "httpserver: logs"
-	  print "----------------"
+	  print("httpserver: logs")
+	  print("----------------")
 	  httpd.serve_forever()
 	except (KeyboardInterrupt, SystemExit):
-	  print "----------------"
-	  print "httpserver: killed server"
+	  print("----------------")
+	  print("httpserver: killed server")
 	EOF
 }
 

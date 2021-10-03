@@ -25,8 +25,7 @@
 ;;       (load-file el)
 ;;     (org-babel-load-file org)))
 
-
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(setq custom-file (expand-file-name "custom.el" "~/.cache/emacs/"))
 
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))

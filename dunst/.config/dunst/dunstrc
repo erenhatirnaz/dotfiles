@@ -51,7 +51,7 @@
     # Positive y value is measured from the top of the screen
     geometry = "350x15-5+35"
 
-    font = "Terminus (TTF)"
+    font = "Terminus"
     allow_markup = yes
     plain_text = no             # Treat message as plain text
     sort = yes                  # Sort messages by urgency

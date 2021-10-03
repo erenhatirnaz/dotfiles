@@ -1,22 +1,11 @@
-auto-save-list/
-.cask/
-.cache/
 elpa/
-transient/
 var/
-backups/
 eshell/
 url/
 
-places
 configuration.el
-projectile-bookmarks.eld
 sensible-defaults.el
-ido.last
-smex-items
 bookmarks
-custom.el
 network-security.data
-recentf
-package-quickstart.el
 .org-id-locations
+projectile-bookmarks.eld

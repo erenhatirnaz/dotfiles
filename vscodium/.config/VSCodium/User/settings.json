@@ -4,16 +4,16 @@
   "editor.fontFamily": "JetBrains Mono",
   "editor.fontLigatures": true,
   "editor.rulers": [ 80, 120 ],
-  "editor.tabSize": 2,
+  "editor.tabSize": 4,
   "editor.renderWhitespace": "boundary",
   "editor.renderIndentGuides": true,
   "editor.minimap.enabled": true,
   "editor.minimap.renderCharacters": false,
   "editor.smoothScrolling": true,
   "editor.cursorBlinking": "smooth",
+  "editor.bracketPairColorization.enabled": true,
 
   // Window
-  "window.zoomLevel": 0,
   "window.titleBarStyle": "native",
   "window.restoreFullscreen": false,
   "window.menuBarVisibility": "toggle",
@@ -24,13 +24,18 @@
   "workbench.colorTheme": "Gruvbox Dark Hard",
   "workbench.iconTheme": "vscode-icons",
   "workbench.sideBar.location": "left",
+  "workbench.editor.untitled.hint": "hidden",
 
   // Integrated Terminal
+  "terminal.integrated.fontSize": 16,
   "terminal.integrated.fontFamily": "JetBrains Mono",
   "terminal.integrated.cursorStyle": "block",
   "terminal.integrated.cursorBlinking": true,
-  "terminal.integrated.fontSize": 16,
-  "terminal.integrated.rendererType": "canvas",
+  "terminal.integrated.allowChords": false,
+  "terminal.integrated.gpuAcceleration": "on",
+  "terminal.integrated.confirmOnExit": "hasChildProcesses",
+  "terminal.integrated.confirmOnKill": "always",
+  "terminal.integrated.showLinkHover": false,
   "terminal.integrated.env.linux": {
     "COLORTERM": "truecolor"
   },
@@ -38,6 +43,12 @@
   // Files
   "files.eol": "\n",
   "files.trimTrailingWhitespace": true,
+  "files.associations": {
+    ".env": "dotenv"
+  },
+
+  // Explorer
+  "explorer.compactFolders": false,
 
   // Zenmode
   "zenMode.hideStatusBar": false,
@@ -100,11 +111,6 @@
     "containers"
   ],
   "gitlens.currentLine.scrollable": false,
-  "gitlens.recentChanges.highlight.locations": [
-    "line",
-    "overview",
-    "gutter"
-  ],
   "gitlens.currentLine.enabled": false,
   "gitlens.hovers.currentLine.over": "line",
   "gitlens.advanced.messages": {
@@ -114,27 +120,14 @@
     "suppressGitVersionWarning": false,
     "suppressLineUncommittedWarning": false,
     "suppressNoRepositoryWarning": false,
-    "suppressResultsExplorerNotice": false,
-    "suppressShowKeyBindingsNotice": true,
-    "suppressUpdateNotice": false,
-    "suppressWelcomeNotice": true
   },
-
-  // C/C++
-  "C_Cpp.default.includePath": [
-    "/usr/lib/"
-  ],
 
   // Shellcheck
   "shellcheck.run": "onSave",
   "shellcheck.disableVersionCheck": true,
 
-  // Auto Rename tags
-  "auto-rename-tag.activationOnLanguage": [
-    "*"
-  ],
-  "terminal.integrated.tabs.enabled": true,
-  "terminal.integrated.allowChords": false,
-  "workbench.editor.untitled.hint": "hidden",
+  // TODO Tree
+  "todo-tree.tree.showScanModeButton": false,
+
   // -- extentions settings ends --
 }

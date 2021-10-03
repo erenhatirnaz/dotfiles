@@ -1,26 +1,53 @@
 ;; -*-lisp-*-
 (in-package :stumpwm)
 
-(set-module-dir "/home/erenhatirnaz/stumpwm/contrib")
-(ql:quickload :clx-truetype)
-(load-module "ttf-fonts")
-(load-module "battery-portable")
+(set-module-dir "/home/eh/.config/stumpwm/contrib")
 (load-module "net")
-(load-module "cpu")
 (load-module "pass")
+(load-module "mem")
+(load-module "clipboard-history")
 
+;; ignore size hints
+(setf *ignore-wm-inc-hints* :t)
+
+;; set border style, sizes and colors
+(setf *window-border-style* :thin
+      *maxsize-border-width* 1
+      *normal-border-width* 3
+      *transient-border-width* 4)
 (set-focus-color "#D65D0E")
-(set-font `("terminus-bold-16"))
+(set-unfocus-color "#1d2021")
 
-;; Set `mode-line' colors and toggle toggle `mode-line' for current screen (monitor).
-(setf *mode-line-foreground-color* "#D65D0E"
-      *mode-line-background-color* "#32302F"
-      *mode-line-timeout* 5
-      *screen-mode-line-format* "[^B%n^b] %W ^> [%l] [CPU: %C] [BAT1: %B] ^n[%d]")
-(enable-mode-line (current-screen) (current-head) t)
+;; set background and foreground colors
+(set-bg-color "#282828")
+(set-fg-color "#FBF1C7")
+
+;; set font
+(set-font "-*-terminus-bold-r-normal-*-16-*-*-*-*-*-*-*")
+
+;; show only cpu usage and tempeture
+(load-module "cpu")
+(setf cpu::*cpu-modeline-fmt* "%c %t")
+
+;; minus sign is enough when no battery info
+(load-module "battery-portable")
+(setf battery-portable::*no-battery-info* "-")
 
 ;; Show only 6 character of window title in modeline
 (setf *window-format* "%m%n%s%6t")
+
+;; Set `mode-line' colors and toggle toggle `mode-line' for current screen (monitor).
+(setf *mode-line-foreground-color* "#D65D0E"
+      *mode-line-background-color* "#282828"
+      *mode-line-border-color* "#665c54"
+      *mode-line-timeout* 5
+      *time-modeline-string* "^B%a • %d.%m.%y %k:%M:%S^b^n"
+      *screen-mode-line-format* "[^B%n^b] %W ^> [%l] [%C] [%M] [BAT1: %B] ^n[%d]")
+(enable-mode-line (current-screen) (current-head) t)
+
+;; toggle gaps
+(load-module "swm-gaps")
+(define-key *root-map* (kbd "u") "toggle-gaps")
 
 ;; Emacs-like command execute menu keybinding. Use 'C-t M-x' instead of 'C-t ;'
 (undefine-key *root-map* (kbd ";"))
@@ -32,8 +59,8 @@
 ;; xterm -> x-terminal-emulator
 (undefine-key *root-map* (kbd "c"))
 (undefine-key *root-map* (kbd "C-c"))
-(define-key *root-map* (kbd "c") "exec x-terminal-emulator")
-(define-key *root-map* (kbd "C-c") "exec x-terminal-emulator")
+(define-key *root-map* (kbd "c") "exec urxvt")
+(define-key *root-map* (kbd "C-c") "exec urxvt")
 
 ;; Volume control
 (load-module "amixer")
@@ -84,6 +111,7 @@
 ;; Utilities
 (define-key *root-map* (kbd "M") "pass-copy-menu")
 (define-key *root-map* (kbd "z") "exec boomer")
+(define-key *root-map* (kbd "C-y") "show-clipboard-history")
 
 ;; Implement `launch-map' for launch some common used applications. C-t L
 (defvar *launch-top-map* nil)
@@ -100,6 +128,7 @@
              (kbd "g") "exec gimp"
              (kbd "s") "exec spotify"
              (kbd "c") "exec speedcrunch"
+             (kbd "v") "exec vscodium"
              (kbd "o") "exec rofi -show drun -matching fuzzy"
              (kbd "ESC") "keyboard-quit"
              (kbd "C-g") "keyboard-quit")
@@ -124,5 +153,13 @@
              (kbd "9") "renumber 9"
              (kbd "ESC") "keyboard-quit"
              (kbd "C-g") "keyboard-quit")
-
 (define-key *root-map* (kbd "M-u") '*renumber-map*)
+
+;; initializing setup
+(when *initializing*
+  (grename "HOME")
+  (dolist (group '("CODE" "MEDIA" "WEB" "CHAT"))
+    (gnewbg group))
+  (gselect "1"))
+
+(clipboard-history:start-clipboard-manager)

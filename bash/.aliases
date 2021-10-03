@@ -23,8 +23,8 @@ alias ll="ls -lF --color --group-directories-first"
 alias la="ls -laF --color --group-directories-first"
 
 # List only directories
-alias lsd="ls -lF --color | grep --color=never '^d'"
-alias lsda="ls -laF --color | grep --color=never '^d'"
+alias lsd="ls -ld */"
+alias lsda="ls -laF --color=never | grep --color=never '^d'"
 
 # Always use color output for `ls`
 alias ls="command ls --color --group-directories-first"
@@ -37,6 +37,7 @@ alias egrep="egrep --color=auto"
 # Print calendar numbers
 alias week="date +%V"
 alias month="date '+%m %B'"
+alias monthe="LC_ALL=en_US.utf-8 date '+%m %B'"
 alias dayofyear="date +%j"
 alias dayofmonth="date +%d"
 alias dayofweek="date '+%u %A'"
@@ -44,24 +45,18 @@ alias dayofweek="date '+%u %A'"
 # A basic stop watch
 alias stopwatch="time read -N 1"
 
-# tty-clock
-alias clock="tty-clock -scbDC 3"
-
-# List all upgradable packages
-alias uplist="sudo apt update && apt list --upgradable"
-
 # Print IP address
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 
 # Show local IP addresses (IPv4 and IPv6)
-alias lip="ifconfig $(ifconfig | grep 'wl' | cut -d: -f1) | grep 'inet' | awk '{print \$2}'"
+alias lip="nmcli -p device show | grep -i IP4.ADDRESS | head -n1 | cut -d: -f2 | xargs"
 
 # List all open network ports
 alias openports4="ss --all --numeric --processes --ipv4"
 alias openports6="ss --all --numeric --processes --ipv6"
 
 # Switch between Wired and Wi-Fi connections
-alias wired_mode="nmcli c down HatirnazEvi && nmcli c up HatirnazWiredConnection"
+alias wired_mode="nmcli c up HatirnazWiredConnection && nmcli c down HatirnazEvi"
 alias wifi_mode="nmcli c up HatirnazEvi && nmcli c down HatirnazWiredConnection"
 
 # Empty the Trash
@@ -114,26 +109,30 @@ alias genpass="cat /dev/urandom | tr -dc 'a-zA-Z0-9-!@#$%&*()_+~' | fold -w 15 |
 # Restart pulseaudio
 alias restpulse="pulseaudio -k && pulseaudio --start"
 
+# Colored neofetch
+alias neofetch="neofetch --ascii_colors 3 3 3 3 3 3 --colors 3 2 2 2 3 15"
+
 # Magit
 alias magit="emacs --eval \"(setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)\" -f magit-status"
 
+# SSH with working key
+alias sshw="ssh -F ~/.ssh/config-work"
+
 # PHP setup
-alias php1="/usr/bin/php7.1"
-alias php2="/usr/bin/php7.2"
-alias php4="/usr/bin/php7.4"
-alias php8="/usr/bin/php8.0"
+alias php1="/usr/bin/php71"
+alias php2="/usr/bin/php72"
+alias php3="/usr/bin/php73"
+alias php4="/usr/bin/php7"
+alias php8="/usr/bin/php"
 
-alias composer1="/usr/bin/php7.1 /usr/local/bin/composer"
-alias composer2="/usr/bin/php7.2 /usr/local/bin/composer"
-alias composer4="/usr/bin/php7.4 /usr/local/bin/composer"
-alias composer8="/usr/bin/php8.0 /usr/local/bin/composer "
-
-alias laravel1="composer1 create-project laravel/laravel"
-alias laravel2="composer2 create-project laravel/laravel"
-alias laravel4="composer4 create-project laravel/laravel"
-alias laravel8="composer8 create-project laravel/laravel"
+alias composer1="COMPOSER_MEMORY_LIMIT=-1 /usr/bin/php71 /usr/bin/composer"
+alias composer2="COMPOSER_MEMORY_LIMIT=-1 /usr/bin/php72 /usr/bin/composer"
+alias composer3="COMPOSER_MEMORY_LIMIT=-1 /usr/bin/php73 /usr/bin/composer"
+alias composer4="COMPOSER_MEMORY_LIMIT=-1 /usr/bin/php7 /usr/bin/composer"
+alias composer8="COMPOSER_MEMORY_LIMIT=-1 /usr/bin/php /usr/bin/composer"
 
 alias artisan1="php1 artisan"
 alias artisan2="php2 artisan"
+alias artisan3="php3 artisan"
 alias artisan4="php4 artisan"
 alias artisan8="php8 artisan"

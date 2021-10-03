@@ -11,6 +11,11 @@
    Modified: Mon Feb 12 2018 06:05:38 PST -0800
    ========================================================================== */
 
+element-text, element-icon {
+    background-color: inherit;
+    text-color:       inherit;
+}
+
 * {
     /* Theme settings */
     highlight: bold italic;
@@ -59,4 +64,3 @@
 }
 
 @import "gruvbox-common.rasi"
-

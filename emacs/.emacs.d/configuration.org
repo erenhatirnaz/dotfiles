@@ -274,7 +274,7 @@
   #+BEGIN_SRC emacs-lisp
     (use-package battery
       :config
-      (setq battery-mode-line-format "[BAT0: %b%p%% - %t]")
+      (setq battery-mode-line-format "[BAT1: %b%p%% - %t]")
       :init
       (display-battery-mode :t))
   #+END_SRC
@@ -314,6 +314,11 @@
   #+BEGIN_SRC emacs-lisp
     (setq transient-default-level 7)
   #+END_SRC
+
+  Change transient history file location
+  #+begin_src emacs-lisp
+    (setq transient-history-file (expand-file-name "transient-history.el" user-cache-directory))
+  #+end_src
 ** Highlight uncommitted changes
   #+BEGIN_SRC emacs-lisp
     (use-package diff-hl
@@ -329,6 +334,8 @@
       :ensure t
       :config
       (projectile-mode t)
+      (setq projectile-known-projects-file (expand-file-name "projectile-bookmarks.eld" user-cache-directory)
+            projectile-cache-file (expand-file-name "projectile-cache.el" user-cache-directory))
       :bind (("C-c p" . projectile-command-map)
              :map projectile-command-map
              ("C-a" . projectile-ag)))
@@ -547,7 +554,7 @@
    Little downward-pointing arrow instead of the usual ellipsis(=...=)
    #+BEGIN_SRC emacs-lisp
      (setq org-ellipsis " ⤵")
-     (custom-set-faces '(org-ellipsis ((t (:weight bold :height 1.1 :box nil)))))
+     (custom-set-faces '(org-ellipsis ((t (:weight bold :height 1.3 :box nil :underline nil)))))
    #+END_SRC
 
    Bigger document title
@@ -659,11 +666,6 @@
    #+BEGIN_SRC emacs-lisp
      (setq scroll-step 1)
    #+END_SRC
-* Hyperbole
-  #+begin_src emacs-lisp
-    (use-package hyperbole
-      :ensure t)
-  #+end_src
 * Editing preferences
 ** =utf-8= everywhere
    #+BEGIN_SRC emacs-lisp
@@ -690,6 +692,7 @@
 ** Save my location within a file
    #+BEGIN_SRC emacs-lisp
      (save-place-mode t)
+     (setq save-place-file (expand-file-name "places" user-cache-directory))
    #+END_SRC
 ** Ignore case-sensivity when find file
    #+BEGIN_SRC emacs-lisp
@@ -710,7 +713,8 @@
       :config
       (setq ido-enable-flex-matching t
             ido-use-faces nil
-            ido-auto-merge-work-directories-length -1)
+            ido-auto-merge-work-directories-length -1
+            ido-save-directory-list-file (expand-file-name "ido.last" user-cache-directory))
       (ido-mode t)
       (ido-everywhere t)
       (flx-ido-mode t))
@@ -719,6 +723,8 @@
    #+BEGIN_SRC emacs-lisp
      (use-package smex
        :ensure t
+       :config
+       (setq smex-save-file (expand-file-name "smex-items" user-cache-directory))
        :bind (("M-x" . 'smex)))
    #+END_SRC
 ** =editorconfig= everywhere
@@ -779,7 +785,21 @@
            (kill-region (point-min) (point-max)))
          (deactivate-mark)))
 
-     (add-hook 'org-mode-hook (lambda () (local-set-key (kbd "M-w") #'my-copy-simple)))
+     (add-hook 'org-mode-hook (lambda () (local-set-key (kbd "C-u M-w") #'my-copy-simple)))
+   #+end_src
+** Change =auto-save-list= directory
+   #+begin_src emacs-lisp
+     (setq user-backups-autosaves-directory (concat user-cache-directory "backups-autosaves/"))
+     (unless (file-directory-p user-backups-autosaves-directory)
+       (make-directory user-backups-autosaves-directory))
+
+     (setq auto-save-file-name-transforms
+           `((".*" ,user-backups-autosaves-directory t)))
+     (setq auto-save-list-file-name (expand-file-name ".saves-" (concat user-cache-directory "auto-save-list/")))
+   #+end_src
+** Change =recenf= file location
+   #+begin_src emacs-lisp
+     (setq recentf-save-file (expand-file-name "recentf" user-cache-directory))
    #+end_src
 * Password Store
   #+begin_src emacs-lisp
@@ -791,6 +811,13 @@
       :config
       (auth-source-pass-enable))
   #+end_src
+* Terminal
+** Vterm
+   #+begin_src emacs-lisp
+     (use-package vterm
+       :ensure t
+       :bind (("C-x v" . 'vterm)))
+   #+end_src
 * Set custom keybindings
   #+BEGIN_SRC emacs-lisp
     (global-set-key (kbd "M-o") 'other-window)
@@ -798,5 +825,6 @@
 * Backup
   Change backup files location
   #+BEGIN_SRC emacs-lisp
-    (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
+    (setq backup-directory-alist
+             `((".*" . ,user-backups-autosaves-directory)))
   #+END_SRC

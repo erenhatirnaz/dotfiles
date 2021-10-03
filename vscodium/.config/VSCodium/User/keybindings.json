@@ -34,5 +34,14 @@
         "key": "scrolllock",
         "command": "workbench.action.toggleMaximizedPanel",
         "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+,",
+        "command": "workbench.action.openSettingsJson",
+    },
+    {
+        "key": "ctrl+alt+[Backquote]",
+        "command": "workbench.action.createTerminalEditor",
+        "when": "editorTextFocus"
     }
 ]

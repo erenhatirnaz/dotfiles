@@ -1,29 +1,26 @@
 ! --------------------
 ! Font settings
 ! --------------------
-! Xft.dpi: 96
-! Xft.antialias: true
-! Xft.rgba:      none
-! Xft.rgba:      rgba
-! Xft.autohint:  0
-! Xft.lcdfilter: lcddefault
-! Xft.hinting:   0
-! hintnone, hintslight, hintmedium, hintfull
-! Xft.hintstyle: hintnone
+Xft.dpi: 96
+Xft.antialias: true
+Xft.rgba:      rgba
+Xft.autohint:  0
+Xft.lcdfilter: lcddefault
+Xft.hinting:   0
+Xft.hintstyle: hintnone
 
-xterm.font: terminus-16
+xterm.font: xft:terminus:size=12
 
 ! --------------------
 ! URxvt
 ! --------------------
-URxvt.font: terminus-16
-! URxvt*antialias: true
+URxvt.font: xft:terminus:size=12
+URxvt*antialias: true
 URxvt*renderFont: true
 URxvt*allowBoldFonts: true
-URxvt*background: black
-URxvt*foreground: white
 URxvt*scrollBar: false
 URxvt*cursorBlink: true
+URxvt*depth: 24
 
 URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher: /usr/bin/xdg-open
