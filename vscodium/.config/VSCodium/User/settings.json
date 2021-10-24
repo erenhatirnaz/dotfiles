@@ -6,7 +6,9 @@
   "editor.rulers": [ 80, 120 ],
   "editor.tabSize": 4,
   "editor.renderWhitespace": "boundary",
-  "editor.renderIndentGuides": true,
+  "editor.guides.bracketPairs": true,
+  "editor.guides.indentation": true,
+  "editor.guides.highlightActiveIndentation": true,
   "editor.minimap.enabled": true,
   "editor.minimap.renderCharacters": false,
   "editor.smoothScrolling": true,
@@ -21,10 +23,11 @@
 
   // Workbench
   "workbench.editor.tabSizing": "shrink",
-  "workbench.colorTheme": "Gruvbox Dark Hard",
+  "workbench.colorTheme": "JetBrains Darcula Theme",
   "workbench.iconTheme": "vscode-icons",
   "workbench.sideBar.location": "left",
   "workbench.editor.untitled.hint": "hidden",
+  "workbench.editor.splitInGroupLayout": "vertical",
 
   // Integrated Terminal
   "terminal.integrated.fontSize": 16,
@@ -54,8 +57,7 @@
   "zenMode.hideStatusBar": false,
 
   // Telemetry
-  "telemetry.enableTelemetry": false,
-  "telemetry.enableCrashReporter": false,
+  "telemetry.telemetryLevel": "off",
 
   // Extensions
   "extensions.autoUpdate": true,
