@@ -13,14 +13,8 @@ xrandr --dpi 96
 # load .Xresources
 xrdb -merge $HOME/.Xresources
 
-# brightness
-# xbacklight -set 55% &
-
 # turn off bell
 xset -b
-
-# set keyboard repeat rate
-xset r rate 350 35
 
 # set keyboard model and layot
 # remap caps lock to ctrl key
