@@ -131,5 +131,14 @@
   // TODO Tree
   "todo-tree.tree.showScanModeButton": false,
 
+  // Coverage Gutters
+  "coverage-gutters.coverageFileNames": [
+    "lcov.info",
+    "cov.xml",
+    "coverage.xml",
+    "jacoco.xml",
+    "clover.xml"
+  ]
+
   // -- extentions settings ends --
 }
