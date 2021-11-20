@@ -16,10 +16,6 @@ xrdb -merge $HOME/.Xresources
 # turn off bell
 xset -b
 
-# set keyboard model and layot
-# remap caps lock to ctrl key
-setxkbmap -model pc105+inet -layout tr -option ctrl:nocaps
-
 # disable touchpad when typing
 syndaemon -dti1
 
