@@ -117,6 +117,7 @@ alias magit="emacs --eval \"(setq magit-display-buffer-function #'magit-display-
 
 # SSH with working key
 alias sshw="ssh -F ~/.ssh/config-work"
+alias scpw="scp -F ~/.ssh/config-work"
 
 # PHP setup
 alias php1="/usr/bin/php71"
