@@ -549,6 +549,12 @@
               ("\\.md\\'" . markdown-mode)
               ("\\.markdown\\'" . markdown-mode)))
    #+END_SRC
+** Docker
+   #+begin_src emacs-lisp
+     (use-package docker
+       :ensure t
+       :bind ("C-c d" . docker))
+   #+end_src
 * Org-mode
 ** Display preferences
    Little downward-pointing arrow instead of the usual ellipsis(=...=)
