@@ -126,10 +126,10 @@
              (kbd "s") "exec spotify"
              (kbd "c") "exec speedcrunch"
              (kbd "v") "exec vscodium"
+             (kbd "m") "exec mysql-workbench"
              (kbd "o") "exec rofi -show drun -matching fuzzy"
              (kbd "ESC") "keyboard-quit"
              (kbd "C-g") "keyboard-quit")
-
 (define-key *root-map* (kbd "L") '*launch-map*)
 
 ;; Implement `renumber-map' for renumber windows. ~C-t M-u~
