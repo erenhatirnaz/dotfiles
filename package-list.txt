@@ -190,3 +190,5 @@ texlive-latexextra
 traceroute
 netctl
 ifplugd
+ncdu
+arch-audit
