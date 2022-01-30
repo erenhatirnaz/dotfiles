@@ -80,9 +80,6 @@
 ;; Calculator
 (define-key *top-map* (kbd "XF86Calculator") "exec speedcrunch")
 
-;; Set mouse sensivity when pressed Scroll Lock key
-(define-key *top-map* (kbd "Scroll_Lock") "exec setmousesens")
-
 ;; Enable or disable HDMI output when pressed function key under F2
 (defcommand xrandr-enable-hdmi-output () ()
   (run-shell-command "xrandr --output HDMI-2 --auto --right-of eDP-1"))
