@@ -807,6 +807,12 @@
    #+begin_src emacs-lisp
      (setq recentf-save-file (expand-file-name "recentf" user-cache-directory))
    #+end_src
+
+   Exclude elpa packages from recentf:
+   #+begin_src emacs-lisp
+     (add-to-list 'recentf-exclude (format "%s/\\.emacs\\.d/elpa/.*" (getenv "HOME")))
+   #+end_src
+
 * Password Store
   #+begin_src emacs-lisp
     (use-package pass
