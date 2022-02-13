@@ -44,12 +44,6 @@ unset option
            -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d" " -f2- | tr ' ' '\n')"\
            scp sftp ssh
 
-[ -e "$HOME/.ssh/config-work" ] && \
-  complete -o "default"\
-           -o "nospace"\
-           -W "$(grep "^Host" ~/.ssh/config-work | grep -v "[?*]" | cut -d" " -f2- | tr ' ' '\n')"\
-           scpw sftpw sshw
-
 # Use GPG as ssh-agent
 export GPG_TTY=$(tty)
 gpg-connect-agent updatestartuptty /bye >/dev/null

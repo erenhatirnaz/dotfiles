@@ -15,3 +15,20 @@ function _cw() {
 	COMPREPLY=( "${tmp[@]// /\ }" )
 }
 complete -o default -F _cw cw
+
+# SSH for work servers
+# * Use seperate ssh config file for work servers
+# * Pre-warning when connecting to production environment
+# * Tab completion for SSH Hostnames
+function sshw() {
+	if [[ $1 == *"prod"* ]]; then
+		echo -e "\e[1;41mYou're connecting to PRODUCTION server. BE CAREFUL!\e[0m";
+	fi
+
+	ssh -F ~/.ssh/config-work "$@"
+}
+function _sshw() {
+	IFS=$'\n' tmp=($(compgen -W "$(grep "^Host" ~/.ssh/config-work | grep -v "[?*]" | cut -d" " -f2-)" -- "${COMP_WORDS[$COMP_CWORD]}"))
+	COMPREPLY=( "${tmp[@]// /\ }" )
+}
+complete -o default -F _sshw sshw

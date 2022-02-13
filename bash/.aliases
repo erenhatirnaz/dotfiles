@@ -116,7 +116,6 @@ alias neofetch="neofetch --ascii_colors 3 3 3 3 3 3 --colors 3 2 2 2 3 15"
 alias magit="emacs --eval \"(setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)\" -f magit-status"
 
 # SSH with working key
-alias sshw="ssh -F ~/.ssh/config-work"
 alias scpw="scp -F ~/.ssh/config-work"
 
 # PHP setup
