@@ -20,6 +20,12 @@
     "tr": true,
   },
 
+  // Outline
+  "outline.showVariables": false,
+  "outline.showFunctions": false,
+  "outline.showConstants": false,
+  "outline.showNamespaces": false,
+
   // Window
   "window.titleBarStyle": "native",
   "window.restoreFullscreen": false,
