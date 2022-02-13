@@ -76,8 +76,8 @@
      (use-package modus-themes
        :ensure t
        :config
-       (setq modus-themes-links 'neutral-underline
-             modus-themes-syntax 'green-strings))
+       (setq modus-themes-links '(neutral-underline)
+             modus-themes-syntax '(green-strings)))
 
      (use-package gruvbox-theme
        :ensure t
