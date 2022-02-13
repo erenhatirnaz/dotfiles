@@ -141,6 +141,7 @@
 
   // TODO Tree
   "todo-tree.tree.showScanModeButton": false,
+  "todo-tree.ripgrep.ripgrep": "/usr/bin/rg",
 
   // Coverage Gutters
   "coverage-gutters.coverageFileNames": [
