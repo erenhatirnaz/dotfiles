@@ -14,8 +14,10 @@
   "editor.smoothScrolling": true,
   "editor.cursorBlinking": "smooth",
   "editor.bracketPairColorization.enabled": true,
-  "editor.unicodeHighlight.allowedCharacters": {
-    "ı": true
+  "editor.unicodeHighlight.allowedLocales": {
+    "_os": true,
+    "_vscode": true,
+    "tr": true,
   },
 
   // Window
