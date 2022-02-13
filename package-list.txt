@@ -46,6 +46,7 @@ git
 git-lfs
 docker
 mysql-workbench
+mysqldump
 php8
 php7
 php72
@@ -57,6 +58,28 @@ inotify-tools
 jre8-openjdk
 phpstorm-jre
 gource
+php80
+php80-cli
+php80-openssl
+php80-simplexml
+php80-iconv
+php80-mbstring
+php80-phar
+php80-tokenizer
+php80-curl
+php80-dom
+php80-ctype
+php80-fileinfo
+php80-pcntl
+php80-xmlreader
+php80-xmlwriter
+php80-posix
+php80-zip
+php80-gd
+php80-intl
+php80-sodium
+php80-mysql
+goaccess
 
 dotfiles
 --------
@@ -141,6 +164,7 @@ graphic editors
 ---------------
 gimp
 darktable
+inkskape
 
 tools
 ------
@@ -192,3 +216,9 @@ netctl
 ifplugd
 ncdu
 arch-audit
+ripgrep
+devtools
+pacman-contrip
+wireshark-qt
+rlwrap
+solaar
