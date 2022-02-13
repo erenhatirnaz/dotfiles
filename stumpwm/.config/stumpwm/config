@@ -118,8 +118,10 @@
 
 (fill-keymap *launch-map*
              (kbd "f") "exec firefox"
+             (kbd "d") "exec firefox-developer-edition"
              (kbd "q") "exec qutebrowser"
              (kbd "v") "exec vivaldi"
+             (kbd "c") "exec chromium"
              (kbd "t") "exec thunderbird"
              (kbd "n") "exec nautilus"
              (kbd "T") "exec telegram-desktop"
