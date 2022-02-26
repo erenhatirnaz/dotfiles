@@ -17,7 +17,7 @@ xrdb -merge $HOME/.Xresources
 xset -b
 
 # clipboard syncing
-# autocutsel -fork &
+autocutsel -fork &
 # autocutsel -selection PRIMARY -fork &
 
 # launch polkit
