@@ -16,9 +16,6 @@ xrdb -merge $HOME/.Xresources
 # turn off bell
 xset -b
 
-# disable touchpad when typing
-syndaemon -dti1
-
 # clipboard syncing
 # autocutsel -fork &
 # autocutsel -selection PRIMARY -fork &
