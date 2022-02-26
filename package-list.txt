@@ -101,6 +101,8 @@ inter-font
 ttf-juliamono
 noto-fonts-color
 noto-color-emoji-fontconfig
+ttf-fira-code
+ttf-roboto-mono
 
 media
 -----
@@ -222,3 +224,5 @@ pacman-contrip
 wireshark-qt
 rlwrap
 solaar
+pass-otp
+jless
