@@ -26,5 +26,12 @@ xset -b
 # launch keyring daemon
 eval $(gnome-keyring-daemon --start)
 
+# wait for launch stumpwm and set walpaper
+export WALLPAPER="/home/eh/Pictures/wallpapers/firewatch/wild-sunset.png"
+sleep 5s && feh --bg-fill "$WALLPAPER" &
+
+# launch battery notifier
+/home/eh/bin/battery-notifier &> /tmp/battery-notifier-$(date +%d%m%Y-%H%M%S).log &
+
 # launch stumpwm
 exec stumpwm
