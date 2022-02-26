@@ -16,7 +16,7 @@ function _cw() {
 }
 complete -o default -F _cw cw
 
-# SSH for work servers
+# SSH and SCP for work servers
 # * Use seperate ssh config file for work servers
 # * Pre-warning when connecting to production environment
 # * Tab completion for SSH Hostnames
@@ -32,3 +32,12 @@ function _sshw() {
 	COMPREPLY=( "${tmp[@]// /\ }" )
 }
 complete -o default -F _sshw sshw
+
+function scpw() {
+  scp -F ~/.ssh/config-work "$@"
+}
+function _scpw() {
+	IFS=$'\n' tmp=($(compgen -W "$(grep "^Host" ~/.ssh/config-work | grep -v "[?*]" | awk '{print $2":"}')" -- "${COMP_WORDS[$COMP_CWORD]}"))
+	COMPREPLY=( "${tmp[@]}" )
+}
+complete -o nospace -F _scpw scpw
