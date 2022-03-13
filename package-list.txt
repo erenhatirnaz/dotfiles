@@ -80,6 +80,7 @@ php80-intl
 php80-sodium
 php80-mysql
 goaccess
+ruby
 
 dotfiles
 --------
