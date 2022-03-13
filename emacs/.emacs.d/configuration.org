@@ -80,9 +80,7 @@
              modus-themes-syntax '(green-strings)))
 
      (use-package gruvbox-theme
-       :ensure t
-       :config
-       (load-theme 'gruvbox-dark-medium t))
+       :ensure t)
    #+END_SRC
 ** Toggle light/dark mode
    Generally I prefer dark themes even day time but light themes are more
@@ -117,13 +115,18 @@
        (interactive)
        (mapc #'disable-theme custom-enabled-themes)
        (cond ((eq eh/toggle-light-dark-theme--current-theme 'light)
-              (load-theme eh/toggle-light-dark-theme-dark-theme)
+              (enable-theme eh/toggle-light-dark-theme-dark-theme)
+              (disable-theme eh/toggle-light-dark-theme-light-theme)
               (setq eh/toggle-light-dark-theme--current-theme 'dark))
-             (t (load-theme eh/toggle-light-dark-theme-light-theme)
+             (t (enable-theme eh/toggle-light-dark-theme-light-theme)
+                (disable-theme eh/toggle-light-dark-theme-dark-theme)
                 (setq eh/toggle-light-dark-theme--current-theme 'light))))
 
      (setq eh/toggle-light-dark-theme-light-theme 'modus-operandi
            eh/toggle-light-dark-theme-dark-theme 'gruvbox-dark-medium)
+
+     (load-theme eh/toggle-light-dark-theme-light-theme t t)
+     (load-theme eh/toggle-light-dark-theme-dark-theme t)
 
      (define-key global-map (kbd "<f10>") 'eh/toggle-light-dark-theme)
    #+END_SRC
