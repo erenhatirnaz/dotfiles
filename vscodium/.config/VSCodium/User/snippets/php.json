@@ -18,7 +18,7 @@
 	"Turkish currency": {
 		"prefix": "numfor",
 		"body": [
-			"number_format($1, 2, ',', '.')"
+			"number_format(${TM_SELECTED_TEXT:$1}, 2, ',', '.')"
 		],
 		"description": "number_format for turkish currency"
 	}

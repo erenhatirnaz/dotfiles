@@ -43,5 +43,13 @@
         "key": "ctrl+alt+[Backquote]",
         "command": "workbench.action.createTerminalEditor",
         "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+k n",
+        "command": "editor.action.surroundWithSnippet",
+        "when": "editorHasSelection",
+        "args": {
+            "name": "numfor"
+        }
     }
 ]
