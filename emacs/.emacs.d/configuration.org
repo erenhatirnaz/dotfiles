@@ -815,12 +815,14 @@
    #+begin_src emacs-lisp
      (add-to-list 'recentf-exclude (format "%s/\\.emacs\\.d/elpa/.*" (getenv "HOME")))
    #+end_src
-
+** Change =undo-tree= history directory
+   #+begin_src emacs-lisp
+     (setq undo-tree-history-directory-alist `(("." . "~/.cache/emacs/undo-tree-history/")))
+   #+end_src
 * Password Store
   #+begin_src emacs-lisp
     (use-package pass
       :ensure t)
-
     (use-package auth-source-pass
       :ensure t
       :config
