@@ -1,0 +1,99 @@
+#!/bin/bash
+#  _                _
+# | |__   __ _  ___| | ___   _ _ __
+# | '_ \ / _` |/ __| |/ / | | | '_ \
+# | |_) | (_| | (__|   <| |_| | |_) |
+# |_.__/ \__,_|\___|_|\_\\__,_| .__/
+#                             |_|
+#
+# script      : backup
+# version     : 1.0.0
+# description : a simple backup utility / rsync wrapper
+# author      : eren hatırnaz <erenhatirnaz@hotmail.com.tr> [GPG: 0x8e64942a]
+# source      : https://github.com/erenhatirnaz/dotfiles
+# dependency  : rsync
+# license     : gnu general public license v3
+# | copyright (c) 2022 eren hatırnaz
+# |
+# | this program is free software: you can redistribute it and/or modify
+# | it under the terms of the gnu general public license as published by
+# | the free software foundation, either version 3 of the license, or
+# | (at your option) any later version.
+# |
+# | this program is distributed in the hope that it will be useful,
+# | but without any warranty; without even the implied warranty of
+# | merchantability or fitness for a particular purpose.  see the
+# | gnu general public license for more details.
+# |
+# | you should have received a copy of the gnu general public license
+# | along with this program.  if not, see <https://www.gnu.org/licenses/>.
+
+readonly script=$(basename "$0")
+readonly version="1.0.0"
+
+_print_help() {
+	cat <<-EOF
+	Usage: ${script} DEST
+	Simple backup utility / rsync wrapper
+
+	Options:
+	  -v, --version    Show ${script} version number
+	  -h, --help       Show this help message
+	EOF
+}
+
+_print_version() {
+	echo "${script} version ${version}"
+}
+
+_parse_arguments() {
+	[[ "$1" =~ ^(-h|--help)$ ]] && _print_help && exit
+	[[ "$1" =~ ^(-v|--version)$ ]] && _print_version && exit
+
+	if [[ $# -eq 0 ]]; then
+		echo "${script}: missing operand" >&2
+		echo "Try '${script} --help' for more information."
+		exit 1
+	fi
+
+	# input validation
+	DEST="$1"
+	if [[ ! -d "$DEST" ]]; then
+		echo "${script}: cannot access '$DEST': No such file or directory" >&2
+		exit 1
+	fi
+}
+
+main() {
+	_parse_arguments "$@"
+
+	BACKUP_DIRS=(
+		"${HOME}/.password-store"
+		"${HOME}/Documents"
+    "${HOME}/Pictures"
+		"${HOME}/code"
+	)
+	GLOBAL_RSYNC_IGNORE="${HOME}/.rsync-ignore"
+
+	backup_datetime="$(date +%Y%m%d-%H%M%S)";
+
+	for SRC in "${BACKUP_DIRS[@]}"; do
+		rsync_ignore="${SRC}/.rsync-ignore"
+		if [[ ! -f "$rsync_ignore" ]]; then
+			rsync_ignore="$GLOBAL_RSYNC_IGNORE"
+		fi
+
+		trap break SIGHUP SIGINT SIGTERM
+
+		rsync --archive --compress --update --checksum \
+					--delete-after --delete-excluded --recursive \
+					--verbose --human-readable --progress --stats \
+					--include=".*" \
+					--filter=":- .gitignore" \
+					--exclude-from="${rsync_ignore}" \
+					"$SRC" "$DEST" | tee "${DEST}/rsync-backup-${backup_datetime}.log"
+	done
+	exit
+}
+
+main "$@"
