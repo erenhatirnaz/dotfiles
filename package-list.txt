@@ -81,6 +81,7 @@ php80-sodium
 php80-mysql
 goaccess
 ruby
+dbeaver
 
 dotfiles
 --------
@@ -227,3 +228,12 @@ rlwrap
 solaar
 pass-otp
 jless
+pinentry-rofi
+lxappearance-gtk3
+xdg-desktop-portal
+xdg-desktop-portal-gtk
+gtk2-patched-filechooser-icon-view
+gtk3-patched-filechooser-icon-view
+remmina
+picom
+gruvbox-material-gtk-theme-git
