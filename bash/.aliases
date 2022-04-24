@@ -133,3 +133,6 @@ alias artisan2="php2 artisan"
 alias artisan3="php3 artisan"
 alias artisan4="php4 artisan"
 alias artisan8="php8 artisan"
+
+alias open_last_migration="ls -td $PWD/database/migrations/* --color=never | head -n1 | xargs codium"
+alias remove_last_migration="ls -td $PWD/database/migrations/* --color=never | head -n1 | xargs rm"
