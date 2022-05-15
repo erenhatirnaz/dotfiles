@@ -91,7 +91,7 @@ main() {
 					--include=".*" \
 					--filter=":- .gitignore" \
 					--exclude-from="${rsync_ignore}" \
-					"$SRC" "$DEST" | tee "${DEST}/rsync-backup-${backup_datetime}.log"
+					"$SRC" "$DEST" | tee --append "${DEST}/rsync-backup-${backup_datetime}.log"
 	done
 	exit
 }
