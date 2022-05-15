@@ -1,13 +1,19 @@
 ;; Initialise installed packages
 (setq package-enable-at-startup t)
 
-;; Set `user-cache-directory' variable
-;; Crate the directory If it's not exists
+;; Define `user-cache-directory' variable
+;; Create the directory If it's not exists
 (defvar user-cache-directory
   "~/.cache/emacs/"
   "The directory where place persistent data files.")
 (unless (file-directory-p user-cache-directory)
   (make-directory user-cache-directory))
+
+;; Set cache directory for native compilation files
+(when (fboundp 'startup-redirect-eln-cache)
+  (startup-redirect-eln-cache
+   (convert-standard-filename
+	  (expand-file-name  "eln-cache/" user-emacs-directory))))
 
 ;; Allow loading from the package cache.
 (setq package-quickstart t
