@@ -6,6 +6,7 @@
 (load-module "pass")
 (load-module "mem")
 (load-module "clipboard-history")
+(load-module "numpad-layouts")
 
 ;; ignore size hints
 (setf *ignore-wm-inc-hints* :t)
