@@ -87,7 +87,6 @@ alias clip2qr="xclip -out -selection clipboard | qrencode -o - -t UTF8"
 
 # Copy & Paste
 alias copy="xclip -selection clipboard"
-alias paste="xclip -selection clipboard -o"
 
 # List all fonts
 alias fontlist="fc-list | cut -d: -f2 | sort -u | uniq"
