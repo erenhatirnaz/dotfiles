@@ -109,6 +109,7 @@ ttf-roboto-mono
 media
 -----
 feh
+gthumb
 spotify
 playerctl
 cmus
@@ -120,6 +121,8 @@ gst-libav
 kdenlive
 picard
 streamerlink
+spotifyd
+spotify-tui
 
 thumbnailers
 ------------
@@ -163,6 +166,7 @@ chat
 ----
 telegram-desktop
 chatterino2-7tv-git
+whatsapp-nativefier
 
 graphic editors
 ---------------
@@ -237,3 +241,17 @@ gtk3-patched-filechooser-icon-view
 remmina
 picom
 gruvbox-material-gtk-theme-git
+gstreamer
+gst-plugin-libde265
+libde265
+samba
+libchamplain
+dateutils
+mtr
+pv
+nethogs
+fzf
+units
+diffstat
+modemmanager
+usb_modeswitch
