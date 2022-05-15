@@ -23,6 +23,7 @@ complete -o default -F _cw cw
 function sshw() {
 	if [[ $1 == *"prod"* ]]; then
 		echo -e "\e[1;41mYou're connecting to PRODUCTION server. BE CAREFUL!\e[0m";
+    read -p "Press enter to continue..."
 	fi
 
 	ssh -F ~/.ssh/config-work "$@"
@@ -36,6 +37,7 @@ complete -o default -F _sshw sshw
 function scpw() {
   scp -F ~/.ssh/config-work "$@"
 }
+# TODO: Filename compilation not works when copying from host to remote
 function _scpw() {
 	IFS=$'\n' tmp=($(compgen -W "$(grep "^Host" ~/.ssh/config-work | grep -v "[?*]" | awk '{print $2":"}')" -- "${COMP_WORDS[$COMP_CWORD]}"))
 	COMPREPLY=( "${tmp[@]}" )
