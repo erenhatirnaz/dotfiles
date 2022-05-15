@@ -42,6 +42,15 @@ alias dayofyear="date +%j"
 alias dayofmonth="date +%d"
 alias dayofweek="date '+%u %A'"
 
+# just alias for date command
+alias now="date"
+
+# add given duration to now
+# depends: dateutils - http://www.fresse.org/dateutils/
+alias now+="dateadd $(date +'%Y-%m-%d')"
+
+alias datediff="datediff --format=\"%Y years %m months %d days %H hours %M minutes %S seconds\""
+
 # A basic stop watch
 alias stopwatch="time read -N 1"
 
