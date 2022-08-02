@@ -97,6 +97,9 @@ alias clearswap="sudo swapoff -a && sudo swapon -a"
 # Clear memory caches
 alias clearcache="sudo sysctl vm.drop_caches=1 && sudo sysctl vm.drop_caches=2 && sudo sysctl vm.drop_caches=3"
 
+# Combination of clear swap and clear cache
+alias clearsc="clearswap && clearcache"
+
 # `free` with human readable format and gigabyte unit
 alias free="free --giga --human"
 
