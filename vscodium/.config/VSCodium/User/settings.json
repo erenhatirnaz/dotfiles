@@ -19,6 +19,8 @@
     "_vscode": true,
     "tr": true,
   },
+  "editor.occurrencesHighlight": false,
+
 
   // Outline
   "outline.showVariables": false,
