@@ -27,7 +27,7 @@ autocutsel -fork &
 eval $(gnome-keyring-daemon --start)
 
 # wait for launch stumpwm and set walpaper
-export WALLPAPER="/home/eh/Pictures/wallpapers/firewatch/wild-sunset.png"
+export WALLPAPER="/home/eh/Pictures/wallpapers/firewatch/day-time.jpg"
 sleep 5s && feh --bg-fill "$WALLPAPER" &
 
 # launch battery notifier
