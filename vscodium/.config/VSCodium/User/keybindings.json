@@ -51,5 +51,9 @@
         "args": {
             "name": "numfor"
         }
+    },{
+        "key": "ctrl+l",
+        "command": "center-editor-window.center",
+        "when": "editorTextFocus"
     }
 ]
