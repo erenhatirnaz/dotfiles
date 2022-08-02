@@ -144,6 +144,7 @@
     "suppressLineUncommittedWarning": false,
     "suppressNoRepositoryWarning": false,
   },
+  "gitlens.hovers.currentLine.enabled": false,
 
   // Shellcheck
   "shellcheck.run": "onSave",
