@@ -82,6 +82,7 @@ php80-mysql
 goaccess
 ruby
 dbeaver
+oha
 
 dotfiles
 --------
@@ -255,3 +256,10 @@ units
 diffstat
 modemmanager
 usb_modeswitch
+lightdm
+lightdm-gtk-greeter
+xinit-xsession
+light-locker
+gtk4
+numlockx
+pastel
