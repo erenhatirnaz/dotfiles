@@ -74,6 +74,9 @@
   // Telemetry
   "telemetry.telemetryLevel": "off",
 
+  // Problems
+  "problems.decorations.enabled": false,
+
   // Extensions
   "extensions.autoUpdate": true,
 
