@@ -263,3 +263,9 @@ light-locker
 gtk4
 numlockx
 pastel
+jq
+file-roller
+
+pip
+---
+aort
