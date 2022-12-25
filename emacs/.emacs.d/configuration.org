@@ -643,6 +643,20 @@ Indentations are usefull:
        :ensure t
        :bind (("C-x p i" . 'org-cliplink)))
    #+END_SRC
+** =org-alert=
+#+begin_src emacs-lisp
+  (use-package org-alert
+    :ensure t
+    :config
+    (setq alert-default-style 'libnotify)
+    (setq org-alert-interval 300
+          org-alert-notify-cutoff 10
+          org-alert-notify-after-event-cutoff 10)
+    (setq org-alert-time-match-string
+          "\\(?:SCHEDULED\\|DEADLINE\\|REMIND_ME\\):.*?<.*?\\([0-9]\\{2\\}:[0-9]\\{2\\}\\).*>")
+    (setq org-alert-match-string "SCHEDULED>=\"<today>\"+SCHEDULED<\"<tomorrow>\"|DEADLINE>=\"<today>\"+DEADLINE<\"<tomorrow>\"|REMIND_ME>=\"<today>\"+DEADLINE<\"<tomorrow>\"")
+    (org-alert-enable))
+#+end_src
 * Navigating
 ** Use =windmove= insted of default bindings
    #+BEGIN_SRC emacs-lisp
