@@ -613,6 +613,12 @@
      (setq org-pretty-entities t)
    #+END_SRC
 
+Indentations are usefull:
+#+begin_src emacs-lisp
+     (setq org-adapt-indentation :t
+           org-startup-indented :t)
+#+end_src
+
    Fold everything when open a file:
    #+begin_src emacs-lisp
      (setq org-startup-folded t)
