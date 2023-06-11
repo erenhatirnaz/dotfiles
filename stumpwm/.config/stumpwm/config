@@ -117,6 +117,11 @@
 (define-key *root-map* (kbd "z") "exec boomer")
 (define-key *root-map* (kbd "C-y") "show-clipboard-history")
 
+;; I <3 Rofi
+(define-key *top-map* (kbd "Menu") "exec rofi -show drun -matching fuzzy")
+(define-key *top-map* (kbd "C-Menu") "exec rofi-bluetooth")
+(define-key *top-map* (kbd "M-Menu") "exec rofi -modi emoji -show emoji")
+
 ;; Implement `launch-map' for launch some common used applications. C-t L
 (defvar *launch-top-map* nil)
 (defvar *launch-root-map* nil)
