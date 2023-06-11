@@ -106,6 +106,7 @@ noto-fonts-color
 noto-color-emoji-fontconfig
 ttf-fira-code
 ttf-roboto-mono
+ttf-intel-one-mono
 
 media
 -----
@@ -180,6 +181,7 @@ tools
 speedcrunch
 rofi
 htop
+btop
 neofetch
 the_silver_searcher
 ksnip
@@ -267,6 +269,10 @@ jq
 file-roller
 rofi-emoji
 xdotool
+namcap
+pavucontrol
+rofi-bluetooth-git
+
 
 pip
 ---
