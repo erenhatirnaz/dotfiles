@@ -134,7 +134,7 @@
              (kbd "v") "exec vivaldi"
              (kbd "c") "exec chromium"
              (kbd "t") "exec thunderbird"
-             (kbd "n") "exec nautilus"
+             (kbd "n") "exec thunar"
              (kbd "T") "exec telegram-desktop"
              (kbd "g") "exec gimp"
              (kbd "s") "exec spotify"
