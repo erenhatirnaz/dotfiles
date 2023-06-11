@@ -167,6 +167,9 @@
              (kbd "C-g") "keyboard-quit")
 (define-key *root-map* (kbd "M-u") '*renumber-map*)
 
+;; fix cursor cross issue
+(run-shell-command "xsetroot -cursor_name left_ptr")
+
 ;; initializing setup
 (when *initializing*
   (grename "HOME")
