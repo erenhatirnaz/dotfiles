@@ -569,6 +569,10 @@
     :ensure t
     :config
     (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
+    (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
+    (setq plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar"
+          plantuml-default-exec-mode 'jar
+          plantuml-output-type "svg")
     (setq org-plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar"))
 #+end_src
 * Org-mode
