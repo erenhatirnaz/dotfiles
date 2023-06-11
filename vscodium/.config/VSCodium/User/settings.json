@@ -37,7 +37,7 @@
 
   // Workbench
   "workbench.editor.tabSizing": "shrink",
-  "workbench.colorTheme": "Gruvbox Dark Soft",
+  "workbench.colorTheme": "Gruvbox Dark Medium",
   "workbench.iconTheme": "vscode-icons",
   "workbench.sideBar.location": "left",
   "workbench.editor.untitled.hint": "hidden",
