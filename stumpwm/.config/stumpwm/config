@@ -23,6 +23,11 @@
 (set-bg-color "#282828")
 (set-fg-color "#FBF1C7")
 
+;; everything is in the center
+(setf *input-window-gravity* :center
+      *message-window-gravity* :center
+      *message-window-input-gravity* :center)
+
 ;; set font
 (set-font "-*-terminus-bold-r-normal-*-16-*-*-*-*-*-*-*")
 
@@ -58,19 +63,19 @@
 ;; Use 'C-t C-r' to reload configuration
 (define-key *root-map* (kbd "C-r") "loadrc")
 
-;; xterm -> x-terminal-emulator
+;; xterm -> alacritty
 (undefine-key *root-map* (kbd "c"))
 (undefine-key *root-map* (kbd "C-c"))
 (define-key *root-map* (kbd "c") "exec alacritty")
 (define-key *root-map* (kbd "C-c") "exec alacritty")
 
-;; Volume control
+;; Volume controls
 (load-module "amixer")
 (define-key *top-map* (kbd "XF86AudioLowerVolume") "amixer-Master-1-")
 (define-key *top-map* (kbd "XF86AudioRaiseVolume") "amixer-Master-1+")
 (define-key *top-map* (kbd "XF86AudioMute") "amixer-Master-toggle pulse")
 
-;; Music control
+;; Player controls
 (define-key *top-map* (kbd "XF86AudioPlay") "exec playerctl play-pause")
 (define-key *top-map* (kbd "XF86AudioNext") "exec playerctl next")
 (define-key *top-map* (kbd "XF86AudioPrev") "exec playerctl previous")
