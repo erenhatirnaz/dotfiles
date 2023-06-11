@@ -33,5 +33,8 @@ sleep 5s && feh --bg-fill "$WALLPAPER" &
 # launch battery notifier
 /home/eh/bin/battery-notifier &> /tmp/battery-notifier-$(date +%d%m%Y-%H%M%S).log &
 
+# launch playerctld daemon
+/usr/bin/playerctld daemon
+
 # launch stumpwm
 exec stumpwm
