@@ -53,10 +53,10 @@ _parse_arguments() {
 	[[ "$1" =~ ^(-v|--version)$ ]] && _print_version && exit
 	[[ "$1" =~ ^(-h|--help)$ ]] && _print_help && exit
 
-	if [[ ! "$1" =~ ^(http)s?:\/\/youtu(be)?\.(com|be) ]]; then
-		echo "${script}: invalid youtube url \`${1}\`" >&2
-		exit 1
-	fi
+	# if [[ ! "$1" =~ ^(http)s?:\/\/youtu(be)?\.(com|be) ]]; then
+	# 	echo "${script}: invalid youtube url \`${1}\`" >&2
+	# 	exit 1
+	# fi
 }
 
 main() {
