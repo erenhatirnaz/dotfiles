@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: timestamp
+# key: tstamp
+# --
+*$1 : timestamp  ${2:<<NULL>>}

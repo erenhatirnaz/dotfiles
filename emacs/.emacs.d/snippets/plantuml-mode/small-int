@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: small-integer
+# key: sint
+# --
+*$1 : smallint  ${2:<<NULL>>}

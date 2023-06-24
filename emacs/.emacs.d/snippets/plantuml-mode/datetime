@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: datetime
+# key: dtime
+# --
+*$1 : datetime  ${2:<<NULL>>}

@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: new table
+# key: table
+# --
+
+entity "${2:TABLE_NAME}" as ${3:ALIAS} {
+        *id : big integer, unsigned <<PK>> <<AI>>
+        $4
+        *created_at : timestamp
+        *updated_at : timestamp
+        $5
+}

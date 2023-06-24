@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: medium-integer
+# key: mint
+# --
+*$1 : mediumint  ${2:<<NULL>>}

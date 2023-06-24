@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: big-integer
+# key: bint
+# --
+*$1 : bigint  ${2:<<NULL>>}

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: simple table
+# key: stable
+# --
+entity "${1:TABLE NAME}" as ${2:ALIAS} {
+        *id: integer, unsigned <<PK>>
+        ...
+}

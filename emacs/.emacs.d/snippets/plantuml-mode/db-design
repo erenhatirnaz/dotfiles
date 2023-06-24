@@ -1,0 +1,23 @@
+# -*- mode: snippet -*-
+# name: db design
+# key: db
+# --
+hide circle
+
+skinparam linetype ortho
+
+title "${1:TITLE}"
+caption Version 1.0
+scale 1.5
+
+entity "${2:TABLE_NAME}" as ${3:ALIAS} {
+        *id : big integer, unsigned <<PK>> <<AI>>
+        $4
+        *created_at : timestamp
+        *updated_at : timestamp
+        $5
+}
+
+$6
+
+center footer \n\n<b>Copyright © ${7:COMPANY NAME}</b>\n<i>   Designed for ${8:PROJECT NAME} by Eren Hatirnaz <${9:EMAIL}> on %date("dd/MM/yyyy' at 'HH:mm")</i>

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: tiny-integer
+# key: tint
+# --
+*$1 : tinyint  ${2:<<NULL>>}

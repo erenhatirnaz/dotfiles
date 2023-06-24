@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: foreign key
+# key: fkey
+# --
+*$1_id : ${2:big} integer, unsigned  <<FK>>

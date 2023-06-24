@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: string
+# key: str
+# --
+*$1 : varchar  ${2:<<NULL>>}

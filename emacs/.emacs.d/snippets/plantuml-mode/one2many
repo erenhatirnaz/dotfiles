@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: one to many
+# key: o2m
+# --
+$1 ||..|{ $2

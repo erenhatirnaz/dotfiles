@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: integer
+# key: int
+# --
+*$1 : int  ${2:<<NULL>>}
