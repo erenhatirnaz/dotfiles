@@ -31,7 +31,9 @@ export WALLPAPER="/home/eh/Pictures/wallpapers/firewatch/man-sunset.jpg"
 sleep 5s && feh --bg-fill "$WALLPAPER" &
 
 # launch battery notifier
-/home/eh/bin/battery-notifier &> /tmp/battery-notifier-$(date +%d%m%Y-%H%M%S).log &
+# my battery is gone no need to this for now :(
+# /home/eh/bin/battery-notifier &> /tmp/battery-notifier-$(date +%d%m%Y-%H%M%S).log &
+
 
 # launch playerctld daemon
 /usr/bin/playerctld daemon
