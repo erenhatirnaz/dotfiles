@@ -273,6 +273,11 @@ namcap
 pavucontrol
 rofi-bluetooth-git
 
+game
+----
+steam
+tlauncher
+
 
 pip
 ---
