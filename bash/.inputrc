@@ -7,3 +7,21 @@ set completion-ignore-case on
 # ~/src/mozillail", but to "cd ~/src/mozilla". (This is supported by the
 # Readline used by Bash 4.)
 set skip-completed-text on
+
+# Display possible completions using different colors to indicate their file
+# types
+set colored-stats On
+
+# Set 3 to be the maximum number of characters to be the common prefix to display
+# for completions
+set completion-prefix-display-length 3
+
+# Append a slash to Every completion which is a symbolic link to a directory.
+set mark-symlinked-directories On
+
+# Sets completions to be appended by characters that indicate their file types
+# reported by the `stat` system call
+set visible-stats On
+
+# https://cirw.in/blog/bracketed-paste
+set enable-bracketed-paste On
