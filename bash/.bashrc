@@ -9,11 +9,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Load the shell dotfiles, and then some:
-for file in ~/.{bash_prompt,exports,aliases,functions}; do
-	[ -r "$file" ] && [ -f "$file" ] && source "$file"
-done
-unset file
+# Load the shell dotfiles
+while read -r f; do source "$f"; done < <(find "${HOME}/.bashrc.d/" -name "*.sh" | sort)
 
 # Load dircolors
 if [[ -r ~/.dircolors ]] && type -p dircolors >/dev/null; then
