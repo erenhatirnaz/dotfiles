@@ -18,6 +18,11 @@ export HISTSIZE='32768';
 export HISTFILESIZE="${HISTSIZE}";
 # Omit duplicates and commands that begin with a space from history.
 export HISTCONTROL='ignoreboth';
+# Add date time info to history file
+export HISTTIMEFORMAT="%h %d %H:%M:%S "
+
+# Set term style
+export TERM="xterm-256color"
 
 # Highlight section titles in manual pages.
 export LESS_TERMCAP_md="${yellow}";
