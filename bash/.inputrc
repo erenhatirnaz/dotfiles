@@ -12,10 +12,6 @@ set skip-completed-text on
 # types
 set colored-stats On
 
-# Set 3 to be the maximum number of characters to be the common prefix to display
-# for completions
-set completion-prefix-display-length 3
-
 # Append a slash to Every completion which is a symbolic link to a directory.
 set mark-symlinked-directories On
 
