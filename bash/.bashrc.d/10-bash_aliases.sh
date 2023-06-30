@@ -126,6 +126,27 @@ alias restpulse="pulseaudio -k && pulseaudio --start"
 # Colored neofetch
 alias neofetch="neofetch --ascii_colors 3 3 3 3 3 3 --colors 3 2 2 2 3 15"
 
+# Copy pwd
+alias cpwd='pwd | tr -d "\n" | copy'
+
+# List all installed and upgraded packages
+alias paclogi='paclog | grep -E "installed|upgraded"'
+
+# Print system infos
+alias tlp-stat='sudo tlp-stat'
+
+# Print all windows
+alias ls-win='xwininfo -tree -root'
+
+# Find keycode utility
+alias xfindkey='xev -event keyboard'
+
+# List all keys on keyboard
+alias xlskey='xmodmap -pke'
+
+# Ghost cursor
+alias hide-cursor='tput civis'
+
 # Magit
 alias magit="emacs --eval \"(setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)\" -f magit-status"
 
