@@ -416,6 +416,10 @@
           "Sort dired listings with directories first before adding marks."
           (directory-first-sort)))
     #+END_SRC
+*** Sort correcly numbered files
+#+begin_src emacs-lisp
+  (setq dired-listing-switches "-laGh1v --group-directories-first")
+#+end_src
 *** Remove files to system trash
     #+begin_src emacs-lisp
       (setq-default delete-by-moving-to-trash t)
