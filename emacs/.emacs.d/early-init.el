@@ -10,10 +10,9 @@
   (make-directory user-cache-directory))
 
 ;; Set cache directory for native compilation files
-(when (fboundp 'startup-redirect-eln-cache)
-  (startup-redirect-eln-cache
-   (convert-standard-filename
-	  (expand-file-name  "eln-cache/" user-emacs-directory))))
+(when (boundp 'native-comp-eln-load-path)
+  (startup-redirect-eln-cache (expand-file-name "eln-cache/" user-emacs-directory)))
+
 
 ;; Allow loading from the package cache.
 (setq package-quickstart t
