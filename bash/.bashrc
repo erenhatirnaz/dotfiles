@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# run startx when startup
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then exec startx -- -ardelay 300 -arinterval 30; fi
+
 # enable bash completion in interactive shells
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
