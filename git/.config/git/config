@@ -1,11 +1,14 @@
 [user]
 	name = Eren Hatırnaz
 	email = erenhatirnaz@hotmail.com.tr
+  signingkey = 01CB4D3555590480
 [push]
 	default = current
 [core]
 	autocrlf = input
 	filemode = false
+[commit]
+  gpgsign = true
 [alias]
 	s = status -s
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
