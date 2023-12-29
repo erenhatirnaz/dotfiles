@@ -2,6 +2,10 @@
 *~
 \#*\#
 .\#*
+.cache/
+eln-cache/
+recentf
+
 
 # gitconfig-work
 git/.config/git/gitconfig-work
