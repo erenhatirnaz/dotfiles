@@ -160,7 +160,7 @@ alias composer8="COMPOSER_MEMORY_LIMIT=-1 /usr/bin/php80 /usr/bin/composer"
 alias composer81="COMPOSER_MEMORY_LIMIT=-1 /usr/bin/php81 /usr/bin/composer"
 
 alias artisan8="php8 artisan"
-alias artisan8="php81 artisan"
+alias artisan81="php81 artisan"
 
 alias open_last_migration="ls -td $PWD/database/migrations/* --color=never | head -n1 | xargs codium"
 alias remove_last_migration="ls -td $PWD/database/migrations/* --color=never | head -n1 | xargs rm"
