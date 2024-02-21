@@ -154,23 +154,13 @@ alias magit="emacs --eval \"(setq magit-display-buffer-function #'magit-display-
 alias audiotest="mpv ~/Music/notification/cheerful.ogg"
 
 # PHP setup
-alias php1="/usr/bin/php71"
-alias php2="/usr/bin/php72"
-alias php3="/usr/bin/php73"
-alias php4="/usr/bin/php7"
 alias php8="/usr/bin/php80"
 
-alias composer1="COMPOSER_MEMORY_LIMIT=-1 /usr/bin/php71 /usr/bin/composer"
-alias composer2="COMPOSER_MEMORY_LIMIT=-1 /usr/bin/php72 /usr/bin/composer"
-alias composer3="COMPOSER_MEMORY_LIMIT=-1 /usr/bin/php73 /usr/bin/composer"
-alias composer4="COMPOSER_MEMORY_LIMIT=-1 /usr/bin/php7 /usr/bin/composer"
 alias composer8="COMPOSER_MEMORY_LIMIT=-1 /usr/bin/php80 /usr/bin/composer"
+alias composer81="COMPOSER_MEMORY_LIMIT=-1 /usr/bin/php81 /usr/bin/composer"
 
-alias artisan1="php1 artisan"
-alias artisan2="php2 artisan"
-alias artisan3="php3 artisan"
-alias artisan4="php4 artisan"
 alias artisan8="php8 artisan"
+alias artisan8="php81 artisan"
 
 alias open_last_migration="ls -td $PWD/database/migrations/* --color=never | head -n1 | xargs codium"
 alias remove_last_migration="ls -td $PWD/database/migrations/* --color=never | head -n1 | xargs rm"
