@@ -140,6 +140,7 @@
              (kbd "s") "exec slack"
              (kbd "C-s") "exec spotify"
              (kbd "c") "exec speedcrunch"
+             (kbd "C-c") "exec gnucash"
              (kbd "v") "exec vscodium"
              (kbd "C-d") "exec env GTK_THEME=Adwaita:light dbeaver"
              (kbd "o") "exec rofi -show drun -matching fuzzy"
