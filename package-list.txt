@@ -83,6 +83,7 @@ goaccess
 ruby
 dbeaver
 oha
+difftastic
 
 dotfiles
 --------
@@ -107,6 +108,8 @@ noto-color-emoji-fontconfig
 ttf-fira-code
 ttf-roboto-mono
 ttf-intel-one-mono
+noto-fonts-cjk
+noto-fonts-emoji
 
 media
 -----
@@ -273,6 +276,8 @@ namcap
 pavucontrol
 rofi-bluetooth-git
 paclog
+whois
+screenkey
 
 game
 ----
