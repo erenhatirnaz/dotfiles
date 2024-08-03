@@ -1,0 +1,88 @@
+#!/bin/bash
+#             __
+#  _ __ __ _ / _|      _ __ ___ _ __ ___   _____   _____ _ __
+# | '__/ _` | |_ _____| '__/ _ \ '_ ` _ \ / _ \ \ / / _ \ '__|
+# | | | (_| |  _|_____| | |  __/ | | | | | (_) \ V /  __/ |
+# |_|  \__,_|_|       |_|  \___|_| |_| |_|\___/ \_/ \___|_|
+#
+# script      : raf-remover
+# version     : 1.0.0
+# description : A script that deletes the raf file if jpeg file with the same
+#               name doesn't exist in given directory
+# author      : eren hatırnaz <erenhatirnaz@hotmail.com.tr> [GPG: 0x8e64942a]
+# source      : https://github.com/erenhatirnaz/dotfiles
+# dependency  : sed
+# license     : gnu general public license v3
+# | copyright (c) 2024 eren hatırnaz
+# |
+# | this program is free software: you can redistribute it and/or modify
+# | it under the terms of the gnu general public license as published by
+# | the free software foundation, either version 3 of the license, or
+# | (at your option) any later version.
+# |
+# | this program is distributed in the hope that it will be useful,
+# | but without any warranty; without even the implied warranty of
+# | merchantability or fitness for a particular purpose.  see the
+# | gnu general public license for more details.
+# |
+# | you should have received a copy of the gnu general public license
+# | along with this program.  if not, see <https://www.gnu.org/licenses/>.
+
+readonly script=$(basename "$0")
+readonly version="1.0.0"
+
+_print_help() {
+	cat <<-EOF
+	Usage: ${script} [OPTION ...] [DIRECTORY]
+
+	Options:
+	  -v, --version    Show ${script} version number
+	  -h, --help       Show this help message
+	EOF
+}
+
+_print_version() {
+	echo "${script} version ${version}"
+}
+
+_parse_arguments() {
+	[[ "$1" =~ ^(-h|--help)$ ]] && _print_help && exit
+	[[ "$1" =~ ^(-v|--version)$ ]] && _print_version && exit
+
+	if [[ $# -eq 0 ]]; then
+		echo "${script}: missing operand" >&2
+		echo "Try '${script} --help' for more information."
+		exit 1
+	fi
+
+	# input validation
+	DEST="$1"
+	if [[ ! -d "$DEST" ]]; then
+		echo "${script}: cannot access '$DEST': No such directory" >&2
+		exit 1
+	fi
+}
+
+main() {
+  _parse_arguments "$@"
+
+	cd "$DEST";
+	shopt -s nocaseglob
+
+	raf_file_count=$(ls -1 *.raf 2>/dev/null | wc -l)
+	if [[ $raf_file_count == 0 ]]; then
+		echo "${script}: directory doesn't contains any raf file" >&2
+		exit
+	fi
+
+	for raf_file in *.raf; do
+		jpg_file=$(sed 's/raf/jpg/I' <<< $raf_file)
+
+		if [[ ! -f "$jpg_file" ]]; then
+			rm "$raf_file"
+			echo "deleted file: ${raf_file}"
+		fi
+	done
+}
+
+main "$@"
