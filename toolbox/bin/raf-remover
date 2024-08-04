@@ -6,12 +6,12 @@
 # |_|  \__,_|_|       |_|  \___|_| |_| |_|\___/ \_/ \___|_|
 #
 # script      : raf-remover
-# version     : 1.0.0
+# version     : 1.1.0
 # description : A script that deletes the raf file if jpeg file with the same
 #               name doesn't exist in given directory
 # author      : eren hatırnaz <erenhatirnaz@hotmail.com.tr> [GPG: 0x8e64942a]
 # source      : https://github.com/erenhatirnaz/dotfiles
-# dependency  : sed
+# dependency  : sed, find
 # license     : gnu general public license v3
 # | copyright (c) 2024 eren hatırnaz
 # |
@@ -29,13 +29,17 @@
 # | along with this program.  if not, see <https://www.gnu.org/licenses/>.
 
 readonly script=$(basename "$0")
-readonly version="1.0.0"
+readonly version="1.1.0"
 
 _print_help() {
 	cat <<-EOF
-	Usage: ${script} [OPTION ...] [DIRECTORY]
+	Usage: ${script} [OPTIONS] [DIRECTORY]
+	Deletes the RAF file if JPG/JPEG file with the same name doesn't exist in given
+	DIRECTORY. The DIRECTORY is optional argument, default value is current
+	directory.
 
 	Options:
+	  -n, --no-confirm Don't ask for confirmation
 	  -v, --version    Show ${script} version number
 	  -h, --help       Show this help message
 	EOF
@@ -46,19 +50,21 @@ _print_version() {
 }
 
 _parse_arguments() {
-	[[ "$1" =~ ^(-h|--help)$ ]] && _print_help && exit
-	[[ "$1" =~ ^(-v|--version)$ ]] && _print_version && exit
+	no_confirm=false
+	directory="."
 
-	if [[ $# -eq 0 ]]; then
-		echo "${script}: missing operand" >&2
-		echo "Try '${script} --help' for more information."
-		exit 1
-	fi
+	while [[ $# -gt 0 ]]; do
+		case $1 in
+			-n|--no-confirm) no_confirm=true; shift ;;
+			-v|--version) _print_version; exit ;;
+			-h|--help) _print_help; exit ;;
+			*) directory="${1%/}"; shift ;;
+		esac
+	done
 
 	# input validation
-	DEST="$1"
-	if [[ ! -d "$DEST" ]]; then
-		echo "${script}: cannot access '$DEST': No such directory" >&2
+	if [[ ! -d "$directory" ]]; then
+		echo "${script}: cannot access '$directory': No such directory" >&2
 		exit 1
 	fi
 }
@@ -66,23 +72,45 @@ _parse_arguments() {
 main() {
   _parse_arguments "$@"
 
-	cd "$DEST";
 	shopt -s nocaseglob
-
-	raf_file_count=$(ls -1 *.raf 2>/dev/null | wc -l)
+	raf_file_count=$(ls -1 $directory/*.raf 2>/dev/null | wc -l)
 	if [[ $raf_file_count == 0 ]]; then
 		echo "${script}: directory doesn't contains any raf file" >&2
 		exit
 	fi
 
-	for raf_file in *.raf; do
-		jpg_file=$(sed 's/raf/jpg/I' <<< $raf_file)
+	raf_files_to_delete=()
 
-		if [[ ! -f "$jpg_file" ]]; then
-			rm "$raf_file"
-			echo "deleted file: ${raf_file}"
+	for raf_file in $directory/*.raf; do
+		jpg_file=$(sed 's/raf/jpg/I' <<< $raf_file)
+		jpeg_file=$(sed 's/raf/jpeg/I' <<< $raf_file)
+
+
+		if [[ ! -f $(find $directory -maxdepth 1 -iwholename $jpg_file) &&
+					! -f $(find $directory -maxdepth 1 -iwholename $jpeg_file) ]];
+		then
+			raf_files_to_delete+=("$raf_file")
 		fi
 	done
+
+	if [[ ${#raf_files_to_delete[@]} -eq 0 ]]; then
+		echo "${script}: RAF files that need to be deleted were not found."
+		exit
+	fi
+
+	echo "${script}: list of files marked to delete: ${raf_files_to_delete[@]}"
+
+	if ! $no_confirm; then
+		echo
+		read -rp "Total ${#raf_files_to_delete[@]} raf files will be deleted. Are you sure? [y/N]: " -n1 choice
+		choice=${choice:-n}
+		[[ ! $choice =~ [Yy]$ ]] && echo && exit 0
+		echo
+	fi
+
+	rm "${raf_files_to_delete[@]}"
+	echo "${script}: ${#raf_files_to_delete[@]} raf files deleted."
+	exit 0
 }
 
 main "$@"
