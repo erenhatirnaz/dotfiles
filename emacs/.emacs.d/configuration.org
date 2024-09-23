@@ -853,15 +853,6 @@ Indentations are usefull:
    #+begin_src emacs-lisp
      (setq undo-tree-history-directory-alist `(("." . "~/.cache/emacs/undo-tree-history/")))
    #+end_src
-* Password Store
-  #+begin_src emacs-lisp
-    (use-package pass
-      :ensure t)
-    (use-package auth-source-pass
-      :ensure t
-      :config
-      (auth-source-pass-enable))
-  #+end_src
 * Terminal
 ** Vterm
    #+begin_src emacs-lisp
