@@ -274,14 +274,6 @@
    #+BEGIN_SRC emacs-lisp
      (add-hook 'prog-mode-hook (lambda () (display-fill-column-indicator-mode 1)))
    #+END_SRC
-** Show battery information on modeline
-  #+BEGIN_SRC emacs-lisp
-    (use-package battery
-      :config
-      (setq battery-mode-line-format "[BAT1: %b%p%% - %t]")
-      :init
-      (display-battery-mode :t))
-  #+END_SRC
 ** Show name of character in what cursor
    #+begin_src emacs-lisp
      (use-package simple
