@@ -15,38 +15,29 @@
   repository]] for more information.
 
   #+BEGIN_SRC emacs-lisp
-    (require 'url)
+    ;; (load-file "~/.emacs.d/sensible-defaults.el")
 
-    (let ((file-name "~/.emacs.d/sensible-defaults.el")
-          (url "https://raw.githubusercontent.com/hrs/sensible-defaults.el/main/sensible-defaults.el"))
-      (if (not (file-exists-p file-name))
-          (progn
-            (url-copy-file url file-name)
-            (message "File downloaded from %s to %s and loaded!" url file-name))
-        (message "%s is already exists, no need to download!" file-name)))
-
-    (load-file "~/.emacs.d/sensible-defaults.el")
-
-    (sensible-defaults/increase-gc-threshold)
-    (sensible-defaults/delete-trailing-whitespace)
-    (sensible-defaults/treat-camelcase-as-separate-words)
-    (sensible-defaults/automatically-follow-symlinks)
-    (sensible-defaults/make-scripts-executable)
-    (sensible-defaults/single-space-after-periods)
-    (sensible-defaults/offer-to-create-parent-directories-on-save)
-    (sensible-defaults/apply-changes-to-highlighted-region)
-    (sensible-defaults/overwrite-selected-text)
-    (sensible-defaults/ensure-that-files-end-with-newline)
-    (sensible-defaults/confirm-closing-emacs)
-    (sensible-defaults/quiet-startup)
-    (sensible-defaults/make-dired-file-sizes-human-readable)
-    (sensible-defaults/shorten-yes-or-no)
-    (sensible-defaults/always-highlight-code)
-    (sensible-defaults/refresh-buffers-when-files-change)
-    (sensible-defaults/show-matching-parens)
-    (sensible-defaults/yank-to-point-on-mouse-click)
-    (sensible-defaults/flash-screen-instead-of-ringing-bell)
-    (sensible-defaults/set-default-line-length-to 81)
+    ;; (sensible-defaults/increase-gc-threshold)
+    ;; (sensible-defaults/delete-trailing-whitespace) ;; edit
+    ;; (sensible-defaults/treat-camelcase-as-separate-words) ;; edit
+    ;; (sensible-defaults/automatically-follow-symlinks)
+    ;; (sensible-defaults/make-scripts-executable)
+    ;; (sensible-defaults/single-space-after-periods) ;; edit
+    ;; (sensible-defaults/offer-to-create-parent-directories-on-save) ;; file
+    ;; (sensible-defaults/apply-changes-to-highlighted-region) ;; edit
+    ;; (sensible-defaults/overwrite-selected-text) ;; edit
+    ;; (sensible-defaults/ensure-that-files-end-with-newline) ;; edit
+    ;; (sensible-defaults/confirm-closing-emacs) ;; display
+    ;; (sensible-defaults/quiet-startup) ;; display
+    ;; (sensible-defaults/make-dired-file-sizes-human-readable) ;; dired
+    ;; (sensible-defaults/shorten-yes-or-no) ;; display
+    ;; (sensible-defaults/always-highlight-code) ;; display or programming
+    ;; (sensible-defaults/refresh-buffers-when-files-change) ;; buffer management
+    ;; (sensible-defaults/show-matching-parens)
+    ;; (sensible-defaults/yank-to-point-on-mouse-click) ;; edit
+    ;; (sensible-defaults/flash-screen-instead-of-ringing-bell) ;; display
+    ;; (sensible-defaults/set-default-line-length-to 81)
+    ;; edit
   #+END_SRC
 * Display settings
 ** Disable GUI components
@@ -296,6 +287,38 @@
 
      (define-key global-map (kbd "<f12>") 'eh/screenshot-svg)
    #+end_src
+** Confirm closing emacs
+Ask if you're sure that you want to close Emacs.
+
+#+begin_src emacs-lisp
+  (setq confirm-kill-emacs 'y-or-n-p)
+#+end_src
+** Quiet startup
+Don't present the usual startup message, and clear the scratch buffer.
+
+#+begin_src emacs-lisp
+  (setq inhibit-startup-message t)
+  (setq initial-scratch-message nil)
+#+end_src
+** Shorten yes or no
+Don't ask `yes/no?', ask `y/n?'.
+
+#+begin_src emacs-lisp
+  (fset 'yes-or-no-p 'y-or-n-p)
+#+end_src
+** Always highlight code
+Turn on syntax highlighting whenever possible.
+
+#+begin_src emacs-lisp
+  (global-font-lock-mode t)
+#+end_src
+** Flash screen instead of ringing bell
+When you perform a problematic operation, flash the screen instead of ringing the
+terminal bell.
+
+#+begin_src emacs-lisp
+  (setq visible-bell t)
+#+end_src
 * (Ma)Git
   I use =magit= to handle version control.
 
@@ -386,7 +409,27 @@
 
      (global-set-key (kbd "C-x m") 'eh/generate-scratch-buffer)
   #+END_SRC
+** Refresh buffers when files change
+When something changes a file, automatically refresh the buffer containing that
+file so they can't get out of sync.
+
+#+begin_src emacs-lisp
+  (global-auto-revert-mode t)
+#+end_src
 * File management
+** Offer to create parent directories on save
+When saving a file in a directory that doesn't exist, offer to (recursively)
+create the file's parent directories.
+
+#+begin_src emacs-lisp
+  (add-hook 'before-save-hook
+            (lambda ()
+              (when buffer-file-name
+                (let ((dir (file-name-directory buffer-file-name)))
+                  (when (and (not (file-exists-p dir))
+                             (y-or-n-p (format "Directory %s does not exist. Create it?" dir)))
+                    (make-directory dir t))))))
+#+end_src
 ** Dired
   #+BEGIN_SRC emacs-lisp
     (use-package dired
@@ -424,6 +467,12 @@
     #+begin_src emacs-lisp
       (setq dired-dwim-target 'dired-dwim-target-next)
     #+end_src
+*** Make dired file sizes human readable
+Add file sizes in human-readable units (KB, MB, etc) to dired buffers.
+
+#+begin_src emacs-lisp
+  (setq-default dired-listing-switches "-alh")
+#+end_src
 ** Show file icons
   #+BEGIN_SRC emacs-lisp
     (use-package all-the-icons
@@ -709,6 +758,10 @@ Indentations are usefull:
      (setq scroll-step 1)
    #+END_SRC
 * Editing preferences
+** Set default line length to 81
+#+begin_src emacs-lisp
+  (setq-default fill-column 81)
+#+end_src
 ** =utf-8= everywhere
    #+BEGIN_SRC emacs-lisp
      (prefer-coding-system 'utf-8)
@@ -717,11 +770,36 @@ Indentations are usefull:
      (set-keyboard-coding-system 'utf-8)
      (setq default-buffer-file-coding-system 'utf-8)
    #+END_SRC
+** Delete tralining whitespace
+Call DELETE-TRAILING-WHITESPACE every time a buffer is saved.
+
+#+begin_src emacs-lisp
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
+#+end_src
+** Single space after periods
+Don't assume that sentences should have two spaces after periods. This ain't a
+typewriter.
+
+#+begin_src emacs-lisp
+  (setq sentence-end-double-space nil)
+#+end_src
 ** Always delete active region
    #+BEGIN_SRC emacs-lisp
      (setq delete-active-region nil)
      (delete-selection-mode t)
    #+END_SRC
+** Treat camelcase as separate words
+Treat CamelCaseSubWords as separate words in every programming mode.
+
+#+begin_src emacs-lisp
+  (add-hook 'prog-mode-hook 'subword-mode)
+#+end_src
+** Apply changes to highlighted region
+Turn on transient-mark-mode.
+
+#+begin_src emacs-lisp
+  (transient-mark-mode t)
+#+end_src
 ** Always kill current buffer
   #+BEGIN_SRC emacs-lisp
     (defun eh/kill-current-buffer ()
@@ -852,6 +930,19 @@ Indentations are usefull:
    #+begin_src emacs-lisp
      (setq undo-tree-history-directory-alist `(("." . "~/.cache/emacs/undo-tree-history/")))
    #+end_src
+** Ensure that files end with newline
+If you save a file that doesn't end with a newline, automatically append one.
+
+#+begin_src emacs-lisp
+  (setq require-final-newline t)
+#+end_src
+** Yank to point on mouse click
+When middle-clicking the mouse to yank from the clipboard, insert the text where
+point is, not where the mouse cursor is.
+
+#+begin_src emacs-lisp
+  (setq mouse-yank-at-point t)
+#+end_src
 * Terminal
 ** Vterm
    #+begin_src emacs-lisp
