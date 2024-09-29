@@ -710,6 +710,12 @@ Indentations are usefull:
     (org-alert-enable))
 #+end_src
 * Navigating
+** Use =Command= keys as =Meta= instead of =Super= on MacOS
+#+begin_src emacs-lisp
+  (when (string= system-type "darwin")
+    (setq mac-option-modifier nil
+          mac-command-modifier 'meta))
+#+end_src
 ** Use =windmove= insted of default bindings
    #+BEGIN_SRC emacs-lisp
      (use-package windmove
