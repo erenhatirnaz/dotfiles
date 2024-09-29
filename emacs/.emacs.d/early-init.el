@@ -11,7 +11,7 @@
 
 ;; Set cache directory for native compilation files
 (when (boundp 'native-comp-eln-load-path)
-  (startup-redirect-eln-cache (expand-file-name "eln-cache/" user-emacs-directory)))
+  (startup-redirect-eln-cache (expand-file-name "eln-cache/" user-cache-directory)))
 
 
 ;; Allow loading from the package cache.
