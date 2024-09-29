@@ -127,6 +127,9 @@
      (setq eh/default-font "JetBrains Mono"
            eh/default-font-size 11)
 
+     (when (string= system-type "darwin")
+       (setq eh/default-font-size 13))
+
      (defun eh/font-code ()
        "Return a string representing the current font (like
        \"Inconsolata-14\")."
