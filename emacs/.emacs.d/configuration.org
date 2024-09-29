@@ -596,12 +596,6 @@ Indent with 2 spaces.
            ("\\.md\\'" . markdown-mode)
            ("\\.markdown\\'" . markdown-mode)))
 #+END_SRC
-** Docker
-#+begin_src emacs-lisp
-  (use-package docker
-    :ensure t
-    :bind ("C-c d" . docker))
-#+end_src
 ** Go-lang
 #+begin_src emacs-lisp
     (use-package go-mode
