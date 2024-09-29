@@ -2,294 +2,290 @@
 
 * Set personal informations
 ** Who am I? Where am I?
-  #+BEGIN_SRC emacs-lisp
-    (setq user-full-name "Eren Hatırnaz"
-          user-mail-address "erenhatirnaz@hotmail.com.tr"
-          calendar-latitude 41.02
-          calendar-longitude 40.52
-          calendar-location-name "Rize, TR"
-          calendar-week-start-day 1)
-  #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (setq user-full-name "Eren Hatırnaz"
+        user-mail-address "erenhatirnaz@hotmail.com.tr"
+        calendar-latitude 41.02
+        calendar-longitude 40.52
+        calendar-location-name "Rize, TR"
+        calendar-week-start-day 1)
+#+END_SRC
 * Use =sensible-defaults.el=
-  =sensible-default.el= is some kind of =normalize= function set. See [[https://github.com/hrs/sensible-defaults.el][this
-  repository]] for more information.
+=sensible-default.el= is some kind of =normalize= function set. See [[https://github.com/hrs/sensible-defaults.el][this
+repository]] for more information.
 
-  #+BEGIN_SRC emacs-lisp
-    ;; (load-file "~/.emacs.d/sensible-defaults.el")
+#+BEGIN_SRC emacs-lisp
+  ;; (load-file "~/.emacs.d/sensible-defaults.el")
 
-    ;; (sensible-defaults/increase-gc-threshold)
-    ;; (sensible-defaults/delete-trailing-whitespace) ;; edit
-    ;; (sensible-defaults/treat-camelcase-as-separate-words) ;; edit
-    ;; (sensible-defaults/automatically-follow-symlinks)
-    ;; (sensible-defaults/make-scripts-executable)
-    ;; (sensible-defaults/single-space-after-periods) ;; edit
-    ;; (sensible-defaults/offer-to-create-parent-directories-on-save) ;; file
-    ;; (sensible-defaults/apply-changes-to-highlighted-region) ;; edit
-    ;; (sensible-defaults/overwrite-selected-text) ;; edit
-    ;; (sensible-defaults/ensure-that-files-end-with-newline) ;; edit
-    ;; (sensible-defaults/confirm-closing-emacs) ;; display
-    ;; (sensible-defaults/quiet-startup) ;; display
-    ;; (sensible-defaults/make-dired-file-sizes-human-readable) ;; dired
-    ;; (sensible-defaults/shorten-yes-or-no) ;; display
-    ;; (sensible-defaults/always-highlight-code) ;; display or programming
-    ;; (sensible-defaults/refresh-buffers-when-files-change) ;; buffer management
-    ;; (sensible-defaults/show-matching-parens)
-    ;; (sensible-defaults/yank-to-point-on-mouse-click) ;; edit
-    ;; (sensible-defaults/flash-screen-instead-of-ringing-bell) ;; display
-    ;; (sensible-defaults/set-default-line-length-to 81)
-    ;; edit
-  #+END_SRC
+  ;; (sensible-defaults/increase-gc-threshold)
+  ;; (sensible-defaults/delete-trailing-whitespace) ;; edit
+  ;; (sensible-defaults/treat-camelcase-as-separate-words) ;; edit
+  ;; (sensible-defaults/automatically-follow-symlinks)
+  ;; (sensible-defaults/make-scripts-executable)
+  ;; (sensible-defaults/single-space-after-periods) ;; edit
+  ;; (sensible-defaults/offer-to-create-parent-directories-on-save) ;; file
+  ;; (sensible-defaults/apply-changes-to-highlighted-region) ;; edit
+  ;; (sensible-defaults/overwrite-selected-text) ;; edit
+  ;; (sensible-defaults/ensure-that-files-end-with-newline) ;; edit
+  ;; (sensible-defaults/confirm-closing-emacs) ;; display
+  ;; (sensible-defaults/quiet-startup) ;; display
+  ;; (sensible-defaults/make-dired-file-sizes-human-readable) ;; dired
+  ;; (sensible-defaults/shorten-yes-or-no) ;; display
+  ;; (sensible-defaults/always-highlight-code) ;; display or programming
+  ;; (sensible-defaults/refresh-buffers-when-files-change) ;; buffer management
+  ;; (sensible-defaults/show-matching-parens)
+  ;; (sensible-defaults/yank-to-point-on-mouse-click) ;; edit
+  ;; (sensible-defaults/flash-screen-instead-of-ringing-bell) ;; display
+  ;; (sensible-defaults/set-default-line-length-to 81)
+  ;; edit
+#+END_SRC
 * Display settings
 ** Disable GUI components
-   I don't like to see menu bar or tool bar. My main input device is keyboard. So
-   these GUI components aren't usefull for me. I need to more space on my screen.
-   #+BEGIN_SRC emacs-lisp
-     (when (display-graphic-p)
-       (menu-bar-mode -1)
-       (tool-bar-mode -1)
-       (scroll-bar-mode -1))
-   #+END_SRC
+I don't like to see menu bar or tool bar. My main input device is keyboard. So
+these GUI components aren't usefull for me. I need to more space on my screen.
+#+BEGIN_SRC emacs-lisp
+  (when (display-graphic-p)
+    (menu-bar-mode -1)
+    (tool-bar-mode -1)
+    (scroll-bar-mode -1))
+#+END_SRC
 
-   Disable dialog box prompts.
-   #+BEGIN_SRC emacs-lisp
-    (setq use-dialog-box nil
-          use-file-dialog nil)
-   #+END_SRC
+Disable dialog box prompts.
+#+BEGIN_SRC emacs-lisp
+ (setq use-dialog-box nil
+       use-file-dialog nil)
+#+END_SRC
 
-   Disable splash screen and startup messages.
-   #+BEGIN_SRC emacs-lisp
-    (setq inhibit-splash-screen t
-          inhibit-startup-screen t
-          inhibit-startup-message t
-          inhibit-startup-echo-area-message t)
-   #+END_SRC
+Disable splash screen and startup messages.
+#+BEGIN_SRC emacs-lisp
+ (setq inhibit-splash-screen t
+       inhibit-startup-screen t
+       inhibit-startup-message t
+       inhibit-startup-echo-area-message t)
+#+END_SRC
 ** Theme customizations
-   #+BEGIN_SRC emacs-lisp
-     (use-package modus-themes
-       :ensure t
-       :config
-       (setq modus-themes-links '(neutral-underline)
-             modus-themes-syntax '(green-strings)))
+#+BEGIN_SRC emacs-lisp
+  (use-package modus-themes
+    :ensure t
+    :config
+    (setq modus-themes-links '(neutral-underline)
+          modus-themes-syntax '(green-strings)))
 
-     (use-package gruvbox-theme
-       :ensure t)
-   #+END_SRC
+  (use-package gruvbox-theme
+    :ensure t)
+#+END_SRC
 ** Toggle light/dark mode
-   Generally I prefer dark themes even day time but light themes are more
-   visible in suny days. So, I add this toggle function to switch between dark
-   and light themes. The function binded to =<F10>= key. Code copied from [[https://lists.gnu.org/archive/html/emacs-devel/2020-09/msg01247.html][here]].
+Generally I prefer dark themes even day time but light themes are more
+visible in suny days. So, I add this toggle function to switch between dark
+and light themes. The function binded to =<F10>= key. Code copied from [[https://lists.gnu.org/archive/html/emacs-devel/2020-09/msg01247.html][here]].
 
-   * My current light theme is: *=modus-operandi=*.
-   * My current dark theme is: *=gruvbox-dark-medium=*.
+My current light theme is: *=modus-operandi=*.
+My current dark theme is: *=gruvbox-dark-medium=*.
 
-   #+BEGIN_SRC emacs-lisp
-     (defun eh/toggle-light-dark-theme--custom-choices (theme)
-       "Function used to create the choice widget options of the
-     `eh/toggle-light-dark-theme' custom variables."
-       `(const :tag ,(symbol-name theme) ,theme))
+#+BEGIN_SRC emacs-lisp
+  (defun eh/toggle-light-dark-theme--custom-choices (theme)
+    "Function used to create the choice widget options of the
+  `eh/toggle-light-dark-theme' custom variables."
+    `(const :tag ,(symbol-name theme) ,theme))
 
-     (defcustom eh/toggle-light-dark-theme-light-theme nil
-       "The light theme that the function `eh/toggle-light-dark-theme' will use."
-       :type `(choice ,@(mapcar #'eh/toggle-light-dark-theme--custom-choices
-                                (custom-available-themes))))
+  (defcustom eh/toggle-light-dark-theme-light-theme nil
+    "The light theme that the function `eh/toggle-light-dark-theme' will use."
+    :type `(choice ,@(mapcar #'eh/toggle-light-dark-theme--custom-choices
+                             (custom-available-themes))))
 
-     (defcustom eh/toggle-light-dark-theme-dark-theme nil
-       "The dark theme that the function `eh/toggle-light-dark-theme' will use."
-       :type `(choice ,@(mapcar #'eh/toggle-light-dark-theme--custom-choices
-                                (custom-available-themes))))
+  (defcustom eh/toggle-light-dark-theme-dark-theme nil
+    "The dark theme that the function `eh/toggle-light-dark-theme' will use."
+    :type `(choice ,@(mapcar #'eh/toggle-light-dark-theme--custom-choices
+                             (custom-available-themes))))
 
-     (defvar eh/toggle-light-dark-theme--current-theme 'dark)
+  (defvar eh/toggle-light-dark-theme--current-theme 'dark)
 
-     (defun eh/toggle-light-dark-theme ()
-       "Disables all custom enabled themes and then toggles between a
-     light and a dark theme, which are the values of the variables
-     `eh/toggle-light-dark-theme-light-theme' and `eh/toggle-light-dark-theme-dark-theme'."
-       (interactive)
-       (mapc #'disable-theme custom-enabled-themes)
-       (cond ((eq eh/toggle-light-dark-theme--current-theme 'light)
-              (enable-theme eh/toggle-light-dark-theme-dark-theme)
-              (disable-theme eh/toggle-light-dark-theme-light-theme)
-              (setq eh/toggle-light-dark-theme--current-theme 'dark))
-             (t (enable-theme eh/toggle-light-dark-theme-light-theme)
-                (disable-theme eh/toggle-light-dark-theme-dark-theme)
-                (setq eh/toggle-light-dark-theme--current-theme 'light))))
+  (defun eh/toggle-light-dark-theme ()
+    "Disables all custom enabled themes and then toggles between a
+  light and a dark theme, which are the values of the variables
+  `eh/toggle-light-dark-theme-light-theme' and `eh/toggle-light-dark-theme-dark-theme'."
+    (interactive)
+    (mapc #'disable-theme custom-enabled-themes)
+    (cond ((eq eh/toggle-light-dark-theme--current-theme 'light)
+           (enable-theme eh/toggle-light-dark-theme-dark-theme)
+           (disable-theme eh/toggle-light-dark-theme-light-theme)
+           (setq eh/toggle-light-dark-theme--current-theme 'dark))
+          (t (enable-theme eh/toggle-light-dark-theme-light-theme)
+             (disable-theme eh/toggle-light-dark-theme-dark-theme)
+             (setq eh/toggle-light-dark-theme--current-theme 'light))))
 
-     (setq eh/toggle-light-dark-theme-light-theme 'modus-operandi
-           eh/toggle-light-dark-theme-dark-theme 'gruvbox-dark-medium)
+  (setq eh/toggle-light-dark-theme-light-theme 'modus-operandi
+        eh/toggle-light-dark-theme-dark-theme 'gruvbox-dark-medium)
 
-     (load-theme eh/toggle-light-dark-theme-light-theme t t)
-     (load-theme eh/toggle-light-dark-theme-dark-theme t)
+  (load-theme eh/toggle-light-dark-theme-light-theme t t)
+  (load-theme eh/toggle-light-dark-theme-dark-theme t)
 
-     (define-key global-map (kbd "<f10>") 'eh/toggle-light-dark-theme)
-   #+END_SRC
+  (define-key global-map (kbd "<f10>") 'eh/toggle-light-dark-theme)
+#+END_SRC
 ** Set default font and configure font resizing
-   #+BEGIN_SRC emacs-lisp
-     (setq eh/default-font "JetBrains Mono"
-           eh/default-font-size 11)
+#+BEGIN_SRC emacs-lisp
+  (setq eh/default-font "JetBrains Mono"
+        eh/default-font-size 11)
 
-     (when (string= system-type "darwin")
-       (setq eh/default-font-size 13))
+  (when (string= system-type "darwin")
+    (setq eh/default-font-size 13))
 
-     (defun eh/font-code ()
-       "Return a string representing the current font (like
-       \"Inconsolata-14\")."
-       (concat eh/default-font "-" (number-to-string eh/default-font-size)))
+  (defun eh/font-code ()
+    "Return a string representing the current font (like
+    \"Inconsolata-14\")."
+    (concat eh/default-font "-" (number-to-string eh/default-font-size)))
 
-     (defun eh/set-font-size ()
-       "Set the font to `eh/default-font' at `eh/default-font-size'.
-       Set that for the current frame, and also make it the default
-       for other, future frames."
-       (let ((font-code (eh/font-code)))
-         (add-to-list 'default-frame-alist (cons 'font font-code))
-         (set-frame-font font-code)))
+  (defun eh/set-font-size ()
+    "Set the font to `eh/default-font' at `eh/default-font-size'.
+    Set that for the current frame, and also make it the default
+    for other, future frames."
+    (let ((font-code (eh/font-code)))
+      (add-to-list 'default-frame-alist (cons 'font font-code))
+      (set-frame-font font-code)))
 
-     (eh/set-font-size)
-   #+END_SRC
+  (eh/set-font-size)
+#+END_SRC
 ** Hide or replace some mode names
-   =diminish= hides modes from mode-line. I define =eh/diminish-minor-mode= and
-   =eh/diminish-major-mode= named macros to more cleaner usage.
-   #+BEGIN_SRC emacs-lisp
-     (use-package diminish
-       :ensure t
-       :config
-       (defmacro eh/diminish-minor-mode (filename mode &optional abbrev)
-         `(eval-after-load (symbol-name ,filename)
-            '(diminish ,mode ,abbrev)))
-       (defmacro eh/diminish-major-mode (mode-hook abbrev)
-         `(add-hook ,mode-hook
-                    (lambda () (setq mode-name ,abbrev)))))
-   #+END_SRC
+=diminish= hides modes from mode-line. I define =eh/diminish-minor-mode= and
+=eh/diminish-major-mode= named macros to more cleaner usage.
+#+BEGIN_SRC emacs-lisp
+  (use-package diminish
+    :ensure t
+    :config
+    (defmacro eh/diminish-minor-mode (filename mode &optional abbrev)
+      `(eval-after-load (symbol-name ,filename)
+         '(diminish ,mode ,abbrev)))
+    (defmacro eh/diminish-major-mode (mode-hook abbrev)
+      `(add-hook ,mode-hook
+                 (lambda () (setq mode-name ,abbrev)))))
+#+END_SRC
 
-   I don't want to see these minor modes on my mode-line.
-   #+BEGIN_SRC emacs-lisp
-     (eh/diminish-minor-mode 'abbrev 'abbrev-mode)
-     (eh/diminish-minor-mode 'eldoc 'eldoc-mode)
-     (eh/diminish-minor-mode 'simple 'auto-fill-function)
-     (eh/diminish-minor-mode 'subword 'subword-mode)
-   #+END_SRC
+I don't want to see these minor modes on my mode-line.
+#+BEGIN_SRC emacs-lisp
+  (eh/diminish-minor-mode 'abbrev 'abbrev-mode)
+  (eh/diminish-minor-mode 'eldoc 'eldoc-mode)
+  (eh/diminish-minor-mode 'simple 'auto-fill-function)
+  (eh/diminish-minor-mode 'subword 'subword-mode)
+#+END_SRC
 
-   =delight= enables you to customise the mode names displayed in the mode-line.
-   #+begin_src emacs-lisp
-     (use-package delight
-       :ensure t)
-   #+end_src
+=delight= enables you to customise the mode names displayed in the mode-line.
+#+begin_src emacs-lisp
+  (use-package delight
+    :ensure t)
+#+end_src
 
-   I don't want to see the full names of the major modes. Instead, I like to see
-   abbrevs or fancy symbols. These are my preferences for some major mode names.
-   #+BEGIN_SRC emacs-lisp
-     (delight 'emacs-lisp-mode "el")
-     (delight 'lisp-interaction-mode "λ")
-   #+END_SRC
+I don't want to see the full names of the major modes. Instead, I like to see
+abbrevs or fancy symbols. These are my preferences for some major mode names.
+#+BEGIN_SRC emacs-lisp
+  (delight 'emacs-lisp-mode "el")
+  (delight 'lisp-interaction-mode "λ")
+#+END_SRC
 ** Show dashboard at startup
-   Startup dashboards are usefull for open projects or find recently opened
-   files etc. My current dashboard items are (in order):
-    * 5 Recently opened projects
-    * 5 Recently saved bookmarks
-    * 5 Recently opened files
-    * 5 Recently saved registers
+Startup dashboards are usefull for open projects or find recently opened
+files etc.
 
-   #+BEGIN_SRC emacs-lisp
-     (use-package dashboard
-       :ensure t
-       :config
-       (setq dashboard-startup-banner 'logo
-             dashboard-set-file-icons t
-             dashboard-set-heading-icons t
-             dashboard-items '((projects . 5)
-                               (bookmarks . 5)
-                               (recents . 5)
-                               (registers . 5)))
-       (dashboard-setup-startup-hook))
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package dashboard
+    :ensure t
+    :config
+    (setq dashboard-startup-banner 'logo
+          dashboard-set-file-icons t
+          dashboard-set-heading-icons t
+          dashboard-items '((projects . 5)
+                            (bookmarks . 5)
+                            (recents . 5)
+                            (registers . 5)))
+    (dashboard-setup-startup-hook))
+#+END_SRC
 ** Highlight the current line
-  #+BEGIN_SRC emacs-lisp
-    (use-package hl-line
-      :config
-      (global-hl-line-mode t))
-  #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package hl-line
+    :config
+    (global-hl-line-mode t))
+#+END_SRC
 ** Show relative line numbers only programming mode
-   Line number is useful information when programming. Otherwise, for example
-   writing an article or composing a e-mail, there's no need to see line
-   numbers. So, I add =display-line-numbers= to =prog-mode-hook=.
+Line number is useful information when programming. Otherwise, for example
+writing an article or composing a e-mail, there's no need to see line
+numbers. So, I add =display-line-numbers= to =prog-mode-hook=.
 
-   Relative line numbers shows the distance from the current line. This
-   information makes it easier to use repeating commands (=C-u [N]=).
+Relative line numbers shows the distance from the current line. This
+information makes it easier to use repeating commands (=C-u [N]=).
 
-   #+BEGIN_EXAMPLE
-     3 Lorem
-     2 ipsum
-     1 dolor
-     4 sit█ <-- you are here
-     1 amet
-     2 consectetur
-     3 adipiscing
-   #+END_EXAMPLE
+#+BEGIN_EXAMPLE
+  3 Lorem
+  2 ipsum
+  1 dolor
+  4 sit█ <-- you are here
+  1 amet
+  2 consectetur
+  3 adipiscing
+#+END_EXAMPLE
 
-   Let's say you want go second line ("Lorem"). Ofcourse you can type =C-p= 2
-   times but there's another way to do this. With relative line numbers you can
-   clearly see what's your distance from the current line to destination line,
-   which is *2*. Just type =C-u 2 C-p= and that's it.
+Let's say you want go second line ("Lorem"). Ofcourse you can type =C-p= 2
+times but there's another way to do this. With relative line numbers you can
+clearly see what's your distance from the current line to destination line,
+which is *2*. Just type =C-u 2 C-p= and that's it.
 
-  #+BEGIN_SRC emacs-lisp
-    (add-hook 'prog-mode-hook (lambda () (setq display-line-numbers 'relative)))
-  #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'prog-mode-hook (lambda () (setq display-line-numbers 'relative)))
+#+END_SRC
 ** Show the current line and column numbers in modeline
-  #+BEGIN_SRC emacs-lisp
-    (use-package simple
-      :config
-      (column-number-mode t))
-  #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package simple
+    :config
+    (column-number-mode t))
+#+END_SRC
 ** Apply golden ratio to windows
-  #+BEGIN_SRC emacs-lisp
-    (use-package golden-ratio
-      :ensure t
-      :delight " φ"
-      :config
-      (golden-ratio-mode t))
-  #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package golden-ratio
+    :ensure t
+    :delight " φ"
+    :config
+    (golden-ratio-mode t))
+#+END_SRC
 ** Show special chars (whitespace, tabs, etc.)
-   When doing programming-related works, visible tabs or spaces may important by
-   project's code style guideline.
+When doing programming-related works, visible tabs or spaces may important by
+project's code style guideline.
 
-  #+BEGIN_SRC emacs-lisp
-    (use-package whitespace
-      :diminish
-      :config
-      (defun eh/set-whitespace-style ()
-        (setq whitespace-style '(face tabs spaces trailing space-before-tab
-                                      newline indentation empty space-after-tab
-                                      space-mark tab-mark)))
-      :hook ((whitespace-mode . eh/set-whitespace-style))
-      :bind (("<f6>" . whitespace-mode)))
-  #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package whitespace
+    :diminish
+    :config
+    (defun eh/set-whitespace-style ()
+      (setq whitespace-style '(face tabs spaces trailing space-before-tab
+                                    newline indentation empty space-after-tab
+                                    space-mark tab-mark)))
+    :hook ((whitespace-mode . eh/set-whitespace-style))
+    :bind (("<f6>" . whitespace-mode)))
+#+END_SRC
 ** Show fill column indicator only programming mode
-   The fill column indicator is useful visual helper when typing.
+The fill column indicator is useful visual helper when typing.
 
-   #+BEGIN_SRC emacs-lisp
-     (add-hook 'prog-mode-hook (lambda () (display-fill-column-indicator-mode 1)))
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'prog-mode-hook (lambda () (display-fill-column-indicator-mode 1)))
+#+END_SRC
 ** Show name of character in what cursor
-   #+begin_src emacs-lisp
-     (use-package simple
-       :config
-       (setq what-cursor-show-names t))
-   #+end_src
+#+begin_src emacs-lisp
+  (use-package simple
+    :config
+    (setq what-cursor-show-names t))
+#+end_src
 ** Take screenshot in SVG format
-   [[https://www.reddit.com/r/emacs/comments/idz35e/emacs_27_can_take_svg_screenshots_of_itself/g2c2c6y/][Source]]
-   #+begin_src emacs-lisp
-     (defun eh/screenshot-svg ()
-       "Save a screenshot of the current frame as an SVG image.
-     Saves to a temp file and puts the filename in the kill ring."
-       (interactive)
-       (let* ((filename (make-temp-file "Emacs-" nil ".svg"))
-              (data (x-export-frames nil 'svg)))
-         (with-temp-file filename
-           (insert data))
-         (kill-new filename)
-         (message filename)))
+[[https://www.reddit.com/r/emacs/comments/idz35e/emacs_27_can_take_svg_screenshots_of_itself/g2c2c6y/][Source]]
+#+begin_src emacs-lisp
+  (defun eh/screenshot-svg ()
+    "Save a screenshot of the current frame as an SVG image.
+  Saves to a temp file and puts the filename in the kill ring."
+    (interactive)
+    (let* ((filename (make-temp-file "Emacs-" nil ".svg"))
+           (data (x-export-frames nil 'svg)))
+      (with-temp-file filename
+        (insert data))
+      (kill-new filename)
+      (message filename)))
 
-     (define-key global-map (kbd "<f12>") 'eh/screenshot-svg)
-   #+end_src
+  (define-key global-map (kbd "<f12>") 'eh/screenshot-svg)
+#+end_src
 ** Confirm closing emacs
 Ask if you're sure that you want to close Emacs.
 
@@ -323,95 +319,95 @@ terminal bell.
   (setq visible-bell t)
 #+end_src
 * (Ma)Git
-  I use =magit= to handle version control.
+I use =magit= to handle version control.
 
-  #+BEGIN_SRC emacs-lisp
-    (use-package magit
-      :ensure t
-      :bind (("C-x g" . magit-status)))
-  #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package magit
+    :ensure t
+    :bind (("C-x g" . magit-status)))
+#+END_SRC
 
-  I need to use all git functionalities. So, I set =transient-default-level=
-  to 7.
-  #+BEGIN_SRC emacs-lisp
-    (setq transient-default-level 7)
-  #+END_SRC
+I need to use all git functionalities. So, I set =transient-default-level=
+to 7.
+#+BEGIN_SRC emacs-lisp
+  (setq transient-default-level 7)
+#+END_SRC
 
-  Change transient history file location
-  #+begin_src emacs-lisp
-    (setq transient-history-file (expand-file-name "transient-history.el" user-cache-directory))
-  #+end_src
+Change transient history file location
+#+begin_src emacs-lisp
+  (setq transient-history-file (expand-file-name "transient-history.el" user-cache-directory))
+#+end_src
 ** Highlight uncommitted changes
-  #+BEGIN_SRC emacs-lisp
-    (use-package diff-hl
-      :ensure t
-      :hook ((prog-mode . turn-on-diff-hl-mode)
-             (vc-dir . turn-on-diff-hl-mode)
-             (dired-mode . turn-on-diff-hl-mode)))
-  #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package diff-hl
+    :ensure t
+    :hook ((prog-mode . turn-on-diff-hl-mode)
+           (vc-dir . turn-on-diff-hl-mode)
+           (dired-mode . turn-on-diff-hl-mode)))
+#+END_SRC
 * Project management
 ** Use =projectile=
-  #+BEGIN_SRC emacs-lisp
-    (use-package projectile
-      :ensure t
-      :config
-      (projectile-mode t)
-      (setq projectile-known-projects-file (expand-file-name "projectile-bookmarks.eld" user-cache-directory)
-            projectile-cache-file (expand-file-name "projectile-cache.el" user-cache-directory))
-      :bind (("C-c p" . projectile-command-map)
-             :map projectile-command-map
-             ("C-a" . projectile-ag)))
-  #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package projectile
+    :ensure t
+    :config
+    (projectile-mode t)
+    (setq projectile-known-projects-file (expand-file-name "projectile-bookmarks.eld" user-cache-directory)
+          projectile-cache-file (expand-file-name "projectile-cache.el" user-cache-directory))
+    :bind (("C-c p" . projectile-command-map)
+           :map projectile-command-map
+           ("C-a" . projectile-ag)))
+#+END_SRC
 ** =ag=
-   =ag= is very powerfull search tool. I use it commonly on the terminal. In
-   Emacs, =projectile= and =ag= brings their powers together and reveals
-   =projectile-ag=.
+=ag= is very powerfull search tool. I use it commonly on the terminal. In
+Emacs, =projectile= and =ag= brings their powers together and reveals
+=projectile-ag=.
 
-   #+BEGIN_SRC emacs-lisp
-     (use-package ag
-       :ensure t
-       :bind (("C-x C-a" . ag)))
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package ag
+    :ensure t
+    :bind (("C-x C-a" . ag)))
+#+END_SRC
 * Buffer management
 ** Use =ibuffer= instead of =ListBuffers=
-  #+BEGIN_SRC emacs-lisp
-    (use-package ibuffer
-      :config
-      (setq ibuffer-saved-filter-groups
-            (quote (("default"
-                     ("dired" (mode . dired-mode))
-                     ("magit" (or
-                               (mode . magit-mode)
-                               (mode . magit-diff-mode)
-                               (name . "^COMMIT_EDITMSG$")
-                               (name . "^magit*")))
-                     ("emacs" (or
-                               (name . "^\\*scratch\\*$")
-                               (name . "^\\*Messages\\*$")))
-                     ("gnus" (or
-                              (mode . message-mode)
-                              (mode . bbdb-mode)
-                              (mode . mail-mode)
-                              (mode . gnus-group-mode)
-                              (mode . gnus-summary-mode)
-                              (mode . gnus-article-mode)
-                              (name . "^\\.bbdb$")
-                              (name . "^\\.newsrc-dribble")))))))
-      :hook (ibuffer-mode . (lambda () (ibuffer-switch-to-saved-filter-groups "default")))
-      :bind ("C-x C-b" . 'ibuffer-list-buffers))
-  #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package ibuffer
+    :config
+    (setq ibuffer-saved-filter-groups
+          (quote (("default"
+                   ("dired" (mode . dired-mode))
+                   ("magit" (or
+                             (mode . magit-mode)
+                             (mode . magit-diff-mode)
+                             (name . "^COMMIT_EDITMSG$")
+                             (name . "^magit*")))
+                   ("emacs" (or
+                             (name . "^\\*scratch\\*$")
+                             (name . "^\\*Messages\\*$")))
+                   ("gnus" (or
+                            (mode . message-mode)
+                            (mode . bbdb-mode)
+                            (mode . mail-mode)
+                            (mode . gnus-group-mode)
+                            (mode . gnus-summary-mode)
+                            (mode . gnus-article-mode)
+                            (name . "^\\.bbdb$")
+                            (name . "^\\.newsrc-dribble")))))))
+    :hook (ibuffer-mode . (lambda () (ibuffer-switch-to-saved-filter-groups "default")))
+    :bind ("C-x C-b" . 'ibuffer-list-buffers))
+#+END_SRC
 ** Generate scratch buffer
-   [[https://github.com/hrs/dotfiles/blob/main/emacs/dot-emacs.d/configuration.org#utility-functions][Source]]
+[[https://github.com/hrs/dotfiles/blob/main/emacs/dot-emacs.d/configuration.org#utility-functions][Source]]
 
-   #+BEGIN_SRC emacs-lisp
-     (defun eh/generate-scratch-buffer ()
-       "Create and switch to a temporary scratch buffer with a random
-     name."
-       (interactive)
-       (switch-to-buffer (make-temp-name "scratch-")))
+ #+BEGIN_SRC emacs-lisp
+   (defun eh/generate-scratch-buffer ()
+     "Create and switch to a temporary scratch buffer with a random
+   name."
+     (interactive)
+     (switch-to-buffer (make-temp-name "scratch-")))
 
-     (global-set-key (kbd "C-x m") 'eh/generate-scratch-buffer)
-  #+END_SRC
+   (global-set-key (kbd "C-x m") 'eh/generate-scratch-buffer)
+#+END_SRC
 ** Refresh buffers when files change
 When something changes a file, automatically refresh the buffer containing that
 file so they can't get out of sync.
@@ -434,42 +430,42 @@ create the file's parent directories.
                     (make-directory dir t))))))
 #+end_src
 ** Dired
-  #+BEGIN_SRC emacs-lisp
-    (use-package dired
-      :bind (("C-x j" . 'dired-jump)
-             ("C-x J" . 'dired-jump-other-window)))
-  #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package dired
+    :bind (("C-x j" . 'dired-jump)
+           ("C-x J" . 'dired-jump-other-window)))
+#+END_SRC
 *** List directories first on dired mode
-    #+BEGIN_SRC emacs-lisp
-      (use-package dired
-        :config
-        (defun directory-first-sort ()
-          "Sort dired listings with directories first."
-          (save-excursion
-            (let (buffer-read-only)
-              (forward-line 2) ;; beyond dir. header
-              (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
-            (set-buffer-modified-p nil)))
-        (define-advice dired-readin (:after () dired-after-updating-hook)
-          "Sort dired listings with directories first before adding marks."
-          (directory-first-sort)))
-    #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package dired
+    :config
+    (defun directory-first-sort ()
+      "Sort dired listings with directories first."
+      (save-excursion
+        (let (buffer-read-only)
+          (forward-line 2) ;; beyond dir. header
+          (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
+        (set-buffer-modified-p nil)))
+    (define-advice dired-readin (:after () dired-after-updating-hook)
+      "Sort dired listings with directories first before adding marks."
+      (directory-first-sort)))
+#+END_SRC
 *** Sort correcly numbered files
 #+begin_src emacs-lisp
   (setq dired-listing-switches "-laGh1v --group-directories-first")
 #+end_src
 *** Remove files to system trash
-    #+begin_src emacs-lisp
-      (setq-default delete-by-moving-to-trash t)
-    #+end_src
+#+begin_src emacs-lisp
+  (setq-default delete-by-moving-to-trash t)
+#+end_src
 *** Offer create directory when copying destination doesn't exist
-    #+begin_src emacs-lisp
-      (setq dired-create-destination-dirs 'ask)
-    #+end_src
+#+begin_src emacs-lisp
+  (setq dired-create-destination-dirs 'ask)
+#+end_src
 *** Offer copy destination to the next windows' current directory
-    #+begin_src emacs-lisp
-      (setq dired-dwim-target 'dired-dwim-target-next)
-    #+end_src
+#+begin_src emacs-lisp
+  (setq dired-dwim-target 'dired-dwim-target-next)
+#+end_src
 *** Make dired file sizes human readable
 Add file sizes in human-readable units (KB, MB, etc) to dired buffers.
 
@@ -477,114 +473,114 @@ Add file sizes in human-readable units (KB, MB, etc) to dired buffers.
   (setq-default dired-listing-switches "-alh")
 #+end_src
 ** Show file icons
-  #+BEGIN_SRC emacs-lisp
-    (use-package all-the-icons
-      :ensure t
-      :diminish)
+#+BEGIN_SRC emacs-lisp
+  (use-package all-the-icons
+    :ensure t
+    :diminish)
 
-    (use-package all-the-icons-dired
-      :ensure t
-      :diminish
-      :hook (dired-mode . all-the-icons-dired-mode))
-  #+END_SRC
+  (use-package all-the-icons-dired
+    :ensure t
+    :diminish
+    :hook (dired-mode . all-the-icons-dired-mode))
+#+END_SRC
 ** =treemacs=
-  #+BEGIN_SRC emacs-lisp
-    (use-package treemacs
-      :ensure
-      :config
-      (defun eren/treemacs-ignore-node_modules (filename absolute-path)
-        (string-equal filename "node_modules"))
-      (progn
-        (add-to-list 'treemacs-ignored-file-predicates #'eren/treemacs-ignore-node_modules))
-      :bind (("<f8>" . treemacs)))
-  #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package treemacs
+    :ensure
+    :config
+    (defun eren/treemacs-ignore-node_modules (filename absolute-path)
+      (string-equal filename "node_modules"))
+    (progn
+      (add-to-list 'treemacs-ignored-file-predicates #'eren/treemacs-ignore-node_modules))
+    :bind (("<f8>" . treemacs)))
+#+END_SRC
 * Programming environments
-  Set default =tab-width= to 2.
-  #+BEGIN_SRC emacs-lisp
-    (use-package emacs
-      :config
-      (setq-default tab-width 2
-                    indent-tabs-mode nil))
-  #+END_SRC
+Set default =tab-width= to 2.
+#+BEGIN_SRC emacs-lisp
+  (use-package emacs
+    :config
+    (setq-default tab-width 2
+                  indent-tabs-mode nil))
+#+END_SRC
 ** =yasnippet=
-   #+BEGIN_SRC emacs-lisp
-     (use-package yasnippet
-       :ensure t
-       :diminish (yas-minor-mode)
-       :config
-       (setq yas-snippet-dirs '("~/.emacs.d/snippets/"))
-       (yas-reload-all)
-       :hook ((prog-mode . yas-minor-mode)))
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package yasnippet
+    :ensure t
+    :diminish (yas-minor-mode)
+    :config
+    (setq yas-snippet-dirs '("~/.emacs.d/snippets/"))
+    (yas-reload-all)
+    :hook ((prog-mode . yas-minor-mode)))
+#+END_SRC
 ** PHP
-   #+BEGIN_SRC emacs-lisp
-     (use-package php-mode
-       :ensure t)
+#+BEGIN_SRC emacs-lisp
+  (use-package php-mode
+    :ensure t)
 
-     (use-package web-mode
-       :ensure t)
-   #+END_SRC
+  (use-package web-mode
+    :ensure t)
+#+END_SRC
 *** Register Projectile project types
 **** Laravel
-    #+begin_src emacs-lisp
-      (projectile-register-project-type 'php-laravel '("composer.json" "artisan")
-                                        :project-file "composer.json"
-                                        :src-dir "app/"
-                                        :compile "php ./vendor/bin/phpcs"
-                                        :run "php artisan serve"
-                                        :test "php ./vendor/bin/phpunit"
-                                        :test-dir "tests/"
-                                        :test-suffix "Test.php")
-    #+end_src
+#+begin_src emacs-lisp
+  (projectile-register-project-type 'php-laravel '("composer.json" "artisan")
+                                    :project-file "composer.json"
+                                    :src-dir "app/"
+                                    :compile "php ./vendor/bin/phpcs"
+                                    :run "php artisan serve"
+                                    :test "php ./vendor/bin/phpunit"
+                                    :test-dir "tests/"
+                                    :test-suffix "Test.php")
+#+end_src
 ** Javascript
-   Indent 2 spaces
+Indent 2 spaces
 
-   #+BEGIN_SRC emacs-lisp
-     (use-package js
-       :config
-       (setq js-indent-level 2))
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package js
+    :config
+    (setq js-indent-level 2))
+#+END_SRC
 ** Lispy
-   Define =lispy-mode-hooks=:
-   #+BEGIN_SRC emacs-lisp
-     (setq lispy-mode-hooks '(clojure-mode-hook
-                              emacs-lisp-mode-hook
-                              lisp-mode-hook
-                              scheme-mode-hook))
-   #+END_SRC
+Define =lispy-mode-hooks=:
+#+BEGIN_SRC emacs-lisp
+  (setq lispy-mode-hooks '(clojure-mode-hook
+                           emacs-lisp-mode-hook
+                           lisp-mode-hook
+                           scheme-mode-hook))
+#+END_SRC
 
-   and set =show-paren-style= of each mode's:
-   #+BEGIN_SRC emacs-lisp
-     (dolist (hook lispy-mode-hooks)
-       (add-hook hook (lambda () (setq show-paren-style 'expression))))
-   #+END_SRC
+and set =show-paren-style= of each mode's:
+#+BEGIN_SRC emacs-lisp
+  (dolist (hook lispy-mode-hooks)
+    (add-hook hook (lambda () (setq show-paren-style 'expression))))
+#+END_SRC
 *** Paredit Mode
-    #+BEGIN_SRC emacs-lisp
-      (use-package paredit
-        :ensure t
-        :delight (paredit-mode " π")
-        :hook ((clojure-mode . paredit-mode)
-               (emacs-lisp-mode . paredit-mode)
-               (lisp-mode . paredit-mode)
-               (scheme-mode . paredit-mode)))
-    #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package paredit
+    :ensure t
+    :delight (paredit-mode " π")
+    :hook ((clojure-mode . paredit-mode)
+           (emacs-lisp-mode . paredit-mode)
+           (lisp-mode . paredit-mode)
+           (scheme-mode . paredit-mode)))
+#+END_SRC
 *** Rainbowbow Delimeters
-    #+BEGIN_SRC emacs-lisp
-      (use-package rainbow-delimiters
-        :ensure t
-        :hook ((clojure-mode . rainbow-delimiters-mode)
-               (emacs-lisp-mode . rainbow-delimiters-mode)
-               (lisp-mode . rainbow-delimiters-mode)
-               (scheme-mode . rainbow-delimiters-mode)))
-    #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package rainbow-delimiters
+    :ensure t
+    :hook ((clojure-mode . rainbow-delimiters-mode)
+           (emacs-lisp-mode . rainbow-delimiters-mode)
+           (lisp-mode . rainbow-delimiters-mode)
+           (scheme-mode . rainbow-delimiters-mode)))
+#+END_SRC
 ** shell
-   Indent with 2 spaces.
-   #+BEGIN_SRC emacs-lisp
-     (use-package sh-script
-       :config
-       (setq sh-basic-offset 2
-             sh-indentation 2))
-   #+END_SRC
+Indent with 2 spaces.
+#+BEGIN_SRC emacs-lisp
+  (use-package sh-script
+    :config
+    (setq sh-basic-offset 2
+          sh-indentation 2))
+#+END_SRC
 ** yaml
 #+BEGIN_SRC emacs-lisp
   (use-package yaml-mode
@@ -593,19 +589,19 @@ Add file sizes in human-readable units (KB, MB, etc) to dired buffers.
     (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 #+END_SRC
 ** Markdown
-   #+BEGIN_SRC emacs-lisp
-     (use-package markdown-mode
-       :ensure t
-       :mode (("README\\.md\\'" . gfm-mode)
-              ("\\.md\\'" . markdown-mode)
-              ("\\.markdown\\'" . markdown-mode)))
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package markdown-mode
+    :ensure t
+    :mode (("README\\.md\\'" . gfm-mode)
+           ("\\.md\\'" . markdown-mode)
+           ("\\.markdown\\'" . markdown-mode)))
+#+END_SRC
 ** Docker
-   #+begin_src emacs-lisp
-     (use-package docker
-       :ensure t
-       :bind ("C-c d" . docker))
-   #+end_src
+#+begin_src emacs-lisp
+  (use-package docker
+    :ensure t
+    :bind ("C-c d" . docker))
+#+end_src
 ** Go-lang
 #+begin_src emacs-lisp
     (use-package go-mode
@@ -625,53 +621,53 @@ Add file sizes in human-readable units (KB, MB, etc) to dired buffers.
 #+end_src
 * Org-mode
 ** Display preferences
-   Little downward-pointing arrow instead of the usual ellipsis(=...=)
-   #+BEGIN_SRC emacs-lisp
-     (setq org-ellipsis " ⤵")
-     (custom-set-faces '(org-ellipsis ((t (:weight bold :height 1.3 :box nil :underline nil)))))
-   #+END_SRC
+Little downward-pointing arrow instead of the usual ellipsis(=...=)
+#+BEGIN_SRC emacs-lisp
+  (setq org-ellipsis " ⤵")
+  (custom-set-faces '(org-ellipsis ((t (:weight bold :height 1.3 :box nil :underline nil)))))
+#+END_SRC
 
-   Bigger document title
-   #+begin_src emacs-lisp
-     (custom-set-faces '(org-document-title ((t (:weight bold :height 1.5)))))
-   #+end_src
+Bigger document title
+#+begin_src emacs-lisp
+  (custom-set-faces '(org-document-title ((t (:weight bold :height 1.5)))))
+#+end_src
 
-   Pretty bullets instead of a list of asterisks
-   #+BEGIN_SRC emacs-lisp
-     (use-package org-superstar
-       :ensure t
-       :config
-       (org-superstar-configure-like-org-bullets)
-       :hook (org-mode . org-superstar-mode))
-   #+END_SRC
+Pretty bullets instead of a list of asterisks
+#+BEGIN_SRC emacs-lisp
+  (use-package org-superstar
+    :ensure t
+    :config
+    (org-superstar-configure-like-org-bullets)
+    :hook (org-mode . org-superstar-mode))
+#+END_SRC
 
-   Load =org-tempo=
-   #+BEGIN_SRC emacs-lisp
-     (use-package org-tempo
-       :config
-       (add-to-list 'org-modules 'org-tempo))
-   #+END_SRC
+Load =org-tempo=
+#+BEGIN_SRC emacs-lisp
+  (use-package org-tempo
+    :config
+    (add-to-list 'org-modules 'org-tempo))
+#+END_SRC
 
-   Use syntax highlighting in source blocks while editing.
-   #+BEGIN_SRC emacs-lisp
-     (setq org-src-fontify-natively t)
-   #+END_SRC
+Use syntax highlighting in source blocks while editing.
+#+BEGIN_SRC emacs-lisp
+  (setq org-src-fontify-natively t)
+#+END_SRC
 
-   When editing a code snippet, use the current window rather than popping open a
-   new one (which shows the same information).
-   #+BEGIN_SRC emacs-lisp
-     (setq org-src-window-setup 'current-window)
-   #+END_SRC
+When editing a code snippet, use the current window rather than popping open a
+new one (which shows the same information).
+#+BEGIN_SRC emacs-lisp
+  (setq org-src-window-setup 'current-window)
+#+END_SRC
 
-   Align tags to right.
-   #+BEGIN_SRC emacs-lisp
-     (setq org-tags-column -80)
-   #+END_SRC
+Align tags to right.
+#+BEGIN_SRC emacs-lisp
+  (setq org-tags-column -80)
+#+END_SRC
 
-   UTF-8 entities
-   #+BEGIN_SRC emacs-lisp
-     (setq org-pretty-entities t)
-   #+END_SRC
+UTF-8 entities
+#+BEGIN_SRC emacs-lisp
+  (setq org-pretty-entities t)
+#+END_SRC
 
 Indentations are usefull:
 #+begin_src emacs-lisp
@@ -679,22 +675,22 @@ Indentations are usefull:
            org-startup-indented :t)
 #+end_src
 
-   Fold everything when open a file:
-   #+begin_src emacs-lisp
-     (setq org-startup-folded t)
-   #+end_src
+Fold everything when open a file:
+#+begin_src emacs-lisp
+  (setq org-startup-folded t)
+#+end_src
 ** Open external links in Vivaldi Browser instead of default
-   #+BEGIN_SRC emacs-lisp
-     (add-hook 'org-mode-hook (lambda ()
-                                (setq browse-url-browser-function 'browse-url-generic
-                                      browse-url-generic-program "vivaldi")))
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'org-mode-hook (lambda ()
+                             (setq browse-url-browser-function 'browse-url-generic
+                                   browse-url-generic-program "vivaldi")))
+#+END_SRC
 ** =org-cliplink=
-   #+BEGIN_SRC emacs-lisp
-     (use-package org-cliplink
-       :ensure t
-       :bind (("C-x p i" . 'org-cliplink)))
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package org-cliplink
+    :ensure t
+    :bind (("C-x p i" . 'org-cliplink)))
+#+END_SRC
 ** =org-alert=
 #+begin_src emacs-lisp
   (use-package org-alert
@@ -712,73 +708,71 @@ Indentations are usefull:
 * Navigating
 ** Use =Command= keys as =Meta= instead of =Super= on MacOS
 #+begin_src emacs-lisp
-  (when (string= system-type "darwin")
-    (setq mac-option-modifier nil
-          mac-command-modifier 'meta))
+
 #+end_src
 ** Use =windmove= insted of default bindings
-   #+BEGIN_SRC emacs-lisp
-     (use-package windmove
-       :bind (("M-S-<left>" . 'windmove-left)
-              ("M-S-<right>" . 'windmove-right)
-              ("M-S-<up>" . 'windmove-up)
-              ("M-S-<down>" . 'windmove-down)
-              ("C-x M-S-<left>" . 'windmove-delete-left)
-              ("C-x M-S-<right>" . 'windmove-delete-right)
-              ("C-x M-S-<up>" . 'windmove-delete-up)
-              ("C-x M-S-<down>" . 'windmove-delete-down)
-              ("C-c M-S-<left>" . 'windmove-swap-states-left)
-              ("C-c M-S-<right>" . 'windmove-swap-states-right)
-              ("C-c M-S-<up>" . 'windmove-swap-states-up)
-              ("C-c M-S-<down>" . 'windmove-swap-states-down)))
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package windmove
+    :bind (("M-S-<left>" . 'windmove-left)
+           ("M-S-<right>" . 'windmove-right)
+           ("M-S-<up>" . 'windmove-up)
+           ("M-S-<down>" . 'windmove-down)
+           ("C-x M-S-<left>" . 'windmove-delete-left)
+           ("C-x M-S-<right>" . 'windmove-delete-right)
+           ("C-x M-S-<up>" . 'windmove-delete-up)
+           ("C-x M-S-<down>" . 'windmove-delete-down)
+           ("C-c M-S-<left>" . 'windmove-swap-states-left)
+           ("C-c M-S-<right>" . 'windmove-swap-states-right)
+           ("C-c M-S-<up>" . 'windmove-swap-states-up)
+           ("C-c M-S-<down>" . 'windmove-swap-states-down)))
+#+END_SRC
 ** Pulse line when switch window or recenter buffer
-   #+begin_src emacs-lisp
-     (defun pulse-line (&rest _)
-       "Pulse the current line."
-       (pulse-momentary-highlight-one-line (point)))
+#+begin_src emacs-lisp
+  (defun pulse-line (&rest _)
+    "Pulse the current line."
+    (pulse-momentary-highlight-one-line (point)))
 
-     (dolist (command '(scroll-up-command
-                        scroll-down-command
-                        recenter-top-bottom
-                        other-window))
-       (advice-add command :after #'pulse-line))
-   #+end_src
+  (dolist (command '(scroll-up-command
+                     scroll-down-command
+                     recenter-top-bottom
+                     other-window))
+    (advice-add command :after #'pulse-line))
+#+end_src
 ** Smooth Scrolling
-   [[https://www.emacswiki.org/emacs/SmoothScrolling][Source]]
+[[https://www.emacswiki.org/emacs/SmoothScrolling][Source]]
 
-   5 line at a time:
-   #+BEGIN_SRC emacs-lisp
-     (setq mouse-wheel-scroll-amount '(5 ((shift) . 5)))
-   #+END_SRC
+5 line at a time:
+#+BEGIN_SRC emacs-lisp
+  (setq mouse-wheel-scroll-amount '(5 ((shift) . 5)))
+#+END_SRC
 
-   Don't accelerate scrolling:
-   #+BEGIN_SRC emacs-lisp
-     (setq mouse-wheel-progressive-speed nil)
-   #+END_SRC
+Don't accelerate scrolling:
+#+BEGIN_SRC emacs-lisp
+  (setq mouse-wheel-progressive-speed nil)
+#+END_SRC
 
-   Scroll window under mouse:
-   #+BEGIN_SRC emacs-lisp
-     (setq mouse-wheel-follow-mouse 't)
-   #+END_SRC
+Scroll window under mouse:
+#+BEGIN_SRC emacs-lisp
+  (setq mouse-wheel-follow-mouse 't)
+#+END_SRC
 
-   Keyboard scroll 5 line at time:
-   #+BEGIN_SRC emacs-lisp
-     (setq scroll-step 1)
-   #+END_SRC
+Keyboard scroll 5 line at time:
+#+BEGIN_SRC emacs-lisp
+  (setq scroll-step 1)
+#+END_SRC
 * Editing preferences
 ** Set default line length to 81
 #+begin_src emacs-lisp
   (setq-default fill-column 81)
 #+end_src
 ** =utf-8= everywhere
-   #+BEGIN_SRC emacs-lisp
-     (prefer-coding-system 'utf-8)
-     (set-default-coding-systems 'utf-8)
-     (set-terminal-coding-system 'utf-8)
-     (set-keyboard-coding-system 'utf-8)
-     (setq default-buffer-file-coding-system 'utf-8)
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (prefer-coding-system 'utf-8)
+  (set-default-coding-systems 'utf-8)
+  (set-terminal-coding-system 'utf-8)
+  (set-keyboard-coding-system 'utf-8)
+  (setq default-buffer-file-coding-system 'utf-8)
+#+END_SRC
 ** Delete tralining whitespace
 Call DELETE-TRAILING-WHITESPACE every time a buffer is saved.
 
@@ -793,10 +787,10 @@ typewriter.
   (setq sentence-end-double-space nil)
 #+end_src
 ** Always delete active region
-   #+BEGIN_SRC emacs-lisp
-     (setq delete-active-region nil)
-     (delete-selection-mode t)
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (setq delete-active-region nil)
+  (delete-selection-mode t)
+#+END_SRC
 ** Treat camelcase as separate words
 Treat CamelCaseSubWords as separate words in every programming mode.
 
@@ -810,81 +804,81 @@ Turn on transient-mark-mode.
   (transient-mark-mode t)
 #+end_src
 ** Always kill current buffer
-  #+BEGIN_SRC emacs-lisp
-    (defun eh/kill-current-buffer ()
-      "Kill the current buffer without prompting."
-      (interactive)
-      (kill-buffer (current-buffer)))
+#+BEGIN_SRC emacs-lisp
+  (defun eh/kill-current-buffer ()
+    "Kill the current buffer without prompting."
+    (interactive)
+    (kill-buffer (current-buffer)))
 
-    (global-set-key (kbd "C-x k") 'eh/kill-current-buffer)
-  #+END_SRC
+  (global-set-key (kbd "C-x k") 'eh/kill-current-buffer)
+#+END_SRC
 ** Save my location within a file
-   #+BEGIN_SRC emacs-lisp
-     (save-place-mode t)
-     (setq save-place-file (expand-file-name "places" user-cache-directory))
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (save-place-mode t)
+  (setq save-place-file (expand-file-name "places" user-cache-directory))
+#+END_SRC
 ** Ignore case-sensivity when find file
-   #+BEGIN_SRC emacs-lisp
-     (setq read-file-name-completion-ignore-case t)
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (setq read-file-name-completion-ignore-case t)
+#+END_SRC
 ** Configure =which-key=
-   #+BEGIN_SRC emacs-lisp
-     (use-package which-key
-       :ensure t
-       :diminish
-       :config
-       (which-key-mode))
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package which-key
+    :ensure t
+    :diminish
+    :config
+    (which-key-mode))
+#+END_SRC
 ** Configure =ido-mode=
-  #+BEGIN_SRC emacs-lisp
-    (use-package flx-ido
-      :ensure t
-      :config
-      (setq ido-enable-flex-matching t
-            ido-use-faces nil
-            ido-auto-merge-work-directories-length -1
-            ido-save-directory-list-file (expand-file-name "ido.last" user-cache-directory))
-      (ido-mode t)
-      (ido-everywhere t)
-      (flx-ido-mode t))
-  #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package flx-ido
+    :ensure t
+    :config
+    (setq ido-enable-flex-matching t
+          ido-use-faces nil
+          ido-auto-merge-work-directories-length -1
+          ido-save-directory-list-file (expand-file-name "ido.last" user-cache-directory))
+    (ido-mode t)
+    (ido-everywhere t)
+    (flx-ido-mode t))
+#+END_SRC
 ** Smex
-   #+BEGIN_SRC emacs-lisp
-     (use-package smex
-       :ensure t
-       :config
-       (setq smex-save-file (expand-file-name "smex-items" user-cache-directory))
-       :bind (("M-x" . 'smex)))
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package smex
+    :ensure t
+    :config
+    (setq smex-save-file (expand-file-name "smex-items" user-cache-directory))
+    :bind (("M-x" . 'smex)))
+#+END_SRC
 ** =editorconfig= everywhere
-   #+BEGIN_SRC emacs-lisp
-     (use-package editorconfig
-       :ensure t
-       :diminish
-       :config
-       (editorconfig-mode t))
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package editorconfig
+    :ensure t
+    :diminish
+    :config
+    (editorconfig-mode t))
+#+END_SRC
 ** Always =server-mode=
-   #+BEGIN_SRC emacs-lisp
-     (use-package server
-       :config
-       (or (server-running-p) (server-mode)))
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package server
+    :config
+    (or (server-running-p) (server-mode)))
+#+END_SRC
 ** =undo-tree=
-   #+BEGIN_SRC emacs-lisp
-     (use-package undo-tree
-       :ensure t
-       :diminish
-       :config
-       (global-undo-tree-mode))
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package undo-tree
+    :ensure t
+    :diminish
+    :config
+    (global-undo-tree-mode))
+#+END_SRC
 ** Move text up or down
-   #+BEGIN_SRC emacs-lisp
-     (use-package move-text
-       :ensure t
-       :config
-       (move-text-default-bindings))
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package move-text
+    :ensure t
+    :config
+    (move-text-default-bindings))
+#+END_SRC
 ** Use =company-mode= everywhere
 #+BEGIN_SRC emacs-lisp
   (use-package company
@@ -895,50 +889,50 @@ Turn on transient-mark-mode.
     (global-company-mode t))
 #+END_SRC
 ** TODO Copy without new lines in text-related modes
-   #+begin_src emacs-lisp
-     ; http://emacs.stackexchange.com/questions/1051/copy-region-from-emacs-without-newlines
-     (defun my-copy-simple (&optional beg end)
-       "Save the current region (or line) to the `kill-ring' after stripping extra whitespace and new lines"
-       (interactive
-        (if (region-active-p)
-            (list (region-beginning) (region-end))
-          (list (line-beginning-position) (line-end-position))))
-       (let ((my-text (buffer-substring-no-properties beg end)))
-         (with-temp-buffer
-           (insert my-text)
-           (goto-char 1)
-           (while (looking-at "[ \t\n]")
-             (delete-char 1))
-           (let ((fill-column 9333999))
-             (fill-region (point-min) (point-max)))
-           (kill-region (point-min) (point-max)))
-         (deactivate-mark)))
+#+begin_src emacs-lisp
+  ; http://emacs.stackexchange.com/questions/1051/copy-region-from-emacs-without-newlines
+  (defun my-copy-simple (&optional beg end)
+    "Save the current region (or line) to the `kill-ring' after stripping extra whitespace and new lines"
+    (interactive
+     (if (region-active-p)
+         (list (region-beginning) (region-end))
+       (list (line-beginning-position) (line-end-position))))
+    (let ((my-text (buffer-substring-no-properties beg end)))
+      (with-temp-buffer
+        (insert my-text)
+        (goto-char 1)
+        (while (looking-at "[ \t\n]")
+          (delete-char 1))
+        (let ((fill-column 9333999))
+          (fill-region (point-min) (point-max)))
+        (kill-region (point-min) (point-max)))
+      (deactivate-mark)))
 
-     (add-hook 'org-mode-hook (lambda () (local-set-key (kbd "C-u M-w") #'my-copy-simple)))
-   #+end_src
+  (add-hook 'org-mode-hook (lambda () (local-set-key (kbd "C-u M-w") #'my-copy-simple)))
+#+end_src
 ** Change =auto-save-list= directory
-   #+begin_src emacs-lisp
-     (setq user-backups-autosaves-directory (concat user-cache-directory "backups-autosaves/"))
-     (unless (file-directory-p user-backups-autosaves-directory)
-       (make-directory user-backups-autosaves-directory))
+#+begin_src emacs-lisp
+  (setq user-backups-autosaves-directory (concat user-cache-directory "backups-autosaves/"))
+  (unless (file-directory-p user-backups-autosaves-directory)
+    (make-directory user-backups-autosaves-directory))
 
-     (setq auto-save-file-name-transforms
-           `((".*" ,user-backups-autosaves-directory t)))
-     (setq auto-save-list-file-name (expand-file-name ".saves-" (concat user-cache-directory "auto-save-list/")))
-   #+end_src
+  (setq auto-save-file-name-transforms
+        `((".*" ,user-backups-autosaves-directory t)))
+  (setq auto-save-list-file-name (expand-file-name ".saves-" (concat user-cache-directory "auto-save-list/")))
+#+end_src
 ** Change =recenf= file location
-   #+begin_src emacs-lisp
-     (setq recentf-save-file (expand-file-name "recentf" user-cache-directory))
-   #+end_src
+#+begin_src emacs-lisp
+  (setq recentf-save-file (expand-file-name "recentf" user-cache-directory))
+#+end_src
 
-   Exclude elpa packages from recentf:
-   #+begin_src emacs-lisp
-     (add-to-list 'recentf-exclude (format "%s/\\.emacs\\.d/elpa/.*" (getenv "HOME")))
-   #+end_src
+Exclude elpa packages from recentf:
+#+begin_src emacs-lisp
+  (add-to-list 'recentf-exclude (format "%s/\\.emacs\\.d/elpa/.*" (getenv "HOME")))
+#+end_src
 ** Change =undo-tree= history directory
-   #+begin_src emacs-lisp
-     (setq undo-tree-history-directory-alist `(("." . "~/.cache/emacs/undo-tree-history/")))
-   #+end_src
+#+begin_src emacs-lisp
+  (setq undo-tree-history-directory-alist `(("." . "~/.cache/emacs/undo-tree-history/")))
+#+end_src
 ** Ensure that files end with newline
 If you save a file that doesn't end with a newline, automatically append one.
 
@@ -954,18 +948,18 @@ point is, not where the mouse cursor is.
 #+end_src
 * Terminal
 ** Vterm
-   #+begin_src emacs-lisp
-     (use-package vterm
-       :ensure t
-       :bind (("C-x v" . 'vterm)))
-   #+end_src
+#+begin_src emacs-lisp
+  (use-package vterm
+    :ensure t
+    :bind (("C-x v" . 'vterm)))
+#+end_src
 * Set custom keybindings
-  #+BEGIN_SRC emacs-lisp
-    (global-set-key (kbd "M-o") 'other-window)
-  #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "M-o") 'other-window)
+#+END_SRC
 * Backup
-  Change backup files location
-  #+BEGIN_SRC emacs-lisp
-    (setq backup-directory-alist
-             `((".*" . ,user-backups-autosaves-directory)))
-  #+END_SRC
+Change backup files location
+#+BEGIN_SRC emacs-lisp
+  (setq backup-directory-alist
+           `((".*" . ,user-backups-autosaves-directory)))
+#+END_SRC
