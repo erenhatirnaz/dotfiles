@@ -16,8 +16,8 @@ fi
 while read -r f; do source "$f"; done < <(find "${HOME}/.bashrc.d/" -name "*.sh" | sort)
 
 # Load dircolors
-if [[ -r ~/.dircolors ]] && type -p dircolors >/dev/null; then
-  eval $(dircolors -b "$HOME/.dircolors")
+if [[ -r "${HOME}/.bashrc.d/15-dircolors" ]] && type -p dircolors >/dev/null; then
+  eval $(dircolors -b "${HOME}/.bashrc.d/15-dircolors")
 fi
 
 # Case-insensitive globbing (used in pathname expansion)
