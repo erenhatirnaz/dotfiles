@@ -21,7 +21,7 @@ while read -r file; do
 done < <(find "${BASHRC_DIR}/" -name "*.sh" | sort)
 
 # Load dircolors
-if [[ -r "${HOME}/.bashrc.d/15-dircolors" ]] && type -p dircolors >/dev/null; then
+if [[ -r "${BASHRC_DIR}/15-dircolors" ]] && type -p dircolors >/dev/null; then
   eval $(dircolors -b "${HOME}/.bashrc.d/15-dircolors")
 fi
 
