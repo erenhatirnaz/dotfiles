@@ -36,6 +36,9 @@ export CARGO_HOME=${HOME}/.cargo
 # Set java directory
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 
+# Set GNU readline inputrc path
+export INPUTRC="${HOME}/.bashrc.d/15-inputrc.conf"
+
 # My scripts
 export PATH=${PATH}:${HOME}/bin
 
