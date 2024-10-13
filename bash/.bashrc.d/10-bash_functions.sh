@@ -32,10 +32,10 @@ complete -o default -F _cw cw
 #  - Auto-completion for hosts from each SSH config
 #  - Separate ssh, scp, and sftp functions for each SSH config
 while read -r config; do
-  suffix=$(basename $config | cut -sd'-' -f2 | cut -c1-1)
+  prefix=$(basename $config | cut -sd'-' -f2 | cut -c1-1)
 
 source /dev/stdin <<FUNC
-  function ssh$suffix() {
+  function ssh$prefix() {
     if [[ \$1 == *"prod"* ]]; then
       echo -e "\e[1;41mYou're about to connect to PRODUCTION server. BE CAREFUL!\e[0m";
       read -p "Press enter to continue..."
@@ -44,15 +44,18 @@ source /dev/stdin <<FUNC
     /usr/bin/ssh -F "$config" "\$@"
   }
 
-  function _ssh$suffix() {
+  function _ssh$prefix() {
     IFS=\$'\n' tmp=(\$(compgen -W "\$(grep "^Host" $config | grep -v "[?*]" | cut -d" " -f2-)" -- "\${COMP_WORDS[\$COMP_CWORD]}"))
     COMPREPLY=( "\${tmp[@]// /\ }" )
   }
 FUNC
 
+alias scp$prefix="scp -F $config"
+alias sftp$prefix="sftp -F $config"
+
 complete -o "default" \
          -o "nospace" \
-         -F _ssh$suffix \
-         scp$suffix ssh$suffix sftp$suffix
+         -F _ssh$prefix \
+         scp$prefix ssh$prefix sftp$prefix
 done < <(find "${HOME}/.ssh/" -name "config*")
-unset suffix
+unset prefix
