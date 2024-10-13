@@ -56,9 +56,11 @@ fi
 # Set GNU readline inputrc path
 export INPUTRC="${HOME}/.bashrc.d/15-inputrc.conf"
 
+# Global PATH variables
+export PATH=${PATH}:${HOME}/.local/bin
+
 # PATH variable for GNU/Linux
 if [[ "${OSTYPE}" =~ "linux-gnu" ]]; then
-  export PATH=${PATH}:${HOME}/.local/bin
   export PATH=${PATH}:${HOME}/.npm/bin
   export PATH=${PATH}:${HOME}/.yarn/bin
   export PATH=${PATH}:${HOME}/.cask/bin
