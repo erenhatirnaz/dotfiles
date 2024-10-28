@@ -10,35 +10,6 @@
         calendar-location-name "Rize, TR"
         calendar-week-start-day 1)
 #+END_SRC
-* Use =sensible-defaults.el=
-=sensible-default.el= is some kind of =normalize= function set. See [[https://github.com/hrs/sensible-defaults.el][this
-repository]] for more information.
-
-#+BEGIN_SRC emacs-lisp
-  ;; (load-file "~/.emacs.d/sensible-defaults.el")
-
-  ;; (sensible-defaults/increase-gc-threshold)
-  ;; (sensible-defaults/delete-trailing-whitespace) ;; edit
-  ;; (sensible-defaults/treat-camelcase-as-separate-words) ;; edit
-  ;; (sensible-defaults/automatically-follow-symlinks)
-  ;; (sensible-defaults/make-scripts-executable)
-  ;; (sensible-defaults/single-space-after-periods) ;; edit
-  ;; (sensible-defaults/offer-to-create-parent-directories-on-save) ;; file
-  ;; (sensible-defaults/apply-changes-to-highlighted-region) ;; edit
-  ;; (sensible-defaults/overwrite-selected-text) ;; edit
-  ;; (sensible-defaults/ensure-that-files-end-with-newline) ;; edit
-  ;; (sensible-defaults/confirm-closing-emacs) ;; display
-  ;; (sensible-defaults/quiet-startup) ;; display
-  ;; (sensible-defaults/make-dired-file-sizes-human-readable) ;; dired
-  ;; (sensible-defaults/shorten-yes-or-no) ;; display
-  ;; (sensible-defaults/always-highlight-code) ;; display or programming
-  ;; (sensible-defaults/refresh-buffers-when-files-change) ;; buffer management
-  ;; (sensible-defaults/show-matching-parens)
-  ;; (sensible-defaults/yank-to-point-on-mouse-click) ;; edit
-  ;; (sensible-defaults/flash-screen-instead-of-ringing-bell) ;; display
-  ;; (sensible-defaults/set-default-line-length-to 81)
-  ;; edit
-#+END_SRC
 * Display settings
 ** Disable GUI components
 I don't like to see menu bar or tool bar. My main input device is keyboard. So
