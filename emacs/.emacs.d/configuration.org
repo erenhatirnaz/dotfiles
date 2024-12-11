@@ -650,7 +650,7 @@ new one (which shows the same information).
 
 Align tags to right.
 #+BEGIN_SRC emacs-lisp
-  (setq org-tags-column -80)
+  (setq org-tags-column (* -1 fill-column))
 #+END_SRC
 
 UTF-8 entities
