@@ -11,6 +11,10 @@
         calendar-week-start-day 1)
 #+END_SRC
 * Display settings
+** Set default line length to 81
+#+begin_src emacs-lisp
+  (setq-default fill-column 81)
+#+end_src
 ** Disable GUI components
 I don't like to see menu bar or tool bar. My main input device is keyboard. So
 these GUI components aren't usefull for me. I need to more space on my screen.
@@ -752,10 +756,6 @@ Keyboard scroll 5 line at time:
   (setq scroll-step 1)
 #+END_SRC
 * Editing preferences
-** Set default line length to 81
-#+begin_src emacs-lisp
-  (setq-default fill-column 81)
-#+end_src
 ** =utf-8= everywhere
 #+BEGIN_SRC emacs-lisp
   (prefer-coding-system 'utf-8)
