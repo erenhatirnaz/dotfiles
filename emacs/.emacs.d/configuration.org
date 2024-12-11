@@ -690,6 +690,10 @@ Fold everything when open a file:
     (setq org-alert-match-string "SCHEDULED>=\"<today>\"+SCHEDULED<\"<tomorrow>\"|DEADLINE>=\"<today>\"+DEADLINE<\"<tomorrow>\"|REMIND_ME>=\"<today>\"+DEADLINE<\"<tomorrow>\"")
     (org-alert-enable))
 #+end_src
+** Add page break after table of content when exporting
+#+begin_src emacs-lisp
+  (setq org-latex-toc-command "\\tableofcontents \\clearpage")
+#+end_src
 * Navigating
 ** Use =Command= keys as =Meta= instead of =Super= on MacOS
 #+begin_src emacs-lisp
