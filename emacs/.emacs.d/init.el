@@ -30,6 +30,10 @@
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
 
+;; Fix Emacs starts at unfocused state on MacOS
+(if (eq system-type 'darwin)
+    (select-frame-set-input-focus (selected-frame)))
+
 (load custom-file)
 
 (org-babel-load-file "~/.emacs.d/configuration.org")
