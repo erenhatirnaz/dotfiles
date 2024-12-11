@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-
-
 prompt_git() {
 	local s=''
 	local branchName=''

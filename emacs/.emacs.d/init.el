@@ -25,10 +25,14 @@
 ;;       (load-file el)
 ;;     (org-babel-load-file org)))
 
-(setq custom-file (expand-file-name "custom.el" "~/.cache/emacs/"))
-
+;; Set custom file location info cache directory
+(setq custom-file (expand-file-name "custom.el" user-cache-directory))
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
+
+;; Fix Emacs starts at unfocused state on MacOS
+(if (eq system-type 'darwin)
+    (select-frame-set-input-focus (selected-frame)))
 
 (load custom-file)
 

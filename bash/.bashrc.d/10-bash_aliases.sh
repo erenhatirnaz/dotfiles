@@ -59,17 +59,22 @@ alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 
 # Show local IP addresses (IPv4 and IPv6)
 alias lip="nmcli -p device show | grep -i IP4.ADDRESS | head -n1 | cut -d: -f2 | xargs"
+if [[ "$OSTYPE" =~ "darwin"* ]]; then
+  alias lip="ipconfig getifaddr en0"
+fi
 
 # List all open network ports
-alias openports4="ss --all --numeric --processes --ipv4"
-alias openports6="ss --all --numeric --processes --ipv6"
-
-# Switch between Wired and Wi-Fi connections
-alias wired-mode="nmcli c up HatirnazWiredConnection && nmcli c down HatirnazEvi"
-alias wifi-mode="nmcli c up HatirnazEvi && nmcli c down HatirnazWiredConnection"
+alias openports4="lsof -Pi4TCP -sTCP:LISTEN"
+alias openports6="lsof -Pi6TCP -sTCP:LISTEN"
 
 # Empty the Trash
-alias emptytrash="rm -rf ${HOME}/.local/share/Trash/*"
+# TODO: move this alias to function
+TRASH_DIR="${HOME}/.local/share/Trash/*"
+if [[ "$OSTYPE" =~ "darwin"* ]]; then
+  TRASH_DIR="${HOME}/.Trash/*"
+fi
+
+alias emptytrash="rm -rf ${TRASH_DIR}"
 
 # Intuitive map function
 # For example, to list all directories that contain a certain file:
@@ -80,13 +85,17 @@ alias map="xargs -n1"
 alias reload="exec ${SHELL} -l"
 
 # Print each PATH entry on a separate line
-alias path="echo -e ${PATH//:/\\n}"
+alias path="echo -e \"$(echo $PATH | sed 's/:/\\n/g')\""
 
 # Convert clipboard content to QRCode
-alias clip2qr="xclip -out -selection clipboard | qrencode -o - -t UTF8"
+# TODO: convert this to toolbox script
+# alias clip2qr="xclip -out -selection clipboard | qrencode -o - -t UTF8"
 
 # Copy & Paste
 alias copy="xclip -selection clipboard"
+if [[ "$OSTYPE" =~ "darwin"* ]]; then
+  alias copy="pbcopy"
+fi
 
 # List all fonts
 alias fontlist="fc-list | cut -d: -f2 | sort -u | uniq"

@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
 # run startx when startup
-if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then exec startx -- -ardelay 300 -arinterval 30; fi
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+  exec startx -- -ardelay 300 -arinterval 30;
+fi
 
 # enable bash completion in interactive shells
 if ! shopt -oq posix; then
@@ -13,36 +15,26 @@ if ! shopt -oq posix; then
 fi
 
 # Load the shell dotfiles
-while read -r f; do source "$f"; done < <(find "${HOME}/.bashrc.d/" -name "*.sh" | sort)
+export BASHRC_DIR="${HOME}/.bashrc.d"
+while read -r file; do
+  source "$file";
+done < <(find "${BASHRC_DIR}/" -name "*.sh" | sort)
 
 # Load dircolors
-if [[ -r ~/.dircolors ]] && type -p dircolors >/dev/null; then
-  eval $(dircolors -b "$HOME/.dircolors")
+if [[ -r "${BASHRC_DIR}/15-dircolors" ]] && type -p dircolors >/dev/null; then
+  eval $(dircolors -b "${HOME}/.bashrc.d/15-dircolors")
 fi
 
-# Case-insensitive globbing (used in pathname expansion)
-shopt -s nocaseglob
-
-# Append to the Bash history file, rather than overwriting it
-shopt -s histappend
-
-# Autocorrect typos in path names when using `cd`
-shopt -s cdspell
-
-# Enable some Bash 4 features when possible:
-# * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
-# * Recursive globbing, e.g. `echo **/*.txt`
-for option in autocd globstar; do
+# Enable some Bash features when possible:
+# - `nocaseglob`: Case-insensitive globbing (used in pathname expansion)
+# - `histappend`: Append to the Bash history file, rather than overwriting it
+# - `cdspell`: Autocorrect typos in path names when using `cd`
+# - `autocd`: e.g. `**/qux` will enter `./foo/bar/baz/qux`
+# - `globstar`: Recursive globbing, e.g. `echo **/*.txt`
+for option in nocaseglob histappend cdspell autocd globstar; do
 	shopt -s "$option" 2> /dev/null
 done
 unset option
-
-# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e "$HOME/.ssh/config" ] && \
-  complete -o "default"\
-           -o "nospace"\
-           -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d" " -f2- | tr ' ' '\n')"\
-           scp sftp ssh
 
 # Use GPG as ssh-agent
 export GPG_TTY=$(tty)
