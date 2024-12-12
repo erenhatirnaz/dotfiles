@@ -28,7 +28,7 @@ eval $(gnome-keyring-daemon --start)
 
 # wait for launch stumpwm and set walpaper
 export WALLPAPER="/home/eh/Pictures/wallpapers/firewatch/man-sunset.jpg"
-sleep 5s && feh --bg-fill "$WALLPAPER" &
+sleep 5s && feh --no-fehbg --bg-fill "$WALLPAPER" &
 
 # launch battery notifier
 # my battery is gone no need to this for now :(
