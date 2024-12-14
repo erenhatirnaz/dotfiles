@@ -7,7 +7,7 @@ export XDG_DATA_HOME="${HOME}/.local/share/"
 export XDG_STATE_HOME="${HOME}/.local/state/"
 
 # Create directories for states
-STATE_DIRS=("bash" "node")
+STATE_DIRS=("bash" "node" "less")
 for directory in "${STATE_DIRS[@]}"; do
   mkdir -p "${XDG_STATE_HOME}/${directory}";
 done
@@ -37,6 +37,9 @@ export PYTHONIOENCODING='UTF-8';
 
 # Set term style
 export TERM="xterm-256color"
+
+# Set Less history file path
+export LESSHISTFILE="${XDG_STATE_HOME}/less/history"
 
 # Highlight section titles in manual pages.
 export LESS_TERMCAP_md="${yellow}";
