@@ -59,3 +59,11 @@ complete -o "default" \
          scp$prefix ssh$prefix sftp$prefix
 done < <(find "${HOME}/.ssh/" -name "config*")
 unset prefix
+
+# rlwrap wrapper to use the XDG_STATE_HOME directory for storing the history file
+function rlwrap() {
+  readonly COMMAND="$1";
+  readonly HISTORY_FILENAME="${XDG_STATE_HOME}/${COMMAND}/history";
+
+  /usr/bin/rlwrap --history-filename="${HISTORY_FILENAME}" -- $@
+}
