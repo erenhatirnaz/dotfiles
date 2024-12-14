@@ -1,16 +1,17 @@
 #!/usr/bin/env bash
 
 # XDG Defaults
-export XDG_CONFIG_HOME="${HOME}/.config/"
-export XDG_CACHE_HOME="${HOME}/.cache/"
-export XDG_DATA_HOME="${HOME}/.local/share/"
-export XDG_STATE_HOME="${HOME}/.local/state/"
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_STATE_HOME="${HOME}/.local/state"
 
 # Create directories for states
 STATE_DIRS=("bash" "node" "less")
-for directory in "${STATE_DIRS[@]}"; do
-  mkdir -p "${XDG_STATE_HOME}/${directory}";
+for DIRECTORY in "${STATE_DIRS[@]}"; do
+  mkdir -p "${XDG_STATE_HOME}/${DIRECTORY}";
 done
+unset STATE_DIRS DIRECTORY
 
 # Make emacs the default editor.
 export EDITOR='emacsclient -c';
