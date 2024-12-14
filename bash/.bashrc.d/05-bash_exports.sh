@@ -7,7 +7,7 @@ export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_STATE_HOME="${HOME}/.local/state"
 
 # Create directories for states
-STATE_DIRS=("bash" "node" "less")
+STATE_DIRS=("bash" "node" "less" "mysql")
 for DIRECTORY in "${STATE_DIRS[@]}"; do
   mkdir -p "${XDG_STATE_HOME}/${DIRECTORY}";
 done
@@ -56,6 +56,9 @@ export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 if [[ "$OSTYPE" =~ "darwin"* ]]; then
   export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 fi
+
+# Set history file path for mysql
+export MYSQL_HISTFILE="${XDG_STATE_HOME}/mysql/history"
 
 # Set GNU readline inputrc path
 export INPUTRC="${HOME}/.bashrc.d/15-inputrc.conf"
