@@ -66,6 +66,9 @@ export REDISCLI_HISTFILE="${XDG_STATE_HOME}/redis/history"
 # Set GNU readline inputrc path
 export INPUTRC="${HOME}/.bashrc.d/15-inputrc.conf"
 
+# Set vimrc file path
+export VIMINIT="set nocp | source ${XDG_CONFIG_HOME:-$HOME/.config}/vim/vimrc"
+
 # Global PATH variables
 export PATH=${PATH}:${HOME}/.local/bin
 
