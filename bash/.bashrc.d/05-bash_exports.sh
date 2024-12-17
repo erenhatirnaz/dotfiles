@@ -7,7 +7,7 @@ export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_STATE_HOME="${HOME}/.local/state"
 
 # Create directories for states
-STATE_DIRS=("bash" "node" "less" "mysql")
+STATE_DIRS=("bash" "node" "less" "mysql" "redis")
 for DIRECTORY in "${STATE_DIRS[@]}"; do
   mkdir -p "${XDG_STATE_HOME}/${DIRECTORY}";
 done
@@ -59,6 +59,9 @@ fi
 
 # Set history file path for mysql
 export MYSQL_HISTFILE="${XDG_STATE_HOME}/mysql/history"
+
+# Set history file path for redis-cli
+export REDISCLI_HISTFILE="${XDG_STATE_HOME}/redis/history"
 
 # Set GNU readline inputrc path
 export INPUTRC="${HOME}/.bashrc.d/15-inputrc.conf"
