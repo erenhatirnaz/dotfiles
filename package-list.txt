@@ -45,7 +45,6 @@ development
 git
 git-lfs
 docker
-mysql-workbench
 mysqldump
 php8
 php7
