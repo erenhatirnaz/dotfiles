@@ -27,6 +27,9 @@
       *message-window-gravity* :center
       *message-window-input-gravity* :center)
 
+;; set window number map for easy navigation
+(setf *window-number-map* "123456789")
+
 ;; set font
 (set-font "-*-terminus-bold-r-normal-*-16-*-*-*-*-*-*-*")
 
