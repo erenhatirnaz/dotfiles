@@ -14,7 +14,9 @@ alias rmrf="rm -rf"
 alias dl="cd ${HOME}/Downloads"
 alias dt="cd ${HOME}/Desktop"
 alias dm="cd ${HOME}/Documents"
-alias msc="cd ${HOME}/Music && cmus"
+
+# Quick opener for Music Player
+alias msc="cd /mnt/Medias/Musics/ && cmus"
 
 # List all files colorized in long format
 alias ll="ls -lF --color --group-directories-first"
