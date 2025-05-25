@@ -37,7 +37,6 @@ phpstorm
 
 terminal emulator
 -----------------
-rxvt-unicode-256xresources
 alacritty
 
 development
@@ -83,6 +82,7 @@ ruby
 dbeaver
 oha
 difftastic
+uv
 
 dotfiles
 --------
@@ -137,7 +137,6 @@ ffmpegthumbnailer
 ffmpegthumbnailer-mp3
 appimage-thumbnailer-git
 gnome-xcf-thumbnailer
-webp-thumbnailer
 
 office
 ------
@@ -283,7 +282,6 @@ tailscale
 game
 ----
 steam
-tlauncher
 
 
 pip
