@@ -161,6 +161,10 @@ alias hide-cursor='tput civis'
 # Magit
 alias magit="emacs --eval \"(setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)\" -f magit-status"
 
+# Docker
+alias dps="docker ps -a"
+alias dpss="docker ps -a --format \"table {{.Names}}\t{{.State}}\t{{.Status}}\t{{.Image}}\" | (sed -u 1q; sort)"
+
 # Play test sound
 alias audiotest="mpv ~/Music/notification/cheerful.ogg"
 
