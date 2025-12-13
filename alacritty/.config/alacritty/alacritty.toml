@@ -33,15 +33,15 @@ builtin_box_drawing = true
 size = 12.0
 
 [font.bold]
-family = "Terminus"
+family = "xos4 Terminus"
 style = "Bold"
 
 [font.italic]
-family = "Terminus"
+family = "xos4 Terminus"
 style = "Italic"
 
 [font.normal]
-family = "Terminus"
+family = "xos4 Terminus"
 style = "Regular"
 
 [[hints.enabled]]
